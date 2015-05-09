@@ -3,3 +3,4 @@
 Test promjene s Notepad++ lokalno s računala!
 
 Dodano
+Promjena - Stefan.
