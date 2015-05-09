@@ -1,7 +1,3 @@
 Test s Notepad++ promjena.
 
-<<<<<<< HEAD
-Test dodatni.
-=======
-Vedranova promjena
->>>>>>> origin/master
+Nova promjena - Stefan.
