@@ -35,6 +35,5 @@ D:\Work\GitHub\AdriaTickets\AdriaTicket.com\AdriaTicket.com\bin\System.Web.Razor
 D:\Work\GitHub\AdriaTickets\AdriaTicket.com\AdriaTicket.com\bin\System.Web.WebPages.xml
 D:\Work\GitHub\AdriaTickets\AdriaTicket.com\AdriaTicket.com\bin\System.Web.WebPages.Deployment.xml
 D:\Work\GitHub\AdriaTickets\AdriaTicket.com\AdriaTicket.com\bin\System.Web.WebPages.Razor.xml
-D:\Work\GitHub\AdriaTickets\AdriaTicket.com\AdriaTicket.com\obj\Debug\AdriaTicket.com.csprojResolveAssemblyReference.cache
 D:\Work\GitHub\AdriaTickets\AdriaTicket.com\AdriaTicket.com\obj\Debug\AdriaTicket.com.dll
 D:\Work\GitHub\AdriaTickets\AdriaTicket.com\AdriaTicket.com\obj\Debug\AdriaTicket.com.pdb

@@ -1,0 +1,1 @@
+﻿var adriaTicket = angular.module('adriaticket', []);
