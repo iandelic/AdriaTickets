@@ -1,1 +1,3 @@
 Test s Notepad++ promjena.
+
+Vedranova promjena
