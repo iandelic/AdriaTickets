@@ -1,9 +1,9 @@
-﻿Repository for adriaticket.com website.
+Repository for adriaticket.com website.
 
 
 
-BiKretiv
+<a href = "http://bikretiv.com">BiKretiv</a>
 ==============
-Anđelić Ivan
-Dunić Stefan
-Karačić Vedran
+<a href = "https://hr.linkedin.com/pub/ivan-anđelić/5b/20/110">Anđelić Ivan</a><br />
+<a href = "https://hr.linkedin.com/in/stefandunic">Dunić Stefan</a><br />
+<a href = "https://ba.linkedin.com/in/vedrankaracic">Karačić Vedran</a>
