@@ -117,7 +117,7 @@
     <Content Include="Global.asax" />
     <Content Include="Library\Angular\angular.min.js" />
     <Content Include="Library\Angular\app.js" />
-    <Content Include="Library\Angular\HomeController.js" />
+    <Content Include="Library\Angular\Controllers\HomeController.js" />
     <Content Include="Library\CSS\bk-main.css" />
     <Content Include="Library\JS\bk-main.js" />
     <Content Include="Web.config" />
@@ -144,6 +144,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Footer.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
