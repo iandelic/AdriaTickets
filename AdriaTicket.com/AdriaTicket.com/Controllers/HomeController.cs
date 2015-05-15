@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AdriaTicket.com.Models;
 
 namespace AdriaTicket.com.Controllers
 {
@@ -10,11 +11,17 @@ namespace AdriaTicket.com.Controllers
     {
         //
         // GET: /Home/
-
+        EventDataClassDataContext eventData = new EventDataClassDataContext();
         public ActionResult Index()
         {
-            return View();
+             return View();
         }
 
+        public ActionResult getEvents()
+        {
+            var events = from e in eventData.LK_Events select e;
+
+            return Json(events, JsonRequestBehavior.AllowGet);
+        }
     }
 }

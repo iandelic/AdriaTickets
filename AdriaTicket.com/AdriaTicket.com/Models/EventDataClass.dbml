@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="prstacpr_bk_testna" Class="AdriaticketDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="prstacpr_bk_testna" Class="EventDataClassDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=mssql4.mojsite.com,1555;Initial Catalog=prstacpr_bk_testna;User ID=prstacpr_prodaja" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="prstacpr_bk_testnaConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.LK_Event" Member="LK_Events">
     <Type Name="LK_Event">
