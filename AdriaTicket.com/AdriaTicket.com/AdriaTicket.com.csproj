@@ -109,12 +109,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Adriaticket.cs">
-      <DependentUpon>Adriaticket.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Adriaticket.designer.cs">
-      <DependentUpon>Adriaticket.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\EventDataClass.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,6 +121,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Library\Angular\angular-route.js" />
     <Content Include="Library\Angular\angular.min.js" />
     <Content Include="Library\Angular\app.js" />
     <Content Include="Library\Angular\Controllers\HomeController.js" />
@@ -166,9 +161,6 @@
     <Content Include="Views\Shared\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\Adriaticket.dbml.layout">
-      <DependentUpon>Adriaticket.dbml</DependentUpon>
-    </None>
     <Content Include="Models\EventDataClass.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>EventDataClass.designer.cs</LastGenOutput>
