@@ -42,7 +42,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
+/* END CSS RESET */
 
 
 body {
@@ -72,4 +72,23 @@ body {
 #footer {
     width: 100%;
     height: 100px;
+}
+
+
+#main-content .event {
+    display:block;
+    width:20%;
+    float:left;
+    margin-right:5%;
+    margin-bottom:20px;
+}
+
+
+#main-content h3 {
+    font-size:1.1em;
+    border-bottom:1px solid;
+}
+
+#main-content p {
+    font-style:italic;
 }

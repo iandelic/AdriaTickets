@@ -4,8 +4,9 @@
 
 
 <div ng-controller="HomeController">
- <div ng-repeat="event in events">
-     {{event.EVE_Naziv}} <br /> {{event.EVE_Opis}}
+ <div ng-repeat="event in events" class="event">
+     <h3 class="event-title">{{event.EVE_Naziv}} </h3>
+     <p class="event-desc"> {{event.EVE_Opis}} </p>
 
  </div>
  
