@@ -3,8 +3,12 @@
 }
 
 
-<div ng-controller="HomeController">
+<div ng-controller="LoginController">
 
-    <h1> {{Title}} </h1>
- 
+   
+      <form novalidate>
+        <span>Korisničko ime: </span><input type="text" ng-model="user.username">
+        <span>Lozinka: </span><input type="password" ng-model="user.password">
+        <button ng-click = "submit(user)">Prijava</button>
+      </form>
 </div>

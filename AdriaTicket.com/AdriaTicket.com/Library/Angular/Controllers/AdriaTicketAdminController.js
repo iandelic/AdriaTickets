@@ -1,7 +1,9 @@
-﻿adriaTicketAdmin.controller('HomeController', ['$scope', function ($scope) {
+﻿adriaTicketAdmin.controller('LoginController', ['$scope', function ($scope) {
 
-   
-    $scope.Title = "CMS AdriaTicket - Prijava";
 
+    $scope.submit = function(user) {
+        console.log(user.username + user.password);
+    };
+      
 
 }]);
