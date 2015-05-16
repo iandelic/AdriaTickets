@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+
+    <!-- scripts -->
+    <script src='~/Library/Angular/angular.min.js' type="text/javascript"></script>
+    <script src="~/Library/Angular/angular-route.js" type="text/javascript"></script>
+    <script src='~/Library/Angular/app.js' type="text/javascript"></script>
+    <script src="~/Library/Angular/Controllers/AdriaTicketController.js" type="text/javascript"></script>
+    <script src='~/Library/JS/bk-main.js' type="text/javascript"></script>
+
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <!-- css -->
+    <link rel="stylesheet" href="~/Library/CSS/bk-main.css" type="text/css">
+
+</head>
+<body ng-app="adriaticket">
+    <div id ="page-container">
+        <div id="header">
+            @Html.Partial("Public/Header")
+        </div>
+        <div id="menu">
+            @Html.Partial("Public/Menu")
+        </div>
+        <div id="main-content">
+            @RenderBody()
+        </div>
+        <div id="footer">
+            @Html.Partial("Public/Footer")
+        </div>
+    </div>
+</body>
+</html>

@@ -15,9 +15,17 @@ namespace AdriaTicket.com
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Public", action = "Index"}
             );
+
+            routes.MapRoute(
+                name: "Admin-Prijava",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Admin", action = "Index"}
+            );
+
+
         }
     }
 }

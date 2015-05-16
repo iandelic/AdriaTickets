@@ -1,13 +1,13 @@
 ﻿@{
-    ViewBag.Title = "AdriaTicket";
+    ViewBag.Title = "AdriaTicket - Naslovnica";
 }
 
 
 <div ng-controller="HomeController">
+
  <div ng-repeat="event in events" class="event">
      <img src="http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx" />
      <div class="event-content">
-         
          <h3>{{event.EVE_Naziv}} </h3>
          <p> {{event.EVE_Opis}} </p>
      </div>

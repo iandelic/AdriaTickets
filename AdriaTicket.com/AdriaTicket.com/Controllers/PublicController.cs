@@ -7,14 +7,14 @@ using AdriaTicket.com.Models;
 
 namespace AdriaTicket.com.Controllers
 {
-    public class HomeController : Controller
+    public class PublicController : Controller
     {
         //
         // GET: /Home/
         EventDataClassDataContext eventData = new EventDataClassDataContext();
         public ActionResult Index()
         {
-             return View();
+            return View("Home/Index");
         }
 
         public ActionResult getEvents()

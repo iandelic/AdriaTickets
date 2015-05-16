@@ -105,7 +105,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -124,8 +125,11 @@
     <Content Include="Library\Angular\angular-route.js" />
     <Content Include="Library\Angular\angular.min.js" />
     <Content Include="Library\Angular\app.js" />
-    <Content Include="Library\Angular\Controllers\HomeController.js" />
+    <Content Include="Library\Angular\Controllers\AdriaTicketAdminController.js" />
+    <Content Include="Library\Angular\Controllers\AdriaTicketController.js" />
+    <Content Include="Library\CSS\bk-admin.css" />
     <Content Include="Library\CSS\bk-main.css" />
+    <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -143,22 +147,22 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_layout.cshtml" />
+    <Content Include="Views\Public\_layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Public\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Public\Home\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Shared\Public\Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\Public\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\Public\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\EventDataClass.dbml">
@@ -174,6 +178,9 @@
     <None Include="Models\EventDataClass.dbml.layout">
       <DependentUpon>EventDataClass.dbml</DependentUpon>
     </None>
+    <Content Include="Views\Admin\_layoutAdmin.cshtml" />
+    <Content Include="Views\Admin\_ViewStart.cshtml" />
+    <Content Include="Views\Admin\login.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
