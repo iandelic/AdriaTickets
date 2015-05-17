@@ -16,3 +16,10 @@
       
 
 }]);
+
+
+adriaTicketAdmin.controller('AdminHomeController', ['$scope', '$http', function ($scope, $http) {
+
+    var siteUrl = "http://localhost:32718/";
+
+}]);

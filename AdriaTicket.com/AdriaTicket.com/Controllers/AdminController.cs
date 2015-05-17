@@ -14,6 +14,10 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult Index()
         {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("home", "admin");
+            }
             return View("Login");
         }
         [HttpPost]
@@ -40,6 +44,13 @@ namespace AdriaTicket.com.Controllers
         public ActionResult Home()
         {
             return View("Home");
+        }
+
+        public ActionResult LogOff()
+        {
+            Session.Abandon();
+            System.Web.Security.FormsAuthentication.SignOut();
+            return Redirect("/");
         }
 
     }
