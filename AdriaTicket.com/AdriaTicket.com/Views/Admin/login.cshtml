@@ -4,11 +4,16 @@
 
 
 <div ng-controller="LoginController">
-
-   
-      <form novalidate>
-        <span>Korisničko ime: </span><input type="text" ng-model="user.username">
-        <span>Lozinka: </span><input type="password" ng-model="user.password">
-        <button ng-click = "submit(user)">Prijava</button>
+      <form novalidate name="loginForm">
+        <label for="username">Korisničko ime: </label><input required id="username" type ="text"  ng-model="user.username">
+        <label for ="password">Lozinka: </label><input required id="password" type="password" ng-model="user.password">
+        <input type="checkbox" ng-model ="user.remember_me" id="checkbox_id" value = "false">
+        <label for="checkbox_id">Zapamti me</label>
+        <button ng-click = "submit(user)" ng-disabled="loginForm.$invalid">Prijava</button>
       </form>
+        
+      <div class ="admin-error {{error.show}}">
+          <p>Neispravno korisničko ime ili lozinka!</p>
+      </div>
+
 </div>

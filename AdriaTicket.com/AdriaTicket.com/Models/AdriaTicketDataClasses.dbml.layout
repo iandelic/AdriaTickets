@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 8.5" name="AdriaTicketDataClasses">
+  <DataContextMoniker Name="/AdriaTicketDataClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="0c0ec7c7-b937-49eb-b9fb-4db94831086a" absoluteBounds="9.25, 1.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/SEC_LK_Korisnik" />
+      <nestedChildShapes>
+        <elementListCompartment Id="40cb3d98-9e2e-41b3-af74-f19bb249fcd4" absoluteBounds="9.265, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" absoluteBounds="3.625, 1.125, 2, 5.8092268880208326">
+      <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/LK_Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="55fc95b3-80af-479a-8c82-5c1bb545bd3d" absoluteBounds="3.64, 1.585, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

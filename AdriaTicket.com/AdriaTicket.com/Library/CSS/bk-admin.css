@@ -43,3 +43,20 @@ table {
 	border-spacing: 0;
 }
 /* END CSS RESET */
+
+.admin-error {
+    color : red;
+    display : none;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.admin-error-active {
+    display : block;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}

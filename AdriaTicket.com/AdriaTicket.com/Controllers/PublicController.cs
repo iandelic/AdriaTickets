@@ -11,7 +11,7 @@ namespace AdriaTicket.com.Controllers
     {
         //
         // GET: /Home/
-        EventDataClassDataContext eventData = new EventDataClassDataContext();
+        AdriaTicketDataClassesDataContext eventData = new AdriaTicketDataClassesDataContext();
         public ActionResult Index()
         {
             return View("Home/Index");

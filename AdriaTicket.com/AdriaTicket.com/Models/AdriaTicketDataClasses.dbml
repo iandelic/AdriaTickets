@@ -1,5 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="prstacpr_bk_testna" Class="EventDataClassDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="prstacpr_bk_testna" Class="AdriaTicketDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=mssql4.mojsite.com,1555;Initial Catalog=prstacpr_bk_testna;User ID=prstacpr_prodaja" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="prstacpr_bk_testnaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.SEC_LK_Korisnik" Member="SEC_LK_Korisniks">
+    <Type Name="SEC_LK_Korisnik">
+      <Column Name="KOR_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KOR_IdDjelatnik" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KOR_Login" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="KOR_Zaporka" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="KOR_Napomena" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.LK_Event" Member="LK_Events">
     <Type Name="LK_Event">
       <Column Name="EVE_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

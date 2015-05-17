@@ -26,7 +26,7 @@ namespace AdriaTicket.com
             );
 
             routes.MapRoute(
-               name: "Admin-home",
+               name: "Admin-Home",
                url: "{controller}/{action}",
                defaults: new { controller = "Admin", action = "Home" }
            );
