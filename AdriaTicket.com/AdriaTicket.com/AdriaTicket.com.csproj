@@ -131,7 +131,10 @@
     <Content Include="Library\CSS\bk-main.css" />
     <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
-    <Content Include="Web.config" />
+    <Content Include="Library\JS\jquery-2.1.4.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -181,6 +184,7 @@
     <Content Include="Views\Admin\_layoutAdmin.cshtml" />
     <Content Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Admin\login.cshtml" />
+    <Content Include="Views\Admin\home.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
