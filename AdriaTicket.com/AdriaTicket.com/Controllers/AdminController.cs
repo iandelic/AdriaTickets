@@ -85,12 +85,28 @@ namespace AdriaTicket.com.Controllers
             return View("Home");
         }
 
-
+        [Authorize]
         public ActionResult LogOff()
         {
             Session.Abandon();
             System.Web.Security.FormsAuthentication.SignOut();
             return Redirect("/");
+        }
+        [Authorize]
+        public ActionResult Events()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Edit()
+        {
+            return View();
+        }
+        public ActionResult getEvent(int id)
+        {
+            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id where Event.EVE_Id == id select new { Event.EVE_Datum,statusEventa.SEV_Stanje};
+            return Json(ev, JsonRequestBehavior.AllowGet);
         }
 
     }

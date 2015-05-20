@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 8.5" name="AdriaTicketDataClasses">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.125, 8.5" name="AdriaTicketDataClasses">
   <DataContextMoniker Name="/AdriaTicketDataClassesDataContext" />
   <nestedChildShapes>
     <classShape Id="0c0ec7c7-b937-49eb-b9fb-4db94831086a" absoluteBounds="9.25, 1.125, 2, 1.7708968098958331">
@@ -8,11 +8,76 @@
         <elementListCompartment Id="40cb3d98-9e2e-41b3-af74-f19bb249fcd4" absoluteBounds="9.265, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" absoluteBounds="3.625, 1.125, 2, 5.8092268880208326">
+    <classShape Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" absoluteBounds="3.375, 0.5, 2.5, 5.8092268880208326">
       <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/LK_Event" />
       <nestedChildShapes>
-        <elementListCompartment Id="55fc95b3-80af-479a-8c82-5c1bb545bd3d" absoluteBounds="3.64, 1.585, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="55fc95b3-80af-479a-8c82-5c1bb545bd3d" absoluteBounds="3.39, 0.96, 2.4699999999999998, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="84a58a72-f392-4aa3-b2c1-916a06fbdb90" isExpanded="false" absoluteBounds="0.5, 1.375, 2, 0.45">
+      <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/LK_StatusEventa" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9a006967-1805-4b40-9b53-ca7e613abbd7" absoluteBounds="0.51500000000000012, 1.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.6); (3.375 : 1.6)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_StatusEventa/LK_StatusEventa_LK_Event" />
+      <nodes>
+        <classShapeMoniker Id="84a58a72-f392-4aa3-b2c1-916a06fbdb90" />
+        <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0c88608a-87d7-4bed-828d-13a5ae9d60d8" absoluteBounds="9.875, 4.125, 2, 2.5401025390625">
+      <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/REL_EventLayoutSektor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="10e97e31-a3bf-420b-a97d-06402cb59d0a" absoluteBounds="9.89, 4.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4f764861-29a4-4262-b523-a80ed7a42479" isExpanded="false" absoluteBounds="6.625, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/LK_Organizator" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d7c10118-09c6-422e-9c35-e9a75644445c" absoluteBounds="6.64, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.625 : 0.725); (5.875 : 0.725)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Organizator/LK_Organizator_LK_Event" />
+      <nodes>
+        <classShapeMoniker Id="4f764861-29a4-4262-b523-a80ed7a42479" />
+        <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="99303948-85d0-4465-a648-72ba7596bcf5" isExpanded="false" absoluteBounds="6.375, 3.125, 2, 0.45">
+      <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/LK_LayoutDvorana" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ae44dcab-37fd-4dfd-9147-4efa376f4498" absoluteBounds="6.3900000000000006, 3.5850000000000009, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.375 : 3.35); (5.875 : 3.35)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_LayoutDvorana/LK_LayoutDvorana_LK_Event" />
+      <nodes>
+        <classShapeMoniker Id="99303948-85d0-4465-a648-72ba7596bcf5" />
+        <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="1bacd382-292e-4243-a8c2-aa2c2aa4c302" isExpanded="false" absoluteBounds="6.5, 5.5, 2, 0.45">
+      <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/LK_Dvorana" />
+      <nestedChildShapes>
+        <elementListCompartment Id="77d35ccd-5329-4a75-9a04-fc0ad36a19c1" absoluteBounds="6.5150000000000006, 5.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.5 : 5.725); (5.875 : 5.725)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Dvorana/LK_Dvorana_LK_Event" />
+      <nodes>
+        <classShapeMoniker Id="1bacd382-292e-4243-a8c2-aa2c2aa4c302" />
+        <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.84375 : 5.5); (6.84375 : 3.575)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Dvorana/LK_Dvorana_LK_LayoutDvorana" />
+      <nodes>
+        <classShapeMoniker Id="1bacd382-292e-4243-a8c2-aa2c2aa4c302" />
+        <classShapeMoniker Id="99303948-85d0-4465-a648-72ba7596bcf5" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "events";
+}
+
+<h2>events</h2>
+<div ng-controller="AdminEventController">
+ <table>
+    <tr>
+    <th>Ime</th>
+    <th>Opis</th>
+    <th>Akcije</th>
+ </tr>
+     <tr ng-repeat="event in events">
+        <td>{{event.EVE_Naziv}}</td>
+        <td>{{event.EVE_Opis}}</td>
+         <td><a href ="/admin/events/edit/{{event.EVE_Id}}">Uredi</a></td>
+     </tr>
+ </table>
+</div>
