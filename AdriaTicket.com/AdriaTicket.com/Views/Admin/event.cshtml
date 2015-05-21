@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "add/edit";
+}
+
+<h2>add/edit</h2>
+<div ng-controller="AdminEventEditController">
+    <form>
+        <fieldset>
+            <div class="form-group">
+                <label for="inputName" class="control-label col-xs-2">Naziv</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputName" placeholder="naziv događanja">
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDate" class="control-label col-xs-2">Datum</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputDate" placeholder="datum">
+                    </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>

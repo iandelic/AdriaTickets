@@ -99,13 +99,13 @@ namespace AdriaTicket.com.Controllers
         }
 
         [Authorize]
-        public ActionResult Edit()
+        public ActionResult Event()
         {
             return View();
         }
         public ActionResult getEvent(int id)
         {
-            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id where Event.EVE_Id == id select new { Event.EVE_Datum,statusEventa.SEV_Stanje};
+            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id where Event.EVE_Id == id select new { Event.EVE_Naziv,Event.EVE_Opis,Event.EVE_ImagePath, Event.EVE_ImageSmallPath,Event.EVE_Datum,statusEventa.SEV_Stanje};
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
 

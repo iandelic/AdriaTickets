@@ -4,16 +4,20 @@
 
 <h2>events</h2>
 <div ng-controller="AdminEventController">
+     <input type="search" ng-model="query" placeholder="pretrazi..."/>
  <table>
     <tr>
     <th>Ime</th>
     <th>Opis</th>
     <th>Akcije</th>
  </tr>
-     <tr ng-repeat="event in events">
+     <tr ng-repeat="event in events | filter: query as results">
         <td>{{event.EVE_Naziv}}</td>
         <td>{{event.EVE_Opis}}</td>
-         <td><a href ="/admin/events/edit/{{event.EVE_Id}}">Uredi</a></td>
+         <td><a href ="/admin/events/event/{{event.EVE_Id}}">Uredi</a></td>
      </tr>
+     <tr ng-if="results.length == 0">
+      <td colspan="3">No results found...</td>
+    </tr>
  </table>
 </div>
