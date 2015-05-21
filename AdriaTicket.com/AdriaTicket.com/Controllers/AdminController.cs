@@ -75,7 +75,7 @@ namespace AdriaTicket.com.Controllers
             }
             else
             {
-                return Json("false", JsonRequestBehavior.AllowGet);
+                return Json(test, JsonRequestBehavior.AllowGet);
             }
         }
 
