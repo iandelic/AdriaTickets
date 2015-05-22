@@ -138,9 +138,9 @@
     <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
     <Content Include="Library\JS\bootstrap\bootstrap.min.js" />
-    <Content Include="Library\JS\bootstrap\npm.js" />
     <Content Include="Library\JS\datetimepicker.js" />
     <Content Include="Library\JS\jquery-2.1.4.min.js" />
+    <Content Include="Library\JS\moment.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -195,6 +195,9 @@
   <ItemGroup>
     <Content Include="Library\CSS\bootstrap\bootstrap-theme.css.map" />
     <Content Include="Library\CSS\bootstrap\bootstrap.css.map" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Models\AdriaTicketDataClasses.dbml.layout">
       <DependentUpon>AdriaTicketDataClasses.dbml</DependentUpon>
     </None>
