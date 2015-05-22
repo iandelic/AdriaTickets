@@ -9,11 +9,18 @@
 }]);
 
 
-adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', '$rootElement', '$http', function ($scope, $location,$rootElement, $http) {
+adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', '$rootElement', '$http', 'taOptions', function ($scope, $location, $rootElement, $http, taOptions) {
 
     var siteUrl = "http://localhost:32718/";
     var id = $location.absUrl().split('/').pop();
     $scope.event = {}
+    taOptions.toolbar = [
+      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
+      ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+      ['html', 'insertImage', 'insertLink', 'insertVideo', 'wordcount', 'charcount']
+    ];
+
     if (parseInt(id)){
         $http.get('/admin/getEvent/'+id).success(function (data) {
         $scope.event = data[0];

@@ -128,13 +128,16 @@
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminEventsController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketController.js" />
+    <Content Include="Library\Angular\textEditor\textAngular-rangy.min.js" />
+    <Content Include="Library\Angular\textEditor\textAngular-sanitize.min.js" />
+    <Content Include="Library\Angular\textEditor\textAngular.min.js" />
     <Content Include="Library\CSS\bk-admin.css" />
     <Content Include="Library\CSS\bk-main.css" />
     <Content Include="Library\CSS\bootstrap\bootstrap-theme.css" />
-    <Content Include="Library\CSS\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Library\CSS\bootstrap\bootstrap.css" />
-    <Content Include="Library\CSS\bootstrap\bootstrap.min.css" />
     <Content Include="Library\CSS\datetimepicker.css" />
+    <Content Include="Library\CSS\bootstrap\font-awesome.min.css" />
+    <Content Include="Library\CSS\textAngular.css" />
     <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
     <Content Include="Library\JS\bootstrap\bootstrap.min.js" />
@@ -193,8 +196,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Library\CSS\bootstrap\bootstrap-theme.css.map" />
-    <Content Include="Library\CSS\bootstrap\bootstrap.css.map" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.eot" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.svg" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.woff" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Library\CSS\fonts\FontAwesome.otf" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff2" />
