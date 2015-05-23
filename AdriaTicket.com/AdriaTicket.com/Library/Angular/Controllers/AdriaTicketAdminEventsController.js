@@ -25,7 +25,9 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
     if (parseInt(id)){
             $http.get('/admin/getEvent/'+id).success(function (data) {
             $scope.event = data[0];
-            $scope.event.EVE_Datum = moment($scope.event.EVE_Datum).format('DD.MM.YYYY hh:mm:ss');
+            $scope.event.EVE_Datum = moment($scope.event.EVE_Datum).format('DD.MM.YYYY HH:mm:ss');
+            $scope.event.EVE_DatumOdProdaja = moment($scope.event.EVE_DatumOdProdaja).format('DD.MM.YYYY HH:mm:ss');
+            $scope.event.EVE_DatumOdPretprodaja = moment($scope.event.EVE_DatumOdPretprodaja).format('DD.MM.YYYY HH:mm:ss');
             $scope.disabledFlag = false;
             $scope.description = $scope.event.EVE_Opis;
             }).error(function () { alert('error') });
@@ -35,8 +37,14 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
     }).error(function () { alert('error') });
 
 
-    $scope.setTime = function (newVal,oldVal) {
+    $scope.datmEventaChange = function (newVal, oldVal) {
         $scope.event.EVE_Datum = moment(newVal).format('DD.MM.YYYY hh:mm:ss')
+    }
+    $scope.pretprodajaKarataChange = function (newVal, oldVal) {
+        $scope.event.EVE_DatumOdPretprodaja = moment(newVal).format('DD.MM.YYYY hh:mm:ss')
+    }
+    $scope.prodajaKarataChange = function (newVal, oldVal) {
+        $scope.event.EVE_DatumOdProdaja = moment(newVal).format('DD.MM.YYYY hh:mm:ss')
     }
 
     $scope.configFunction = function configFunction() {
