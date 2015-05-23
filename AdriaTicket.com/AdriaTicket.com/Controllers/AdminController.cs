@@ -7,6 +7,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using AdriaTicket.com.Models;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net;
+using System.IO;
 
 namespace AdriaTicket.com.Controllers
 {
@@ -42,7 +46,7 @@ namespace AdriaTicket.com.Controllers
         {
 
             SEC_LK_Korisnik user = AdriaTicketData.SEC_LK_Korisniks.SingleOrDefault(e => e.KOR_Login == u);
-          
+
             byte[] temps = new SHA256Managed().ComputeHash(Encoding.UTF8.GetBytes(p));
             string test = GetString(temps);
 
@@ -105,8 +109,23 @@ namespace AdriaTicket.com.Controllers
         }
         public ActionResult getEvent(int id)
         {
-            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id where Event.EVE_Id == id select new { Event.EVE_Naziv,Event.EVE_Opis,Event.EVE_ImagePath, Event.EVE_ImageSmallPath,Event.EVE_Datum,statusEventa.SEV_Stanje};
+            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id where Event.EVE_Id == id select new { Event.EVE_Naziv, Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, statusEventa.SEV_Stanje };
             return Json(ev, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public ContentResult Upload(HttpPostedFileBase file)
+        {
+            var filename = Path.GetFileName(file.FileName);
+            var path = Path.Combine(Server.MapPath("~/App_Data"), filename);
+            file.SaveAs(path);
+
+            return new ContentResult{
+                ContentType = "text/plain",
+                Content = filename,
+                ContentEncoding = Encoding.UTF8
+               };
         }
 
     }
