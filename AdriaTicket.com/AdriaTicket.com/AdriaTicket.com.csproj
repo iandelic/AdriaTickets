@@ -110,10 +110,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\EventDataClass.designer.cs">
+    <Compile Include="Models\AdriaTicketDataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EventDataClass.dbml</DependentUpon>
+      <DependentUpon>AdriaTicketDataClasses.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,12 +126,29 @@
     <Content Include="Library\Angular\angular.min.js" />
     <Content Include="Library\Angular\app.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminController.js" />
+    <Content Include="Library\Angular\Controllers\AdriaTicketAdminEventsController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketController.js" />
+    <Content Include="Library\Angular\fileUpload\ng-file-upload-shim.min.js" />
+    <Content Include="Library\Angular\fileUpload\ng-file-upload.min.js" />
+    <Content Include="Library\Angular\textEditor\textAngular-rangy.min.js" />
+    <Content Include="Library\Angular\textEditor\textAngular-sanitize.min.js" />
+    <Content Include="Library\Angular\textEditor\textAngular.min.js" />
     <Content Include="Library\CSS\bk-admin.css" />
     <Content Include="Library\CSS\bk-main.css" />
+    <Content Include="Library\CSS\bootstrap\bootstrap-theme.css" />
+    <Content Include="Library\CSS\bootstrap\bootstrap.css" />
+    <Content Include="Library\CSS\datetimepicker.css" />
+    <Content Include="Library\CSS\bootstrap\font-awesome.min.css" />
+    <Content Include="Library\CSS\textAngular.css" />
     <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
-    <Content Include="Web.config" />
+    <Content Include="Library\JS\bootstrap\bootstrap.min.js" />
+    <Content Include="Library\JS\datetimepicker.js" />
+    <Content Include="Library\JS\jquery-2.1.4.min.js" />
+    <Content Include="Library\JS\moment.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -165,22 +182,38 @@
     <Content Include="Views\Shared\Public\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\EventDataClass.dbml">
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_layoutAdmin.cshtml" />
+    <Content Include="Views\Admin\_ViewStart.cshtml" />
+    <Content Include="Views\Admin\login.cshtml" />
+    <Content Include="Views\Admin\home.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\AdriaTicketDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>EventDataClass.designer.cs</LastGenOutput>
+      <LastGenOutput>AdriaTicketDataClasses.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Models\EventDataClass.dbml.layout">
-      <DependentUpon>EventDataClass.dbml</DependentUpon>
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.eot" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.svg" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.woff" />
+    <Content Include="Library\CSS\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Library\CSS\fonts\FontAwesome.otf" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Models\AdriaTicketDataClasses.dbml.layout">
+      <DependentUpon>AdriaTicketDataClasses.dbml</DependentUpon>
     </None>
-    <Content Include="Views\Admin\_layoutAdmin.cshtml" />
-    <Content Include="Views\Admin\_ViewStart.cshtml" />
-    <Content Include="Views\Admin\login.cshtml" />
+    <Content Include="Views\Admin\events.cshtml" />
+    <Content Include="Views\Admin\event.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

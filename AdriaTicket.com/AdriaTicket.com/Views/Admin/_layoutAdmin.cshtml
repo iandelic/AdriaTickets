@@ -5,23 +5,38 @@
     <title>@ViewBag.Title</title>
 
     <!-- scripts -->
+    <script src="~/Library/JS/jquery-2.1.4.min.js"></script>
     <script src='~/Library/Angular/angular.min.js' type="text/javascript"></script>
     <script src="~/Library/Angular/angular-route.js" type="text/javascript"></script>
+    <script src="~/Library/Angular/fileUpload/ng-file-upload.min.js"></script>
+    <script src="~/Library/Angular/fileUpload/ng-file-upload-shim.min.js"></script>
     <script src='~/Library/Angular/app.js' type="text/javascript"></script>
     <script src="~/Library/Angular/Controllers/AdriaTicketAdminController.js" type="text/javascript"></script>
+    <script src="~/Library/Angular/Controllers/AdriaTicketAdminEventsController.js" type="text/javascript"></script>
     <script src='~/Library/JS/bk-admin.js' type="text/javascript"></script>
-
+    <script src="~/Library/JS/moment.js"></script>
+    <script src="~/Library/JS/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Library/JS/datetimepicker.js"></script>
+    <script src="~/Library/Angular/textEditor/textAngular.min.js"></script>
+    <script src="~/Library/Angular/textEditor/textAngular-sanitize.min.js"></script>
+    <script src="~/Library/Angular/textEditor/textAngular-rangy.min.js"></script>
+    
     <!-- fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
     <!-- css -->
+    <link href="~/Library/CSS/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Library/CSS/bootstrap/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Library/CSS/datetimepicker.css" rel="stylesheet" />
+    <link href="~/Library/CSS/bootstrap/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Library/CSS/textAngular.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="~/Library/CSS/bk-admin.css" type="text/css">
-
 </head>
 <body ng-app="adriaticketadmin">
     <div id ="page-container">
         <div id="header">
-
+             <h1>CMS AdriaTiceket - Prijava</h1>
         </div>
         <div id="main-content">
             @RenderBody()

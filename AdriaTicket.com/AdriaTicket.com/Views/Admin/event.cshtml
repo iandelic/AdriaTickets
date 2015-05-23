@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "add/edit";
+}
+
+<h2>add/edit</h2>
+<div ng-controller="AdminEventEditController">
+    <form name="eventForm">
+        <fieldset>
+            <div class ="col-xs-6">
+                <div class="form-group">
+                    <label for="inputName" class="control-label col-xs-2">Naziv</label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control" id="inputName" placeholder="naziv događanja" ng-model="event.EVE_Naziv">
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDate" class="control-label col-xs-2">Datum</label>
+                        <div class="col-xs-10">                 
+                            <div class="dropdown">
+                              <a class="dropdown-toggle" id="date" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                <div class="input-group"><input type="text" id ="inputDate" class="form-control" ng-model="event.EVE_Datum" placeholder="Datum događanja"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                              </a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#date' }" data-on-set-time="setTime(newDate,oldDate)"/>
+                              </ul>
+                            </div>
+                        </div>
+                </div>
+
+            <div class="form-group">
+                <label for="imageUpload" class="control-label col-xs-2">Odaberi sliku</label>
+                <div class ="col-xs-10">
+                    <button type="file"
+                    ngf-select ng-model="files" 
+                    ng-model-rejected="rejFiles"  
+                    ngf-multiple="false" 
+                    accept="image/*" 
+                    ngf-accept="'image/*'" 
+                        >Upload</button>
+                    <img ngf-src="/uploads/files[0].name" ngf-default-src="/uploads/cover.png" ngf-accept="image/*">
+                </div>
+            </div>
+        </div>
+            <div class="col-xs-6">
+                <div text-angular ng-model="htmlOpis"></div>
+            </div>
+            
+            
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-primary" ng-disabled="disabledFlag">Submit</button>
+            </div>      
+        </fieldset>
+    </form>
+
+</div>

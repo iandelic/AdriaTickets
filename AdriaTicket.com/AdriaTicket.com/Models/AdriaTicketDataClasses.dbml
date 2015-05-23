@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="prstacpr_bk_testna" Class="AdriaTicketDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=mssql4.mojsite.com,1555;Initial Catalog=prstacpr_bk_testna;User ID=prstacpr_prodaja" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="prstacpr_bk_testnaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.SEC_LK_Korisnik" Member="SEC_LK_Korisniks">
+    <Type Name="SEC_LK_Korisnik">
+      <Column Name="KOR_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KOR_IdDjelatnik" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KOR_Login" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="KOR_Zaporka" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="KOR_Napomena" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_Event" Member="LK_Events">
+    <Type Name="LK_Event">
+      <Column Name="EVE_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EVE_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_Datum" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EVE_Opis" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EVE_MjestoId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EVE_DvoranaId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EVE_LayoutId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EVE_StatusEventaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_PotrebanKupac" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EVE_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_DatumOdPretprodaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EVE_DatumOdProdaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EVE_PostotakProvizije" Type="System.Decimal" DbType="Decimal(9,2) NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_OrganizatorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_PrikaziNaWebu" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_ImagePath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EVE_ImageSmallPath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EVE_ImageExist" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_Napomena" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EVE_ReklamaPath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EVE_ReklamaExist" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_BrojGlavnogEventa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EVE_FlagOnlineProdaja" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EVE_MaksimalniBrojKarata" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EVE_PDVIznos" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Association Name="LK_StatusEventa_LK_Event" Member="LK_StatusEventa" ThisKey="EVE_StatusEventaId" OtherKey="SEV_Id" Type="LK_StatusEventa" IsForeignKey="true" />
+      <Association Name="LK_Organizator_LK_Event" Member="LK_Organizator" ThisKey="EVE_OrganizatorId" OtherKey="ORG_Id" Type="LK_Organizator" IsForeignKey="true" />
+      <Association Name="LK_LayoutDvorana_LK_Event" Member="LK_LayoutDvorana" ThisKey="EVE_LayoutId" OtherKey="LDV_Id" Type="LK_LayoutDvorana" IsForeignKey="true" />
+      <Association Name="LK_Dvorana_LK_Event" Member="LK_Dvorana" ThisKey="EVE_DvoranaId" OtherKey="DVO_Id" Type="LK_Dvorana" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_StatusEventa" Member="LK_StatusEventas">
+    <Type Name="LK_StatusEventa">
+      <Column Name="SEV_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SEV_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SEV_SkraceniNaziv" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Column Name="SEV_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SEV_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="LK_StatusEventa_LK_Event" Member="LK_Events" ThisKey="SEV_Id" OtherKey="EVE_StatusEventaId" Type="LK_Event" />
+    </Type>
+  </Table>
+  <Table Name="dbo.REL_EventLayoutSektor" Member="REL_EventLayoutSektors">
+    <Type Name="REL_EventLayoutSektor">
+      <Column Name="ELS_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ELS_EventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ELS_LayoutDvoranaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ELS_SektorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ELS_DopustiStorniranje" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ELS_Ulaz" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ELS_KapacitetSektora" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ELS_GrupaSektoraId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ELS_Rezervirano" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_Organizator" Member="LK_Organizators">
+    <Type Name="LK_Organizator">
+      <Column Name="ORG_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ORG_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ORG_Adresa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ORG_OIB" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ORG_FlagPDV" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ORG_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ORG_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="LK_Organizator_LK_Event" Member="LK_Events" ThisKey="ORG_Id" OtherKey="EVE_OrganizatorId" Type="LK_Event" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_LayoutDvorana" Member="LK_LayoutDvoranas">
+    <Type Name="LK_LayoutDvorana">
+      <Column Name="LDV_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LDV_Opis" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LDV_DvoranaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LDV_KapacitetSjedenje" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LDV_KapacitetStajanje" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LDV_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LDV_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="LK_LayoutDvorana_LK_Event" Member="LK_Events" ThisKey="LDV_Id" OtherKey="EVE_LayoutId" Type="LK_Event" />
+      <Association Name="LK_Dvorana_LK_LayoutDvorana" Member="LK_Dvorana" ThisKey="LDV_DvoranaId" OtherKey="DVO_Id" Type="LK_Dvorana" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_Dvorana" Member="LK_Dvoranas">
+    <Type Name="LK_Dvorana">
+      <Column Name="DVO_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DVO_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DVO_MjestoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DVO_KapacitetSjedenje" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DVO_KapacitetStajanje" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DVO_Adresa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DVO_Telefon" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="DVO_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DVO_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="LK_Dvorana_LK_Event" Member="LK_Events" ThisKey="DVO_Id" OtherKey="EVE_DvoranaId" Type="LK_Event" />
+      <Association Name="LK_Dvorana_LK_LayoutDvorana" Member="LK_LayoutDvoranas" ThisKey="DVO_Id" OtherKey="LDV_DvoranaId" Type="LK_LayoutDvorana" />
+    </Type>
+  </Table>
+</Database>

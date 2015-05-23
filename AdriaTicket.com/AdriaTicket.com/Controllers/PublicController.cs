@@ -11,7 +11,7 @@ namespace AdriaTicket.com.Controllers
     {
         //
         // GET: /Home/
-        EventDataClassDataContext eventData = new EventDataClassDataContext();
+        AdriaTicketDataClassesDataContext eventData = new AdriaTicketDataClassesDataContext();
         public ActionResult Index()
         {
             return View("Home/Index");
@@ -19,7 +19,7 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult getEvents()
         {
-            var events = from e in eventData.LK_Events select e;
+            var events = from e in eventData.LK_Events select new { e.EVE_Id,e.EVE_Opis,e.EVE_Naziv};
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }
