@@ -51,6 +51,12 @@ namespace AdriaTicket.com.Models
     partial void InsertLK_Dvorana(LK_Dvorana instance);
     partial void UpdateLK_Dvorana(LK_Dvorana instance);
     partial void DeleteLK_Dvorana(LK_Dvorana instance);
+    partial void InsertLK_Mjesto(LK_Mjesto instance);
+    partial void UpdateLK_Mjesto(LK_Mjesto instance);
+    partial void DeleteLK_Mjesto(LK_Mjesto instance);
+    partial void InsertLK_Drzava(LK_Drzava instance);
+    partial void UpdateLK_Drzava(LK_Drzava instance);
+    partial void DeleteLK_Drzava(LK_Drzava instance);
     #endregion
 		
 		public AdriaTicketDataClassesDataContext() : 
@@ -136,6 +142,22 @@ namespace AdriaTicket.com.Models
 			get
 			{
 				return this.GetTable<LK_Dvorana>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LK_Mjesto> LK_Mjestos
+		{
+			get
+			{
+				return this.GetTable<LK_Mjesto>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LK_Drzava> LK_Drzavas
+		{
+			get
+			{
+				return this.GetTable<LK_Drzava>();
 			}
 		}
 	}
@@ -364,6 +386,8 @@ namespace AdriaTicket.com.Models
 		
 		private EntityRef<LK_Dvorana> _LK_Dvorana;
 		
+		private EntityRef<LK_Mjesto> _LK_Mjesto;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -428,6 +452,7 @@ namespace AdriaTicket.com.Models
 			this._LK_Organizator = default(EntityRef<LK_Organizator>);
 			this._LK_LayoutDvorana = default(EntityRef<LK_LayoutDvorana>);
 			this._LK_Dvorana = default(EntityRef<LK_Dvorana>);
+			this._LK_Mjesto = default(EntityRef<LK_Mjesto>);
 			OnCreated();
 		}
 		
@@ -522,6 +547,10 @@ namespace AdriaTicket.com.Models
 			{
 				if ((this._EVE_MjestoId != value))
 				{
+					if (this._LK_Mjesto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnEVE_MjestoIdChanging(value);
 					this.SendPropertyChanging();
 					this._EVE_MjestoId = value;
@@ -1099,6 +1128,40 @@ namespace AdriaTicket.com.Models
 						this._EVE_DvoranaId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("LK_Dvorana");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_LK_Event", Storage="_LK_Mjesto", ThisKey="EVE_MjestoId", OtherKey="MJE_Id", IsForeignKey=true)]
+		public LK_Mjesto LK_Mjesto
+		{
+			get
+			{
+				return this._LK_Mjesto.Entity;
+			}
+			set
+			{
+				LK_Mjesto previousValue = this._LK_Mjesto.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Mjesto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Mjesto.Entity = null;
+						previousValue.LK_Events.Remove(this);
+					}
+					this._LK_Mjesto.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Events.Add(this);
+						this._EVE_MjestoId = value.MJE_Id;
+					}
+					else
+					{
+						this._EVE_MjestoId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LK_Mjesto");
 				}
 			}
 		}
@@ -2101,6 +2164,8 @@ namespace AdriaTicket.com.Models
 		
 		private EntitySet<LK_LayoutDvorana> _LK_LayoutDvoranas;
 		
+		private EntityRef<LK_Mjesto> _LK_Mjesto;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2129,6 +2194,7 @@ namespace AdriaTicket.com.Models
 		{
 			this._LK_Events = new EntitySet<LK_Event>(new Action<LK_Event>(this.attach_LK_Events), new Action<LK_Event>(this.detach_LK_Events));
 			this._LK_LayoutDvoranas = new EntitySet<LK_LayoutDvorana>(new Action<LK_LayoutDvorana>(this.attach_LK_LayoutDvoranas), new Action<LK_LayoutDvorana>(this.detach_LK_LayoutDvoranas));
+			this._LK_Mjesto = default(EntityRef<LK_Mjesto>);
 			OnCreated();
 		}
 		
@@ -2183,6 +2249,10 @@ namespace AdriaTicket.com.Models
 			{
 				if ((this._DVO_MjestoId != value))
 				{
+					if (this._LK_Mjesto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnDVO_MjestoIdChanging(value);
 					this.SendPropertyChanging();
 					this._DVO_MjestoId = value;
@@ -2338,6 +2408,40 @@ namespace AdriaTicket.com.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_LK_Dvorana", Storage="_LK_Mjesto", ThisKey="DVO_MjestoId", OtherKey="MJE_Id", IsForeignKey=true)]
+		public LK_Mjesto LK_Mjesto
+		{
+			get
+			{
+				return this._LK_Mjesto.Entity;
+			}
+			set
+			{
+				LK_Mjesto previousValue = this._LK_Mjesto.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Mjesto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Mjesto.Entity = null;
+						previousValue.LK_Dvoranas.Remove(this);
+					}
+					this._LK_Mjesto.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Dvoranas.Add(this);
+						this._DVO_MjestoId = value.MJE_Id;
+					}
+					else
+					{
+						this._DVO_MjestoId = default(int);
+					}
+					this.SendPropertyChanged("LK_Mjesto");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2380,6 +2484,520 @@ namespace AdriaTicket.com.Models
 		{
 			this.SendPropertyChanging();
 			entity.LK_Dvorana = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LK_Mjesto")]
+	public partial class LK_Mjesto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MJE_Id;
+		
+		private string _MJE_Naziv;
+		
+		private string _MJE_ZIP;
+		
+		private int _MJE_DrzavaId;
+		
+		private char _MJE_Stanje;
+		
+		private System.DateTime _MJE_Timestamp;
+		
+		private EntitySet<LK_Event> _LK_Events;
+		
+		private EntitySet<LK_Dvorana> _LK_Dvoranas;
+		
+		private EntityRef<LK_Drzava> _LK_Drzava;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMJE_IdChanging(int value);
+    partial void OnMJE_IdChanged();
+    partial void OnMJE_NazivChanging(string value);
+    partial void OnMJE_NazivChanged();
+    partial void OnMJE_ZIPChanging(string value);
+    partial void OnMJE_ZIPChanged();
+    partial void OnMJE_DrzavaIdChanging(int value);
+    partial void OnMJE_DrzavaIdChanged();
+    partial void OnMJE_StanjeChanging(char value);
+    partial void OnMJE_StanjeChanged();
+    partial void OnMJE_TimestampChanging(System.DateTime value);
+    partial void OnMJE_TimestampChanged();
+    #endregion
+		
+		public LK_Mjesto()
+		{
+			this._LK_Events = new EntitySet<LK_Event>(new Action<LK_Event>(this.attach_LK_Events), new Action<LK_Event>(this.detach_LK_Events));
+			this._LK_Dvoranas = new EntitySet<LK_Dvorana>(new Action<LK_Dvorana>(this.attach_LK_Dvoranas), new Action<LK_Dvorana>(this.detach_LK_Dvoranas));
+			this._LK_Drzava = default(EntityRef<LK_Drzava>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MJE_Id
+		{
+			get
+			{
+				return this._MJE_Id;
+			}
+			set
+			{
+				if ((this._MJE_Id != value))
+				{
+					this.OnMJE_IdChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_Id = value;
+					this.SendPropertyChanged("MJE_Id");
+					this.OnMJE_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_Naziv", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string MJE_Naziv
+		{
+			get
+			{
+				return this._MJE_Naziv;
+			}
+			set
+			{
+				if ((this._MJE_Naziv != value))
+				{
+					this.OnMJE_NazivChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_Naziv = value;
+					this.SendPropertyChanged("MJE_Naziv");
+					this.OnMJE_NazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_ZIP", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string MJE_ZIP
+		{
+			get
+			{
+				return this._MJE_ZIP;
+			}
+			set
+			{
+				if ((this._MJE_ZIP != value))
+				{
+					this.OnMJE_ZIPChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_ZIP = value;
+					this.SendPropertyChanged("MJE_ZIP");
+					this.OnMJE_ZIPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_DrzavaId", DbType="Int NOT NULL")]
+		public int MJE_DrzavaId
+		{
+			get
+			{
+				return this._MJE_DrzavaId;
+			}
+			set
+			{
+				if ((this._MJE_DrzavaId != value))
+				{
+					if (this._LK_Drzava.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMJE_DrzavaIdChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_DrzavaId = value;
+					this.SendPropertyChanged("MJE_DrzavaId");
+					this.OnMJE_DrzavaIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_Stanje", DbType="Char(1) NOT NULL")]
+		public char MJE_Stanje
+		{
+			get
+			{
+				return this._MJE_Stanje;
+			}
+			set
+			{
+				if ((this._MJE_Stanje != value))
+				{
+					this.OnMJE_StanjeChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_Stanje = value;
+					this.SendPropertyChanged("MJE_Stanje");
+					this.OnMJE_StanjeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_Timestamp", DbType="DateTime NOT NULL")]
+		public System.DateTime MJE_Timestamp
+		{
+			get
+			{
+				return this._MJE_Timestamp;
+			}
+			set
+			{
+				if ((this._MJE_Timestamp != value))
+				{
+					this.OnMJE_TimestampChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_Timestamp = value;
+					this.SendPropertyChanged("MJE_Timestamp");
+					this.OnMJE_TimestampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_LK_Event", Storage="_LK_Events", ThisKey="MJE_Id", OtherKey="EVE_MjestoId")]
+		public EntitySet<LK_Event> LK_Events
+		{
+			get
+			{
+				return this._LK_Events;
+			}
+			set
+			{
+				this._LK_Events.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_LK_Dvorana", Storage="_LK_Dvoranas", ThisKey="MJE_Id", OtherKey="DVO_MjestoId")]
+		public EntitySet<LK_Dvorana> LK_Dvoranas
+		{
+			get
+			{
+				return this._LK_Dvoranas;
+			}
+			set
+			{
+				this._LK_Dvoranas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Mjesto", Storage="_LK_Drzava", ThisKey="MJE_DrzavaId", OtherKey="DRZ_Id", IsForeignKey=true)]
+		public LK_Drzava LK_Drzava
+		{
+			get
+			{
+				return this._LK_Drzava.Entity;
+			}
+			set
+			{
+				LK_Drzava previousValue = this._LK_Drzava.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Drzava.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Drzava.Entity = null;
+						previousValue.LK_Mjestos.Remove(this);
+					}
+					this._LK_Drzava.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Mjestos.Add(this);
+						this._MJE_DrzavaId = value.DRZ_Id;
+					}
+					else
+					{
+						this._MJE_DrzavaId = default(int);
+					}
+					this.SendPropertyChanged("LK_Drzava");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LK_Events(LK_Event entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = this;
+		}
+		
+		private void detach_LK_Events(LK_Event entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = null;
+		}
+		
+		private void attach_LK_Dvoranas(LK_Dvorana entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = this;
+		}
+		
+		private void detach_LK_Dvoranas(LK_Dvorana entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LK_Drzava")]
+	public partial class LK_Drzava : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _DRZ_Id;
+		
+		private string _DRZ_Naziv;
+		
+		private System.DateTime _DRZ_Timestamp;
+		
+		private char _DRZ_Stanje;
+		
+		private EntitySet<LK_Mjesto> _LK_Mjestos;
+		
+		private EntityRef<LK_Drzava> _LK_Drzava2;
+		
+		private EntityRef<LK_Drzava> _LK_Drzava1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDRZ_IdChanging(int value);
+    partial void OnDRZ_IdChanged();
+    partial void OnDRZ_NazivChanging(string value);
+    partial void OnDRZ_NazivChanged();
+    partial void OnDRZ_TimestampChanging(System.DateTime value);
+    partial void OnDRZ_TimestampChanged();
+    partial void OnDRZ_StanjeChanging(char value);
+    partial void OnDRZ_StanjeChanged();
+    #endregion
+		
+		public LK_Drzava()
+		{
+			this._LK_Mjestos = new EntitySet<LK_Mjesto>(new Action<LK_Mjesto>(this.attach_LK_Mjestos), new Action<LK_Mjesto>(this.detach_LK_Mjestos));
+			this._LK_Drzava2 = default(EntityRef<LK_Drzava>);
+			this._LK_Drzava1 = default(EntityRef<LK_Drzava>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DRZ_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int DRZ_Id
+		{
+			get
+			{
+				return this._DRZ_Id;
+			}
+			set
+			{
+				if ((this._DRZ_Id != value))
+				{
+					if (this._LK_Drzava1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDRZ_IdChanging(value);
+					this.SendPropertyChanging();
+					this._DRZ_Id = value;
+					this.SendPropertyChanged("DRZ_Id");
+					this.OnDRZ_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DRZ_Naziv", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DRZ_Naziv
+		{
+			get
+			{
+				return this._DRZ_Naziv;
+			}
+			set
+			{
+				if ((this._DRZ_Naziv != value))
+				{
+					this.OnDRZ_NazivChanging(value);
+					this.SendPropertyChanging();
+					this._DRZ_Naziv = value;
+					this.SendPropertyChanged("DRZ_Naziv");
+					this.OnDRZ_NazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DRZ_Timestamp", DbType="DateTime NOT NULL")]
+		public System.DateTime DRZ_Timestamp
+		{
+			get
+			{
+				return this._DRZ_Timestamp;
+			}
+			set
+			{
+				if ((this._DRZ_Timestamp != value))
+				{
+					this.OnDRZ_TimestampChanging(value);
+					this.SendPropertyChanging();
+					this._DRZ_Timestamp = value;
+					this.SendPropertyChanged("DRZ_Timestamp");
+					this.OnDRZ_TimestampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DRZ_Stanje", DbType="Char(1) NOT NULL")]
+		public char DRZ_Stanje
+		{
+			get
+			{
+				return this._DRZ_Stanje;
+			}
+			set
+			{
+				if ((this._DRZ_Stanje != value))
+				{
+					this.OnDRZ_StanjeChanging(value);
+					this.SendPropertyChanging();
+					this._DRZ_Stanje = value;
+					this.SendPropertyChanged("DRZ_Stanje");
+					this.OnDRZ_StanjeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Mjesto", Storage="_LK_Mjestos", ThisKey="DRZ_Id", OtherKey="MJE_DrzavaId")]
+		public EntitySet<LK_Mjesto> LK_Mjestos
+		{
+			get
+			{
+				return this._LK_Mjestos;
+			}
+			set
+			{
+				this._LK_Mjestos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Drzava", Storage="_LK_Drzava2", ThisKey="DRZ_Id", OtherKey="DRZ_Id", IsUnique=true, IsForeignKey=false)]
+		public LK_Drzava LK_Drzava2
+		{
+			get
+			{
+				return this._LK_Drzava2.Entity;
+			}
+			set
+			{
+				LK_Drzava previousValue = this._LK_Drzava2.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Drzava2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Drzava2.Entity = null;
+						previousValue.LK_Drzava1 = null;
+					}
+					this._LK_Drzava2.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Drzava1 = this;
+					}
+					this.SendPropertyChanged("LK_Drzava2");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Drzava", Storage="_LK_Drzava1", ThisKey="DRZ_Id", OtherKey="DRZ_Id", IsForeignKey=true)]
+		public LK_Drzava LK_Drzava1
+		{
+			get
+			{
+				return this._LK_Drzava1.Entity;
+			}
+			set
+			{
+				LK_Drzava previousValue = this._LK_Drzava1.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Drzava1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Drzava1.Entity = null;
+						previousValue.LK_Drzava2 = null;
+					}
+					this._LK_Drzava1.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Drzava2 = this;
+						this._DRZ_Id = value.DRZ_Id;
+					}
+					else
+					{
+						this._DRZ_Id = default(int);
+					}
+					this.SendPropertyChanged("LK_Drzava1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LK_Mjestos(LK_Mjesto entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Drzava = this;
+		}
+		
+		private void detach_LK_Mjestos(LK_Mjesto entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Drzava = null;
 		}
 	}
 }

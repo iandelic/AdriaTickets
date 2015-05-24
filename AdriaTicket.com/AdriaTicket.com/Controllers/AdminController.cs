@@ -109,7 +109,12 @@ namespace AdriaTicket.com.Controllers
         }
         public ActionResult getEvent(int id)
         {
-            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id where Event.EVE_Id == id select new { Event.EVE_Naziv, Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja, statusEventa.SEV_Stanje };
+            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
+                     join organizator in AdriaTicketData.LK_Organizators on Event.EVE_OrganizatorId equals organizator.ORG_Id
+                     where Event.EVE_Id == id 
+                     select new { Event.EVE_Naziv, Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
+                         Event.EVE_PostotakProvizije, Event.EVE_DvoranaId, organizator.ORG_Naziv,organizator.ORG_Id, statusEventa.SEV_Stanje, statusEventa.SEV_Id,Event.EVE_PrikaziNaWebu,
+                         Event.EVE_MjestoId   };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
         public ActionResult getEvents()
