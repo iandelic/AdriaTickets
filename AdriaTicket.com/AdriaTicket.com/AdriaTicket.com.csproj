@@ -209,6 +209,13 @@
     <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Library\CSS\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Library\CSS\fonts\MavenPro-Black.ttf" />
+    <Content Include="Library\CSS\fonts\MavenPro-Bold.ttf" />
+    <Content Include="Library\CSS\fonts\MavenPro-Medium.ttf" />
+    <Content Include="Library\CSS\fonts\MavenPro-Regular.ttf" />
+    <Content Include="Library\CSS\fonts\Muli-Italic.ttf" />
+    <Content Include="Library\CSS\fonts\Muli-Light.ttf" />
+    <Content Include="Library\CSS\fonts\Muli-LightItalic.ttf" />
     <None Include="Models\AdriaTicketDataClasses.dbml.layout">
       <DependentUpon>AdriaTicketDataClasses.dbml</DependentUpon>
     </None>

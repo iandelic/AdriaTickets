@@ -65,15 +65,23 @@ body {
 }
 
 #header {
-    display:inline-block;
-    text-align:center;
+    display:block;
     width:100%;
     height:200px;
     background-color:#f8f8f8;
 }
 
+#header:after {
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
 .logo {
-    display: inline-block;
+    display:block;
+    float:left;
     width: 25%;
     padding: 5% 5% 5% 0;
 }
@@ -94,14 +102,27 @@ body {
 }
 
 .main-nav {
-    display:inline-block;
+    display:block;
+    float:left;
     width:65%;
+    height:140px;
+    margin-top: 60px;
 }
 
-#menu {
-    width: 100%;
-    height: 50px;
+.main-nav ul {
+    display:block;
+    float:left;
+    text-align:center;
+    list-style: none;
+    width:100%;
+    height:80px;
+}
 
+.main-nav li {
+    display:inline-block;
+    width:20%;
+    height:80px;
+    margin-left:30px;
     background: #262626; /* Old browsers */
     background: -moz-linear-gradient(top, #262626 0%, #000000 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#262626), color-stop(100%,#000000)); /* Chrome,Safari4+ */
@@ -112,25 +133,11 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#262626', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
 
-#menu ul {
-    list-style:none;
+.main-nav li a {
     display:block;
-    float:left;
+    height:80px;
     width:100%;
-}
-
-#menu li {
-
-    display:block;
-    float:left;
-    width:25%;
-    text-align:center;
-}
-
-#menu li a {
-    display:block;
-    width:100%;
-    line-height:50px;
+    line-height:80px;
     color:#f7f7f7;
     text-decoration:none;
 
@@ -140,11 +147,30 @@ body {
       transition: background 0.2s ease-out;
 }
 
-#menu li a:hover {
+.main-nav li a:hover {
     background: #494949; /* Old browsers */
 }
 
+.subheader {
+    width:100%;
+    height:50px;
+    display:block;
+    float:left;
+    background-color:#e5e5e5;
+}
 
+.subheader ul {
+    width:100px;
+}
+
+.subheader li {
+    width:40px;
+    float:left;
+}
+
+.subheader form {
+    float:right;
+}
 #main-content {
     width: 100%;
     min-height: 600px;
