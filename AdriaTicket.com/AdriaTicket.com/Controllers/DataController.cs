@@ -38,5 +38,17 @@ namespace AdriaTicket.com.Controllers
             return Json(status, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
+        public ActionResult GetGallery(int id)
+        {
+            var gal = from gallery in AdriaTicketData.BK_ImageGalleries join images in AdriaTicketData.BK_Images on gallery.Id equals images.GalleryId where gallery.Id == id select new { gallery.NazivGalerije, images.Id, images.GalleryId, images.ImageAlt, images.ImageName };
+            return Json(gal, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetGalleries()
+        {
+            var gal = from galleries in AdriaTicketData.BK_ImageGalleries select new { galleries.Id, galleries.NazivGalerije };
+            return Json(gal, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

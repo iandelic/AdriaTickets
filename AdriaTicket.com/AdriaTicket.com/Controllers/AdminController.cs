@@ -103,6 +103,16 @@ namespace AdriaTicket.com.Controllers
         }
 
         [Authorize]
+        public ActionResult Galleries()
+        {
+            return View();
+        }
+        public ActionResult Gallery(int id)
+        {
+            return View();
+        }
+
+        [Authorize]
         public ActionResult Event()
         {
             return View();
