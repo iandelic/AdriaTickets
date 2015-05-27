@@ -3,14 +3,22 @@
 }
 
 
-<div ng-controller="LoginController">
-      <form novalidate name="loginForm">
-        <label for="username">Korisničko ime: </label><input required id="username" type ="text"  ng-model="user.username">
-        <label for ="password">Lozinka: </label><input required id="password" type="password" ng-model="user.password">
-        <input type="checkbox" ng-model ="user.remember_me" id="checkbox_id" value = "false">
-        <label for="checkbox_id">Zapamti me</label>
-        <button ng-click = "submit(user)" ng-disabled="loginForm.$invalid">Prijava</button>
-      </form>
+<div ng-controller="LoginController" class="container">
+    <form novalidate name="loginForm" class="form-signin">
+        <label for="username" class="sr-only">Korisničko ime: </label>
+        <input required id="username" type="text" ng-model="user.username" class="form-control" placeholder="Korisničko ime" required autofocus>
+        <label for="password" class="sr-only">Lozinka: </label>
+        <input required id="password" type="password" ng-model="user.password" class="form-control" placeholder="Lozinka" required>
+        <div class="checkbox">
+            <label for="checkbox_id">
+                <input type="checkbox" ng-model="user.remember_me" id="checkbox_id" value="false">
+                Zapamti me
+            </label>
+        </div>
+        <button ng-click="submit(user)" ng-disabled="loginForm.$invalid" class="btn btn-lg btn-primary btn-block">Prijava</button>
+            
+
+</form>
         
       <div class ="admin-error {{error.show}}">
           <p>Neispravno korisničko ime ili lozinka!</p>
