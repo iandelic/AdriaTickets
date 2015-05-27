@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -127,6 +128,7 @@
     <Content Include="Library\Angular\app.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminEventsController.js" />
+    <Content Include="Library\Angular\Controllers\AdriaTicketAdminGalleriesController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketController.js" />
     <Content Include="Library\Angular\fileUpload\ng-file-upload-shim.min.js" />
     <Content Include="Library\Angular\fileUpload\ng-file-upload.min.js" />
@@ -214,6 +216,8 @@
     </None>
     <Content Include="Views\Admin\events.cshtml" />
     <Content Include="Views\Admin\event.cshtml" />
+    <Content Include="Views\Admin\galleries.cshtml" />
+    <Content Include="Views\Admin\gallery.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

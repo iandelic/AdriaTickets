@@ -29,7 +29,7 @@
   angular.module('ui.bootstrap.datetimepicker', [])
     .constant('dateTimePickerConfig', {
       dropdownSelector: null,
-      minuteStep: 5,
+      minuteStep: 10,
       minView: 'minute',
       startView: 'day'
     })
@@ -201,7 +201,7 @@
 
               var startDate = moment.utc(unixDate).startOf('year');
               var previousViewDate = startOfDecade(unixDate);
-              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MMM') : 0;
+              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('MM.YYYY') : 0;
 
               var result = {
                 'previousView': 'year',
@@ -220,8 +220,8 @@
                 var monthMoment = moment.utc(startDate).add(i, 'months');
                 var dateValue = {
                   'utcDateValue': monthMoment.valueOf(),
-                  'display': monthMoment.format('MMM'),
-                  'active': monthMoment.format('YYYY-MMM') === activeDate
+                  'display': monthMoment.format('MM'),
+                  'active': monthMoment.format('YYYY-MM') === activeDate
                 };
 
                 result.dates.push(new DateObject(dateValue));
@@ -239,7 +239,7 @@
 
               var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday()), 'days');
 
-              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MMM-DD') : '';
+              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MM-DD') : '';
 
               var result = {
                 'previousView': 'month',
@@ -247,7 +247,7 @@
                 'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
                 'previousViewDate': new DateObject({
                   utcDateValue: previousViewDate.valueOf(),
-                  display: startOfMonth.format('YYYY-MMM')
+                  display: startOfMonth.format('MM.YYYY')
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
@@ -257,7 +257,7 @@
 
 
               for (var dayNumber = 0; dayNumber < 7; dayNumber += 1) {
-                result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'));
+                result.dayNames.push(moment.utc().weekday(dayNumber).format('DD'));
               }
 
               for (var i = 0; i < 6; i += 1) {
@@ -266,7 +266,7 @@
                   var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
                   var dateValue = {
                     'utcDateValue': monthMoment.valueOf(),
-                    'display': monthMoment.format('D'),
+                    'display': monthMoment.format('DD'),
                     'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
                     'past': monthMoment.isBefore(startOfMonth),
                     'future': monthMoment.isAfter(endOfMonth)
@@ -291,7 +291,7 @@
                 'nextView': configuration.minView === 'hour' ? 'setTime' : 'minute',
                 'previousViewDate': new DateObject({
                   utcDateValue: previousViewDate.valueOf(),
-                  display: selectedDate.format('ll')
+                  display: selectedDate.format('DD.MM.YYYY')
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(selectedDate).subtract(1, 'days').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(selectedDate).add(1, 'days').valueOf()}),
@@ -302,7 +302,7 @@
                 var hourMoment = moment.utc(selectedDate).add(i, 'hours');
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
-                  'display': hourMoment.format('LT'),
+                  'display': hourMoment.format('HH')+' sati',
                   'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
                 };
 
@@ -323,7 +323,7 @@
                 'nextView': 'setTime',
                 'previousViewDate': new DateObject({
                   utcDateValue: previousViewDate.valueOf(),
-                  display: selectedDate.format('lll')
+                  display: selectedDate.format('DD.MM.YYYY HH')+  ' sati'
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(selectedDate).subtract(1, 'hours').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(selectedDate).add(1, 'hours').valueOf()}),
@@ -336,7 +336,7 @@
                 var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minute');
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
-                  'display': hourMoment.format('LT'),
+                  'display': hourMoment.format('HH:mm')+' m',
                   'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
                 };
 

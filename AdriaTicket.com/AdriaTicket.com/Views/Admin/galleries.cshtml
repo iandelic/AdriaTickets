@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "galleries";
+}
+
+<div ng-controller="AdminGalleriesController">
+
+     <input type="search" ng-model="query" placeholder="pretrazi..."/>
+    <button ng-click="dodajNovu()">Dodaj</button>
+ <table>
+    <tr>
+    <th>Ime</th>
+    <th>Akcije</th>
+ </tr>
+     <tr ng-repeat="gallery in galleries | filter: query as results">
+        <td>{{gallery.NazivGalerije}}</td>
+         <td>
+            <a href ="/admin/gallery/{{gallery.Id}}">Uredi</a>
+         </td>
+     </tr>
+     <tr ng-if="results.length == 0">
+      <td colspan="3">No results found...</td>
+    </tr>
+ </table>
+</div>

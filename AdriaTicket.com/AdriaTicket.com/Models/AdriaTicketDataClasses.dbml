@@ -41,6 +41,7 @@
       <Association Name="LK_Organizator_LK_Event" Member="LK_Organizator" ThisKey="EVE_OrganizatorId" OtherKey="ORG_Id" Type="LK_Organizator" IsForeignKey="true" />
       <Association Name="LK_LayoutDvorana_LK_Event" Member="LK_LayoutDvorana" ThisKey="EVE_LayoutId" OtherKey="LDV_Id" Type="LK_LayoutDvorana" IsForeignKey="true" />
       <Association Name="LK_Dvorana_LK_Event" Member="LK_Dvorana" ThisKey="EVE_DvoranaId" OtherKey="DVO_Id" Type="LK_Dvorana" IsForeignKey="true" />
+      <Association Name="LK_Mjesto_LK_Event" Member="LK_Mjesto" ThisKey="EVE_MjestoId" OtherKey="MJE_Id" Type="LK_Mjesto" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LK_StatusEventa" Member="LK_StatusEventas">
@@ -104,6 +105,54 @@
       <Column Name="DVO_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Association Name="LK_Dvorana_LK_Event" Member="LK_Events" ThisKey="DVO_Id" OtherKey="EVE_DvoranaId" Type="LK_Event" />
       <Association Name="LK_Dvorana_LK_LayoutDvorana" Member="LK_LayoutDvoranas" ThisKey="DVO_Id" OtherKey="LDV_DvoranaId" Type="LK_LayoutDvorana" />
+      <Association Name="LK_Mjesto_LK_Dvorana" Member="LK_Mjesto" ThisKey="DVO_MjestoId" OtherKey="MJE_Id" Type="LK_Mjesto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_Mjesto" Member="LK_Mjestos">
+    <Type Name="LK_Mjesto">
+      <Column Name="MJE_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MJE_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MJE_ZIP" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MJE_DrzavaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MJE_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="MJE_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="LK_Mjesto_LK_Event" Member="LK_Events" ThisKey="MJE_Id" OtherKey="EVE_MjestoId" Type="LK_Event" />
+      <Association Name="LK_Mjesto_LK_Dvorana" Member="LK_Dvoranas" ThisKey="MJE_Id" OtherKey="DVO_MjestoId" Type="LK_Dvorana" />
+      <Association Name="LK_Drzava_LK_Mjesto" Member="LK_Drzava" ThisKey="MJE_DrzavaId" OtherKey="DRZ_Id" Type="LK_Drzava" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_Drzava" Member="LK_Drzavas">
+    <Type Name="LK_Drzava">
+      <Column Name="DRZ_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DRZ_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DRZ_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DRZ_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="LK_Drzava_LK_Mjesto" Member="LK_Mjestos" ThisKey="DRZ_Id" OtherKey="MJE_DrzavaId" Type="LK_Mjesto" />
+      <Association Name="LK_Drzava_LK_Drzava" Member="LK_Drzava2" ThisKey="DRZ_Id" OtherKey="DRZ_Id" Type="LK_Drzava" Cardinality="One" />
+      <Association Name="LK_Drzava_LK_Drzava" Member="LK_Drzava1" ThisKey="DRZ_Id" OtherKey="DRZ_Id" Type="LK_Drzava" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="prstacpr_prodaja.BK_ImageGalleries" Member="BK_ImageGalleries">
+    <Type Name="BK_ImageGallery">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NazivGalerije" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="BK_ImageGallery_BK_Image" Member="BK_Images" ThisKey="Id" OtherKey="GalleryId" Type="BK_Image" />
+    </Type>
+  </Table>
+  <Table Name="prstacpr_prodaja.BK_Images" Member="BK_Images">
+    <Type Name="BK_Image">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ImageName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageAlt" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GalleryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="BK_ImageGallery_BK_Image" Member="BK_ImageGallery" ThisKey="GalleryId" OtherKey="Id" Type="BK_ImageGallery" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="prstacpr_prodaja.BK_REL_Event_ImageGalleries" Member="BK_REL_Event_ImageGalleries">
+    <Type Name="BK_REL_Event_ImageGallery">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ImageGalleriesId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

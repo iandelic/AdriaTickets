@@ -1,7 +1,7 @@
 ﻿adriaTicketAdmin.controller('AdminEventController', ['$scope', '$http', function ($scope, $http) {
 
     var siteUrl = "http://localhost:32718/";
-    $http.get('/public/getEvents').success(function (data) {
+    $http.get('/admin/getEvents').success(function (data) {
         $scope.events = data;
     }).error(function () { alert('error') });
 
@@ -23,15 +23,40 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
     ];
 
     if (parseInt(id)){
-        $http.get('/admin/getEvent/'+id).success(function (data) {
-        $scope.event = data[0];
-        $scope.event.EVE_Datum = moment($scope.event.EVE_Datum).format('DD.MM.YYYY hh:mm:ss');
-        $scope.disabledFlag = false;
-    }).error(function () { alert('error') });
+            $http.get('/admin/getEvent/'+id).success(function (data) {
+            $scope.event = data[0];
+            $scope.event.EVE_Datum = moment($scope.event.EVE_Datum).format('DD.MM.YYYY HH:mm:ss');
+            $scope.event.EVE_DatumOdProdaja = moment($scope.event.EVE_DatumOdProdaja).format('DD.MM.YYYY HH:mm:ss');
+            $scope.event.EVE_DatumOdPretprodaja = moment($scope.event.EVE_DatumOdPretprodaja).format('DD.MM.YYYY HH:mm:ss');
+            $scope.disabledFlag = false;
+            $scope.description = $scope.event.EVE_Opis;
+            }).error(function () { alert('error event') });
+    }
+    $http.get('/data/geteventstatuses').success(function (data) {
+        $scope.eventStatus = data;
+    }).error(function () { alert('error status') });
 
-}
-    $scope.setTime = function (newVal,oldVal) {
+    $http.get('/data/geteventorganisers').success(function (data) {
+        $scope.eventOrganisers = data;
+    }).error(function () { alert('error status') });
+
+    $http.get('/data/geteventlocations').success(function (data) {
+        $scope.eventLocations = data;
+    }).error(function () { alert('error status') });
+
+    $http.get('/data/geteventtowns').success(function (data) {
+        $scope.eventTowns = data;
+    }).error(function () { alert('error status') });
+
+
+    $scope.datmEventaChange = function (newVal, oldVal) {
         $scope.event.EVE_Datum = moment(newVal).format('DD.MM.YYYY hh:mm:ss')
+    }
+    $scope.pretprodajaKarataChange = function (newVal, oldVal) {
+        $scope.event.EVE_DatumOdPretprodaja = moment(newVal).format('DD.MM.YYYY hh:mm:ss')
+    }
+    $scope.prodajaKarataChange = function (newVal, oldVal) {
+        $scope.event.EVE_DatumOdProdaja = moment(newVal).format('DD.MM.YYYY hh:mm:ss')
     }
 
     $scope.configFunction = function configFunction() {
@@ -41,8 +66,8 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
 
 
     $scope.$watch('files', function () {
-        console.log($scope.files[0].name);
-        //$scope.upload($scope.files);
+        if ($scope.files != null)
+        $scope.upload($scope.files);
     });
 
     $scope.upload = function (files) {

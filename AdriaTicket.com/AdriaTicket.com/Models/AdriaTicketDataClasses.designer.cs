@@ -51,6 +51,21 @@ namespace AdriaTicket.com.Models
     partial void InsertLK_Dvorana(LK_Dvorana instance);
     partial void UpdateLK_Dvorana(LK_Dvorana instance);
     partial void DeleteLK_Dvorana(LK_Dvorana instance);
+    partial void InsertLK_Mjesto(LK_Mjesto instance);
+    partial void UpdateLK_Mjesto(LK_Mjesto instance);
+    partial void DeleteLK_Mjesto(LK_Mjesto instance);
+    partial void InsertLK_Drzava(LK_Drzava instance);
+    partial void UpdateLK_Drzava(LK_Drzava instance);
+    partial void DeleteLK_Drzava(LK_Drzava instance);
+    partial void InsertBK_ImageGallery(BK_ImageGallery instance);
+    partial void UpdateBK_ImageGallery(BK_ImageGallery instance);
+    partial void DeleteBK_ImageGallery(BK_ImageGallery instance);
+    partial void InsertBK_Image(BK_Image instance);
+    partial void UpdateBK_Image(BK_Image instance);
+    partial void DeleteBK_Image(BK_Image instance);
+    partial void InsertBK_REL_Event_ImageGallery(BK_REL_Event_ImageGallery instance);
+    partial void UpdateBK_REL_Event_ImageGallery(BK_REL_Event_ImageGallery instance);
+    partial void DeleteBK_REL_Event_ImageGallery(BK_REL_Event_ImageGallery instance);
     #endregion
 		
 		public AdriaTicketDataClassesDataContext() : 
@@ -136,6 +151,46 @@ namespace AdriaTicket.com.Models
 			get
 			{
 				return this.GetTable<LK_Dvorana>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LK_Mjesto> LK_Mjestos
+		{
+			get
+			{
+				return this.GetTable<LK_Mjesto>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LK_Drzava> LK_Drzavas
+		{
+			get
+			{
+				return this.GetTable<LK_Drzava>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BK_ImageGallery> BK_ImageGalleries
+		{
+			get
+			{
+				return this.GetTable<BK_ImageGallery>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BK_Image> BK_Images
+		{
+			get
+			{
+				return this.GetTable<BK_Image>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BK_REL_Event_ImageGallery> BK_REL_Event_ImageGalleries
+		{
+			get
+			{
+				return this.GetTable<BK_REL_Event_ImageGallery>();
 			}
 		}
 	}
@@ -364,6 +419,8 @@ namespace AdriaTicket.com.Models
 		
 		private EntityRef<LK_Dvorana> _LK_Dvorana;
 		
+		private EntityRef<LK_Mjesto> _LK_Mjesto;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -428,6 +485,7 @@ namespace AdriaTicket.com.Models
 			this._LK_Organizator = default(EntityRef<LK_Organizator>);
 			this._LK_LayoutDvorana = default(EntityRef<LK_LayoutDvorana>);
 			this._LK_Dvorana = default(EntityRef<LK_Dvorana>);
+			this._LK_Mjesto = default(EntityRef<LK_Mjesto>);
 			OnCreated();
 		}
 		
@@ -522,6 +580,10 @@ namespace AdriaTicket.com.Models
 			{
 				if ((this._EVE_MjestoId != value))
 				{
+					if (this._LK_Mjesto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnEVE_MjestoIdChanging(value);
 					this.SendPropertyChanging();
 					this._EVE_MjestoId = value;
@@ -1099,6 +1161,40 @@ namespace AdriaTicket.com.Models
 						this._EVE_DvoranaId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("LK_Dvorana");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_LK_Event", Storage="_LK_Mjesto", ThisKey="EVE_MjestoId", OtherKey="MJE_Id", IsForeignKey=true)]
+		public LK_Mjesto LK_Mjesto
+		{
+			get
+			{
+				return this._LK_Mjesto.Entity;
+			}
+			set
+			{
+				LK_Mjesto previousValue = this._LK_Mjesto.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Mjesto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Mjesto.Entity = null;
+						previousValue.LK_Events.Remove(this);
+					}
+					this._LK_Mjesto.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Events.Add(this);
+						this._EVE_MjestoId = value.MJE_Id;
+					}
+					else
+					{
+						this._EVE_MjestoId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LK_Mjesto");
 				}
 			}
 		}
@@ -2101,6 +2197,8 @@ namespace AdriaTicket.com.Models
 		
 		private EntitySet<LK_LayoutDvorana> _LK_LayoutDvoranas;
 		
+		private EntityRef<LK_Mjesto> _LK_Mjesto;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2129,6 +2227,7 @@ namespace AdriaTicket.com.Models
 		{
 			this._LK_Events = new EntitySet<LK_Event>(new Action<LK_Event>(this.attach_LK_Events), new Action<LK_Event>(this.detach_LK_Events));
 			this._LK_LayoutDvoranas = new EntitySet<LK_LayoutDvorana>(new Action<LK_LayoutDvorana>(this.attach_LK_LayoutDvoranas), new Action<LK_LayoutDvorana>(this.detach_LK_LayoutDvoranas));
+			this._LK_Mjesto = default(EntityRef<LK_Mjesto>);
 			OnCreated();
 		}
 		
@@ -2183,6 +2282,10 @@ namespace AdriaTicket.com.Models
 			{
 				if ((this._DVO_MjestoId != value))
 				{
+					if (this._LK_Mjesto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnDVO_MjestoIdChanging(value);
 					this.SendPropertyChanging();
 					this._DVO_MjestoId = value;
@@ -2338,6 +2441,40 @@ namespace AdriaTicket.com.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_LK_Dvorana", Storage="_LK_Mjesto", ThisKey="DVO_MjestoId", OtherKey="MJE_Id", IsForeignKey=true)]
+		public LK_Mjesto LK_Mjesto
+		{
+			get
+			{
+				return this._LK_Mjesto.Entity;
+			}
+			set
+			{
+				LK_Mjesto previousValue = this._LK_Mjesto.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Mjesto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Mjesto.Entity = null;
+						previousValue.LK_Dvoranas.Remove(this);
+					}
+					this._LK_Mjesto.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Dvoranas.Add(this);
+						this._DVO_MjestoId = value.MJE_Id;
+					}
+					else
+					{
+						this._DVO_MjestoId = default(int);
+					}
+					this.SendPropertyChanged("LK_Mjesto");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2380,6 +2517,919 @@ namespace AdriaTicket.com.Models
 		{
 			this.SendPropertyChanging();
 			entity.LK_Dvorana = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LK_Mjesto")]
+	public partial class LK_Mjesto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MJE_Id;
+		
+		private string _MJE_Naziv;
+		
+		private string _MJE_ZIP;
+		
+		private int _MJE_DrzavaId;
+		
+		private char _MJE_Stanje;
+		
+		private System.DateTime _MJE_Timestamp;
+		
+		private EntitySet<LK_Event> _LK_Events;
+		
+		private EntitySet<LK_Dvorana> _LK_Dvoranas;
+		
+		private EntityRef<LK_Drzava> _LK_Drzava;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMJE_IdChanging(int value);
+    partial void OnMJE_IdChanged();
+    partial void OnMJE_NazivChanging(string value);
+    partial void OnMJE_NazivChanged();
+    partial void OnMJE_ZIPChanging(string value);
+    partial void OnMJE_ZIPChanged();
+    partial void OnMJE_DrzavaIdChanging(int value);
+    partial void OnMJE_DrzavaIdChanged();
+    partial void OnMJE_StanjeChanging(char value);
+    partial void OnMJE_StanjeChanged();
+    partial void OnMJE_TimestampChanging(System.DateTime value);
+    partial void OnMJE_TimestampChanged();
+    #endregion
+		
+		public LK_Mjesto()
+		{
+			this._LK_Events = new EntitySet<LK_Event>(new Action<LK_Event>(this.attach_LK_Events), new Action<LK_Event>(this.detach_LK_Events));
+			this._LK_Dvoranas = new EntitySet<LK_Dvorana>(new Action<LK_Dvorana>(this.attach_LK_Dvoranas), new Action<LK_Dvorana>(this.detach_LK_Dvoranas));
+			this._LK_Drzava = default(EntityRef<LK_Drzava>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MJE_Id
+		{
+			get
+			{
+				return this._MJE_Id;
+			}
+			set
+			{
+				if ((this._MJE_Id != value))
+				{
+					this.OnMJE_IdChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_Id = value;
+					this.SendPropertyChanged("MJE_Id");
+					this.OnMJE_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_Naziv", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string MJE_Naziv
+		{
+			get
+			{
+				return this._MJE_Naziv;
+			}
+			set
+			{
+				if ((this._MJE_Naziv != value))
+				{
+					this.OnMJE_NazivChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_Naziv = value;
+					this.SendPropertyChanged("MJE_Naziv");
+					this.OnMJE_NazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_ZIP", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string MJE_ZIP
+		{
+			get
+			{
+				return this._MJE_ZIP;
+			}
+			set
+			{
+				if ((this._MJE_ZIP != value))
+				{
+					this.OnMJE_ZIPChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_ZIP = value;
+					this.SendPropertyChanged("MJE_ZIP");
+					this.OnMJE_ZIPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_DrzavaId", DbType="Int NOT NULL")]
+		public int MJE_DrzavaId
+		{
+			get
+			{
+				return this._MJE_DrzavaId;
+			}
+			set
+			{
+				if ((this._MJE_DrzavaId != value))
+				{
+					if (this._LK_Drzava.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMJE_DrzavaIdChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_DrzavaId = value;
+					this.SendPropertyChanged("MJE_DrzavaId");
+					this.OnMJE_DrzavaIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_Stanje", DbType="Char(1) NOT NULL")]
+		public char MJE_Stanje
+		{
+			get
+			{
+				return this._MJE_Stanje;
+			}
+			set
+			{
+				if ((this._MJE_Stanje != value))
+				{
+					this.OnMJE_StanjeChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_Stanje = value;
+					this.SendPropertyChanged("MJE_Stanje");
+					this.OnMJE_StanjeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MJE_Timestamp", DbType="DateTime NOT NULL")]
+		public System.DateTime MJE_Timestamp
+		{
+			get
+			{
+				return this._MJE_Timestamp;
+			}
+			set
+			{
+				if ((this._MJE_Timestamp != value))
+				{
+					this.OnMJE_TimestampChanging(value);
+					this.SendPropertyChanging();
+					this._MJE_Timestamp = value;
+					this.SendPropertyChanged("MJE_Timestamp");
+					this.OnMJE_TimestampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_LK_Event", Storage="_LK_Events", ThisKey="MJE_Id", OtherKey="EVE_MjestoId")]
+		public EntitySet<LK_Event> LK_Events
+		{
+			get
+			{
+				return this._LK_Events;
+			}
+			set
+			{
+				this._LK_Events.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_LK_Dvorana", Storage="_LK_Dvoranas", ThisKey="MJE_Id", OtherKey="DVO_MjestoId")]
+		public EntitySet<LK_Dvorana> LK_Dvoranas
+		{
+			get
+			{
+				return this._LK_Dvoranas;
+			}
+			set
+			{
+				this._LK_Dvoranas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Mjesto", Storage="_LK_Drzava", ThisKey="MJE_DrzavaId", OtherKey="DRZ_Id", IsForeignKey=true)]
+		public LK_Drzava LK_Drzava
+		{
+			get
+			{
+				return this._LK_Drzava.Entity;
+			}
+			set
+			{
+				LK_Drzava previousValue = this._LK_Drzava.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Drzava.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Drzava.Entity = null;
+						previousValue.LK_Mjestos.Remove(this);
+					}
+					this._LK_Drzava.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Mjestos.Add(this);
+						this._MJE_DrzavaId = value.DRZ_Id;
+					}
+					else
+					{
+						this._MJE_DrzavaId = default(int);
+					}
+					this.SendPropertyChanged("LK_Drzava");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LK_Events(LK_Event entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = this;
+		}
+		
+		private void detach_LK_Events(LK_Event entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = null;
+		}
+		
+		private void attach_LK_Dvoranas(LK_Dvorana entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = this;
+		}
+		
+		private void detach_LK_Dvoranas(LK_Dvorana entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LK_Drzava")]
+	public partial class LK_Drzava : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _DRZ_Id;
+		
+		private string _DRZ_Naziv;
+		
+		private System.DateTime _DRZ_Timestamp;
+		
+		private char _DRZ_Stanje;
+		
+		private EntitySet<LK_Mjesto> _LK_Mjestos;
+		
+		private EntityRef<LK_Drzava> _LK_Drzava2;
+		
+		private EntityRef<LK_Drzava> _LK_Drzava1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDRZ_IdChanging(int value);
+    partial void OnDRZ_IdChanged();
+    partial void OnDRZ_NazivChanging(string value);
+    partial void OnDRZ_NazivChanged();
+    partial void OnDRZ_TimestampChanging(System.DateTime value);
+    partial void OnDRZ_TimestampChanged();
+    partial void OnDRZ_StanjeChanging(char value);
+    partial void OnDRZ_StanjeChanged();
+    #endregion
+		
+		public LK_Drzava()
+		{
+			this._LK_Mjestos = new EntitySet<LK_Mjesto>(new Action<LK_Mjesto>(this.attach_LK_Mjestos), new Action<LK_Mjesto>(this.detach_LK_Mjestos));
+			this._LK_Drzava2 = default(EntityRef<LK_Drzava>);
+			this._LK_Drzava1 = default(EntityRef<LK_Drzava>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DRZ_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int DRZ_Id
+		{
+			get
+			{
+				return this._DRZ_Id;
+			}
+			set
+			{
+				if ((this._DRZ_Id != value))
+				{
+					if (this._LK_Drzava1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDRZ_IdChanging(value);
+					this.SendPropertyChanging();
+					this._DRZ_Id = value;
+					this.SendPropertyChanged("DRZ_Id");
+					this.OnDRZ_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DRZ_Naziv", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DRZ_Naziv
+		{
+			get
+			{
+				return this._DRZ_Naziv;
+			}
+			set
+			{
+				if ((this._DRZ_Naziv != value))
+				{
+					this.OnDRZ_NazivChanging(value);
+					this.SendPropertyChanging();
+					this._DRZ_Naziv = value;
+					this.SendPropertyChanged("DRZ_Naziv");
+					this.OnDRZ_NazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DRZ_Timestamp", DbType="DateTime NOT NULL")]
+		public System.DateTime DRZ_Timestamp
+		{
+			get
+			{
+				return this._DRZ_Timestamp;
+			}
+			set
+			{
+				if ((this._DRZ_Timestamp != value))
+				{
+					this.OnDRZ_TimestampChanging(value);
+					this.SendPropertyChanging();
+					this._DRZ_Timestamp = value;
+					this.SendPropertyChanged("DRZ_Timestamp");
+					this.OnDRZ_TimestampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DRZ_Stanje", DbType="Char(1) NOT NULL")]
+		public char DRZ_Stanje
+		{
+			get
+			{
+				return this._DRZ_Stanje;
+			}
+			set
+			{
+				if ((this._DRZ_Stanje != value))
+				{
+					this.OnDRZ_StanjeChanging(value);
+					this.SendPropertyChanging();
+					this._DRZ_Stanje = value;
+					this.SendPropertyChanged("DRZ_Stanje");
+					this.OnDRZ_StanjeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Mjesto", Storage="_LK_Mjestos", ThisKey="DRZ_Id", OtherKey="MJE_DrzavaId")]
+		public EntitySet<LK_Mjesto> LK_Mjestos
+		{
+			get
+			{
+				return this._LK_Mjestos;
+			}
+			set
+			{
+				this._LK_Mjestos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Drzava", Storage="_LK_Drzava2", ThisKey="DRZ_Id", OtherKey="DRZ_Id", IsUnique=true, IsForeignKey=false)]
+		public LK_Drzava LK_Drzava2
+		{
+			get
+			{
+				return this._LK_Drzava2.Entity;
+			}
+			set
+			{
+				LK_Drzava previousValue = this._LK_Drzava2.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Drzava2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Drzava2.Entity = null;
+						previousValue.LK_Drzava1 = null;
+					}
+					this._LK_Drzava2.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Drzava1 = this;
+					}
+					this.SendPropertyChanged("LK_Drzava2");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Drzava", Storage="_LK_Drzava1", ThisKey="DRZ_Id", OtherKey="DRZ_Id", IsForeignKey=true)]
+		public LK_Drzava LK_Drzava1
+		{
+			get
+			{
+				return this._LK_Drzava1.Entity;
+			}
+			set
+			{
+				LK_Drzava previousValue = this._LK_Drzava1.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Drzava1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Drzava1.Entity = null;
+						previousValue.LK_Drzava2 = null;
+					}
+					this._LK_Drzava1.Entity = value;
+					if ((value != null))
+					{
+						value.LK_Drzava2 = this;
+						this._DRZ_Id = value.DRZ_Id;
+					}
+					else
+					{
+						this._DRZ_Id = default(int);
+					}
+					this.SendPropertyChanged("LK_Drzava1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LK_Mjestos(LK_Mjesto entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Drzava = this;
+		}
+		
+		private void detach_LK_Mjestos(LK_Mjesto entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Drzava = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="prstacpr_prodaja.BK_ImageGalleries")]
+	public partial class BK_ImageGallery : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _NazivGalerije;
+		
+		private EntitySet<BK_Image> _BK_Images;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNazivGalerijeChanging(string value);
+    partial void OnNazivGalerijeChanged();
+    #endregion
+		
+		public BK_ImageGallery()
+		{
+			this._BK_Images = new EntitySet<BK_Image>(new Action<BK_Image>(this.attach_BK_Images), new Action<BK_Image>(this.detach_BK_Images));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazivGalerije", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string NazivGalerije
+		{
+			get
+			{
+				return this._NazivGalerije;
+			}
+			set
+			{
+				if ((this._NazivGalerije != value))
+				{
+					this.OnNazivGalerijeChanging(value);
+					this.SendPropertyChanging();
+					this._NazivGalerije = value;
+					this.SendPropertyChanged("NazivGalerije");
+					this.OnNazivGalerijeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BK_ImageGallery_BK_Image", Storage="_BK_Images", ThisKey="Id", OtherKey="GalleryId")]
+		public EntitySet<BK_Image> BK_Images
+		{
+			get
+			{
+				return this._BK_Images;
+			}
+			set
+			{
+				this._BK_Images.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_BK_Images(BK_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.BK_ImageGallery = this;
+		}
+		
+		private void detach_BK_Images(BK_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.BK_ImageGallery = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="prstacpr_prodaja.BK_Images")]
+	public partial class BK_Image : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _ImageName;
+		
+		private string _ImageAlt;
+		
+		private int _GalleryId;
+		
+		private EntityRef<BK_ImageGallery> _BK_ImageGallery;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnImageNameChanging(string value);
+    partial void OnImageNameChanged();
+    partial void OnImageAltChanging(string value);
+    partial void OnImageAltChanged();
+    partial void OnGalleryIdChanging(int value);
+    partial void OnGalleryIdChanged();
+    #endregion
+		
+		public BK_Image()
+		{
+			this._BK_ImageGallery = default(EntityRef<BK_ImageGallery>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ImageName
+		{
+			get
+			{
+				return this._ImageName;
+			}
+			set
+			{
+				if ((this._ImageName != value))
+				{
+					this.OnImageNameChanging(value);
+					this.SendPropertyChanging();
+					this._ImageName = value;
+					this.SendPropertyChanged("ImageName");
+					this.OnImageNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageAlt", DbType="NVarChar(50)")]
+		public string ImageAlt
+		{
+			get
+			{
+				return this._ImageAlt;
+			}
+			set
+			{
+				if ((this._ImageAlt != value))
+				{
+					this.OnImageAltChanging(value);
+					this.SendPropertyChanging();
+					this._ImageAlt = value;
+					this.SendPropertyChanged("ImageAlt");
+					this.OnImageAltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GalleryId", DbType="Int NOT NULL")]
+		public int GalleryId
+		{
+			get
+			{
+				return this._GalleryId;
+			}
+			set
+			{
+				if ((this._GalleryId != value))
+				{
+					if (this._BK_ImageGallery.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGalleryIdChanging(value);
+					this.SendPropertyChanging();
+					this._GalleryId = value;
+					this.SendPropertyChanged("GalleryId");
+					this.OnGalleryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BK_ImageGallery_BK_Image", Storage="_BK_ImageGallery", ThisKey="GalleryId", OtherKey="Id", IsForeignKey=true)]
+		public BK_ImageGallery BK_ImageGallery
+		{
+			get
+			{
+				return this._BK_ImageGallery.Entity;
+			}
+			set
+			{
+				BK_ImageGallery previousValue = this._BK_ImageGallery.Entity;
+				if (((previousValue != value) 
+							|| (this._BK_ImageGallery.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._BK_ImageGallery.Entity = null;
+						previousValue.BK_Images.Remove(this);
+					}
+					this._BK_ImageGallery.Entity = value;
+					if ((value != null))
+					{
+						value.BK_Images.Add(this);
+						this._GalleryId = value.Id;
+					}
+					else
+					{
+						this._GalleryId = default(int);
+					}
+					this.SendPropertyChanged("BK_ImageGallery");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="prstacpr_prodaja.BK_REL_Event_ImageGalleries")]
+	public partial class BK_REL_Event_ImageGallery : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _EventId;
+		
+		private int _ImageGalleriesId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnEventIdChanging(int value);
+    partial void OnEventIdChanged();
+    partial void OnImageGalleriesIdChanging(int value);
+    partial void OnImageGalleriesIdChanged();
+    #endregion
+		
+		public BK_REL_Event_ImageGallery()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventId", DbType="Int NOT NULL")]
+		public int EventId
+		{
+			get
+			{
+				return this._EventId;
+			}
+			set
+			{
+				if ((this._EventId != value))
+				{
+					this.OnEventIdChanging(value);
+					this.SendPropertyChanging();
+					this._EventId = value;
+					this.SendPropertyChanged("EventId");
+					this.OnEventIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageGalleriesId", DbType="Int NOT NULL")]
+		public int ImageGalleriesId
+		{
+			get
+			{
+				return this._ImageGalleriesId;
+			}
+			set
+			{
+				if ((this._ImageGalleriesId != value))
+				{
+					this.OnImageGalleriesIdChanging(value);
+					this.SendPropertyChanging();
+					this._ImageGalleriesId = value;
+					this.SendPropertyChanged("ImageGalleriesId");
+					this.OnImageGalleriesIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
