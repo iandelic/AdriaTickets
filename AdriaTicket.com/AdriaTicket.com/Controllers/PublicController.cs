@@ -19,7 +19,7 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult getEvents()
         {
-            var events = from e in eventData.LK_Events select new { e.EVE_Id,e.EVE_Opis,e.EVE_Naziv};
+            var events = from e in eventData.LK_Events  where e.EVE_PrikaziNaWebu == true orderby e.EVE_Datum descending select new { e.EVE_Id,e.EVE_Opis,e.EVE_Naziv};
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }

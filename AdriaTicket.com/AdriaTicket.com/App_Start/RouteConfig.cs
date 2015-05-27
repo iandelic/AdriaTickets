@@ -40,6 +40,11 @@ namespace AdriaTicket.com
                url: "{controller}/events/{action}/{id}",
                defaults: new { controller = "Admin", action = "Edit" }
            );
+            routes.MapRoute(
+               name: "Admin-gallery-edit",
+               url: "{controller}/galleries/{action}/{id}",
+               defaults: new { controller = "Admin", action = "Edit" }
+           );
 
         }
     }

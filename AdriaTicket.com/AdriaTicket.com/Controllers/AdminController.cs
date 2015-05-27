@@ -103,22 +103,42 @@ namespace AdriaTicket.com.Controllers
         }
 
         [Authorize]
+        public ActionResult Galleries()
+        {
+            return View();
+        }
+        public ActionResult Gallery(int id)
+        {
+            return View();
+        }
+
+        [Authorize]
         public ActionResult Event()
         {
             return View();
         }
         public ActionResult getEvent(int id)
         {
-            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id where Event.EVE_Id == id select new { Event.EVE_Naziv, Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, statusEventa.SEV_Stanje };
+            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
+                     join organizator in AdriaTicketData.LK_Organizators on Event.EVE_OrganizatorId equals organizator.ORG_Id
+                     where Event.EVE_Id == id 
+                     select new { Event.EVE_Naziv, Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
+                         Event.EVE_PostotakProvizije, Event.EVE_DvoranaId, organizator.ORG_Naziv,organizator.ORG_Id, statusEventa.SEV_Stanje, statusEventa.SEV_Id,Event.EVE_PrikaziNaWebu,
+                         Event.EVE_MjestoId   };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult getEvents()
+        {
+            var events = from e in AdriaTicketData.LK_Events  orderby e.EVE_Datum descending select new { e.EVE_Id, e.EVE_Opis, e.EVE_Naziv };
 
+            return Json(events, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ContentResult Upload(HttpPostedFileBase file)
         {
             var filename = Path.GetFileName(file.FileName);
-            var path = Path.Combine(Server.MapPath("~/App_Data"), filename);
+            var path = Path.Combine(Server.MapPath("~/uploads"), filename);
             file.SaveAs(path);
 
             return new ContentResult{
