@@ -157,6 +157,36 @@ body {
     display:block;
     float:left;
     background-color:#e5e5e5;
+    padding:3px;
+}
+
+.social-fb {
+    display:block;
+    background:url('../img/social-fb.png');
+    height:44px;
+    width:44px;
+}
+
+.social-fb:hover {
+    background-position-y:44px;
+}
+
+.social-tw {
+    display:block;
+    background:url('../img/social-tw.png');
+    height:44px;
+    width:44px;
+}
+
+.social-tw:hover {
+    background-position-y:44px;
+}
+
+.subheader li {margin-right:6px;}
+.subheader .row {margin:0;}
+
+.searchbar {
+    margin-top:5px;
 }
 
 .subheader ul {
@@ -230,4 +260,10 @@ body {
     color:#f7f7f7;
     font-size:0.9em;
     line-height:1.2em;
+}
+
+.ads-container {
+    min-height:200px;
+    display:block;
+    margin-bottom:50px;
 }
