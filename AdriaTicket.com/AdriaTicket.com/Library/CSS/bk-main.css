@@ -140,7 +140,7 @@ body {
     line-height:50px;
     color:#f7f7f7;
     text-decoration:none;
-     
+    
       -webkit-transition: background 0.2s ease-out;
       -moz-transition: background 0.2s ease-out;
       -o-transition: background 0.2s ease-out;
@@ -198,15 +198,6 @@ body {
     text-align:center;
 }
 
-<<<<<<< HEAD
-.searchbar.navbar-right {
-    margin-right:0;
-}
-
-.searchbar .btn {
-    height:25px;
-    line-height:1px;
-=======
 .social li a {
     color:#848484;
     display:block;
@@ -224,7 +215,6 @@ body {
     text-decoration:none;
     color:#f8f8f8;
     background-color:#848484;
->>>>>>> header-dizajn
 }
 
 #main-content {
