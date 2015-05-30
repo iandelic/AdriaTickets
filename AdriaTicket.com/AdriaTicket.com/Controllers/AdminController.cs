@@ -122,7 +122,7 @@ namespace AdriaTicket.com.Controllers
             var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
                      join organizator in AdriaTicketData.LK_Organizators on Event.EVE_OrganizatorId equals organizator.ORG_Id
                      where Event.EVE_Id == id 
-                     select new { Event.EVE_Naziv, Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
+                     select new { Event.EVE_Naziv, Event.EVE_Id,Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
                          Event.EVE_PostotakProvizije, Event.EVE_DvoranaId, organizator.ORG_Naziv,organizator.ORG_Id, statusEventa.SEV_Stanje, statusEventa.SEV_Id,Event.EVE_PrikaziNaWebu,
                          Event.EVE_MjestoId   };
             return Json(ev, JsonRequestBehavior.AllowGet);
@@ -139,14 +139,14 @@ namespace AdriaTicket.com.Controllers
         {
             LK_Event ev = new LK_Event();
             ev = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Id == id);
-            ev.EVE_Datum = DateTime.ParseExact(datum, "dd.MM.yyyy. HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            ev.EVE_DatumOdPretprodaja = DateTime.ParseExact(datum, "dd.MM.yyyy. HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            ev.EVE_DatumOdProdaja = DateTime.ParseExact(datum, "dd.MM.yyyy. HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            ev.EVE_Datum = DateTime.ParseExact(datum, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            ev.EVE_DatumOdPretprodaja = DateTime.ParseExact(datum, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            ev.EVE_DatumOdProdaja = DateTime.ParseExact(datum, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
             ev.EVE_DvoranaId = dvorana;
             ev.EVE_FlagOnlineProdaja = true;
             ev.EVE_MjestoId = mjesto;
             ev.EVE_Naziv = naziv;
-            ev.EVE_Opis = opis;
+            ev.EVE_Opis =HttpUtility.HtmlDecode(opis);
             ev.EVE_ImageExist = false;
             ev.EVE_ReklamaExist = false;
             ev.EVE_FlagOnlineProdaja = true;
@@ -156,11 +156,19 @@ namespace AdriaTicket.com.Controllers
             ev.EVE_PostotakProvizije = postotakprovizije;
             ev.EVE_PrikaziNaWebu = prikaznaWebu;
             ev.EVE_StatusEventaId = status;
-            if(id==null)
-            AdriaTicketData.LK_Events.InsertOnSubmit(ev);
+            string msg = "";
+            if (id == null)
+            {
+                msg = "insert";
+                AdriaTicketData.LK_Events.InsertOnSubmit(ev);
+            }
+            else
+            {
+                msg = "update";
+            }
             AdriaTicketData.SubmitChanges();
             
-           return Json(DateTime.ParseExact(datum, "dd.MM.yyyy. HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture), JsonRequestBehavior.AllowGet);
+           return Json(msg, JsonRequestBehavior.AllowGet);
         }
                 
         [HttpPost]
