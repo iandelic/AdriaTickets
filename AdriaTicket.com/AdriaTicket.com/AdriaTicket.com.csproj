@@ -211,6 +211,7 @@
     <Content Include="Library\CSS\datetimepicker.css" />
     <Content Include="Library\CSS\bootstrap\font-awesome.min.css" />
     <Content Include="Library\CSS\textAngular.css" />
+    <Content Include="Library\img\AdriaTicket-logo-white.png" />
     <Content Include="Library\img\logo.svg" />
     <Content Include="Library\img\social-fb.jpg" />
     <Content Include="Library\img\social-tw.jpg" />
