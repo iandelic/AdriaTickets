@@ -87,7 +87,7 @@
             <div class="form-group">
                 <label for="mjestoEventa" class="control-label col-xs-12 col-lg-5">Grad</label>
                     <div class="col-xs-12 col-lg-7">
-                        <select  class="form-control" id="lokacijaEventa" ng-model="event.EVE_MjestoId">
+                        <select  class="form-control" id="mjestoEventa" ng-model="event.EVE_MjestoId">
                             <option ng-repeat="t in eventTowns" value="{{t.MJE_Id}}" ng-selected ="{{t.MJE_Id == event.EVE_MjestoId}}">{{t.MJE_Naziv}}</option>
                         </select>
                     </div>
@@ -124,7 +124,7 @@
             </div>
          
             <div class="form-group">
-                <button type="submit" class="form-control btn btn-primary" ng-disabled="disabledFlag">Submit</button>
+                <button type="submit" class="form-control btn btn-primary" ng-disabled="disabledFlag" ng-click="save(event)">Submit</button>
             </div>      
         </fieldset>
     </form>
