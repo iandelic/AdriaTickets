@@ -114,3 +114,4 @@ D:\github\AdriaTickets\AdriaTicket.com\AdriaTicket.com\bin\System.Web.WebPages.D
 D:\github\AdriaTickets\AdriaTicket.com\AdriaTicket.com\bin\System.Web.WebPages.Razor.xml
 D:\github\AdriaTickets\AdriaTicket.com\AdriaTicket.com\obj\Debug\AdriaTicket.com.dll
 D:\github\AdriaTickets\AdriaTicket.com\AdriaTicket.com\obj\Debug\AdriaTicket.com.pdb
+D:\Work\GitHub\AdriaTickets\AdriaTicket.com\AdriaTicket.com\obj\Debug\AdriaTicket.com.csprojResolveAssemblyReference.cache

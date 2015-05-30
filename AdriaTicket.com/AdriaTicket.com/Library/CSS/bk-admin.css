@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+    font: 1em/1.4em arial,sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -44,11 +45,36 @@ table {
 }
 /* END CSS RESET */
 
+/* MASTER */
+
+#header {
+    margin-bottom: 100px;
+    color: #fff;
+    font-size: 1.8em;
+    height: 90px;
+    background-color: #1e1e1e;
+    text-align: center;
+    line-height: 90px;
+}
+
+#footer {
+    margin-top : 100px;
+    height: 90px;
+    line-height: 90px;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    background-color: #1e1e1e;
+}
+
+
+/* END MASTER*/
+
+
 /* LOGIN */
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
+    background-color: #eee;
 }
 
 .form-signin {
@@ -75,16 +101,26 @@ body {
 .form-signin .form-control:focus {
   z-index: 2;
 }
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+    .form-signin input[type="text"] {
+        margin-bottom: 10px;
+        border-radius: 0;
+    }
+    .form-signin input[type="text"]:focus {
+        border: 1px solid rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-radius: 0;
+    }
+    .form-signin input[type="password"]:focus {
+        border: 1px solid rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
+    }
 
 
 .admin-error {
