@@ -109,12 +109,11 @@ table {
     line-height : 40px;
     text-decoration:none;
 }
-.menu-link-add {
-    width : 120px;
+.menu-link-add { 
     background-color : #23b5d3;
 
 }
-.menu-link-add:hover { 
+.menu-link-add:hover {
     background-color : #0e98b5;
 }
 /* END HOME */
