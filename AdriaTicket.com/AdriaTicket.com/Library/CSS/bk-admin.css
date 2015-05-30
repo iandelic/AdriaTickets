@@ -109,7 +109,11 @@ table {
     line-height : 40px;
     text-decoration:none;
 }
+<<<<<<< HEAD
 .menu-link-add { 
+=======
+.menu-link-add {
+>>>>>>> origin/master
     background-color : #23b5d3;
 
 }
