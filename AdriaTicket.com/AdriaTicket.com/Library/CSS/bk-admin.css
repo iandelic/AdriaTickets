@@ -50,7 +50,7 @@ table {
 #header {
     margin-bottom: 100px;
     color: #fff;
-    font-size: 1.8em;
+    font-size: 1.5em;
     height: 90px;
     background-color: #1e1e1e;
     text-align: center;
@@ -67,13 +67,20 @@ table {
     font-size: 0.8em;
     background-color: #1e1e1e;
 }
-
-
 /* END MASTER*/
 
 /* HOME */
+.home-row {
+    margin-bottom : 25px;
+}
 .text-center {
     text-align : center;
+}
+
+.menu-item {
+    background-color : #fff;
+    padding-top : 10px;
+    padding-bottom : 20px;
 }
 .menu-icon {
     font-size : 2.5em;
@@ -83,6 +90,32 @@ table {
 .menu-title {
     text-transform : uppercase;
     font-weight : 500;
+}
+.menu-link {
+    background-color : #ba2d0b;
+    width : 145px;
+    height : 40px;
+    border-radius : 2px;
+    margin-top: 5px;
+    margin-right : 3px;
+    margin-left : 3px;
+    display : inline-block;
+}
+.menu-link:hover {
+    background-color : #e8502b;
+}
+.menu-link a {
+    color: #fff;
+    line-height : 40px;
+    text-decoration:none;
+}
+.menu-link-add {
+    width : 120px;
+    background-color : #23b5d3;
+
+}
+.menu-link-add:hover {
+    background-color : #0e98b5;
 }
 /* END HOME */
 
