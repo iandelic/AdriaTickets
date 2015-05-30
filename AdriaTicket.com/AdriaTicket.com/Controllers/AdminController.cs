@@ -135,6 +135,35 @@ namespace AdriaTicket.com.Controllers
         }
 
         [HttpPost]
+        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id)
+        {
+            LK_Event ev = new LK_Event();
+            ev = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Id == id);
+            ev.EVE_Datum = DateTime.ParseExact(datum, "dd.MM.yyyy. HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            ev.EVE_DatumOdPretprodaja = DateTime.ParseExact(datum, "dd.MM.yyyy. HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            ev.EVE_DatumOdProdaja = DateTime.ParseExact(datum, "dd.MM.yyyy. HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            ev.EVE_DvoranaId = dvorana;
+            ev.EVE_FlagOnlineProdaja = true;
+            ev.EVE_MjestoId = mjesto;
+            ev.EVE_Naziv = naziv;
+            ev.EVE_Opis = opis;
+            ev.EVE_ImageExist = false;
+            ev.EVE_ReklamaExist = false;
+            ev.EVE_FlagOnlineProdaja = true;
+            ev.EVE_Stanje = 'A';
+            ev.EVE_Timestamp = DateTime.Now;
+            ev.EVE_OrganizatorId = organizator;
+            ev.EVE_PostotakProvizije = postotakprovizije;
+            ev.EVE_PrikaziNaWebu = prikaznaWebu;
+            ev.EVE_StatusEventaId = status;
+            if(id==null)
+            AdriaTicketData.LK_Events.InsertOnSubmit(ev);
+            AdriaTicketData.SubmitChanges();
+            
+           return Json(DateTime.ParseExact(datum, "dd.MM.yyyy. HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture), JsonRequestBehavior.AllowGet);
+        }
+                
+        [HttpPost]
         public ContentResult Upload(HttpPostedFileBase file)
         {
             var filename = Path.GetFileName(file.FileName);

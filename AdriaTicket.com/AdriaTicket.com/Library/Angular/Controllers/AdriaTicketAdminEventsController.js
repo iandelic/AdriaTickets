@@ -86,4 +86,34 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
             }
         }
     };
+
+    $scope.save = function (event) {
+        var temp = 'naziv=' + event.EVE_Naziv;
+        temp += '&opis=' + event.EVE_Opis;
+        temp += '&Datum=' + event.EVE_Datum;
+        temp += '&DatumOdPretprodaja=' + event.EVE_DatumOdPretprodaja;
+        temp += '&DatumOdProdaja=' + event.EVE_DatumOdProdaja;
+        temp += '&Organizator=' + event.ORG_Id;
+        temp += '&PostotakProvizije=' + event.EVE_PostotakProvizije;
+        temp += '&Mjesto=' + event.EVE_MjestoId;
+        temp += '&Dvorana=' + event.EVE_DvoranaId;
+        temp += '&Status=' + event.SEV_Id;
+        temp += '&PrikazNaWebu=' + event.EVE_PrikaziNaWebu;
+
+        $http({
+            method: 'POST',
+            url: '/admin/SaveEvent',
+            data: temp,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function (data) {
+            if (data == "true") {
+                jQuery(location).attr('href', siteUrl + "admin/home");
+            }
+            else {
+
+            }
+        }).error(function () {
+
+        });
+    }
 }]);
