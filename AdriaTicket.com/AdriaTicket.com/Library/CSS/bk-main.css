@@ -203,6 +203,10 @@ body {
     height:25px;
 }
 
+.searchbar.navbar-right {
+    margin-right:0;
+}
+
 .searchbar .btn {
     height:25px;
     line-height:1px;
