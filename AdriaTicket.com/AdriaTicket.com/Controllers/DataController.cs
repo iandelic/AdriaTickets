@@ -34,7 +34,7 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult GetEventTowns()
         {
-            var status = from t in AdriaTicketData.LK_Mjestos select new { t.MJE_Id, t.MJE_Naziv };
+            var status = (from t in AdriaTicketData.LK_Mjestos select new { t.MJE_Id, t.MJE_Naziv }).Take(100);
             return Json(status, JsonRequestBehavior.AllowGet);
         }
 

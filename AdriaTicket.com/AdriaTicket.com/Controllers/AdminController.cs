@@ -135,7 +135,7 @@ namespace AdriaTicket.com.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id)
+        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id, string image)
         {
             LK_Event ev = new LK_Event();
             ev = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Id == id);
@@ -147,7 +147,8 @@ namespace AdriaTicket.com.Controllers
             ev.EVE_MjestoId = mjesto;
             ev.EVE_Naziv = naziv;
             ev.EVE_Opis =HttpUtility.HtmlDecode(opis);
-            ev.EVE_ImageExist = false;
+            ev.EVE_ImageExist = true;
+            ev.EVE_ImagePath = image;
             ev.EVE_ReklamaExist = false;
             ev.EVE_FlagOnlineProdaja = true;
             ev.EVE_Stanje = 'A';

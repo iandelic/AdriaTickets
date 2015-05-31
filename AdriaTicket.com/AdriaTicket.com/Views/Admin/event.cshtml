@@ -124,7 +124,7 @@
             </div>
          
             <div class="form-group">
-                <button type="submit" class="form-control btn btn-primary" ng-disabled="disabledFlag" ng-click="save(event)">Submit</button>
+                <button type="submit" class="form-control btn btn-primary" ng-disabled="{{disabledFlag ||  uploadFlag}}" ng-click="save(event)">Submit</button>
             </div>      
         </fieldset>
     </form>

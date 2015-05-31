@@ -12,13 +12,15 @@
 }]);
 
 
-adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', '$rootElement', '$http', 'Upload', function ($scope, $location, $rootElement, $http, taOptions, Upload) {
+adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', '$rootElement', '$http', 'Upload', function ($scope, $location, $rootElement, $http, Upload) {
 
     var siteUrl = "http://localhost:32718/";
     var id = $location.absUrl().split('/').pop();
     $scope.event = {}
     $scope.files = {}
 
+    $scope.disabledFlag = true;
+    $scope.uploadFlag = false;
 
     if (parseInt(id)){
             $http.get('/admin/getEvent/'+id).success(function (data) {
@@ -31,6 +33,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
             $scope.description = $scope.event.EVE_Opis;
             }).error(function () { alert('error event') });
     }
+
     $http.get('/data/geteventstatuses').success(function (data) {
         $scope.eventStatus = data;
     }).error(function () { alert('error status') });
@@ -63,7 +66,6 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
     };
    
 
-
     $scope.$watch('files', function () {
         if ($scope.files != null)
         $scope.upload($scope.files);
@@ -75,14 +77,14 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
+                $scope.event.EVE_ImagePath = file.name;
                 Upload.upload({
                     url: '/admin/upload',
                     file: file
                 }).progress(function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                    $scope.uploadFlag = true;
                 }).success(function (data, status, headers, config) {
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    $scope.uploadFlag = false;
                 });
             }
         }
@@ -99,8 +101,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         toolbar1: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
         toolbar2: "forecolor backcolor",
         image_advtab: true,
-        height: "200px",
-        width: "650px"
+        height: "200px"
     };
     $scope.save = function (event) {
         var temp = 'naziv=' + event.EVE_Naziv;
@@ -108,6 +109,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         temp += '&id=' + event.EVE_Id;
         temp += '&opis=' + encodeURIComponent(event.EVE_Opis).replace(/%20/g, '+');;
         temp += '&Datum=' + event.EVE_Datum;
+        temp += '&Image=' + event.EVE_ImagePath;
         temp += '&DatumOdPretprodaja=' + event.EVE_DatumOdPretprodaja;
         temp += '&DatumOdProdaja=' + event.EVE_DatumOdProdaja;
         temp += '&Organizator=' + event.ORG_Id;
