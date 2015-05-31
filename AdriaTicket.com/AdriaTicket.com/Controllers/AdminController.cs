@@ -116,7 +116,8 @@ namespace AdriaTicket.com.Controllers
         public ActionResult Event()
         {
             return View();
-        }
+        } 
+
         public ActionResult getEvent(int id)
         {
             var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
@@ -127,9 +128,10 @@ namespace AdriaTicket.com.Controllers
                          Event.EVE_MjestoId   };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult getEvents()
         {
-            var events = from e in AdriaTicketData.LK_Events  orderby e.EVE_Datum descending select new { e.EVE_Id, e.EVE_Opis, e.EVE_Naziv };
+            var events = from e in AdriaTicketData.LK_Events where e.EVE_Datum > DateTime.Now.AddMonths(-2) orderby e.EVE_Datum descending select new { e.EVE_Id, e.EVE_Datum, e.EVE_Opis, e.EVE_Naziv };
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }

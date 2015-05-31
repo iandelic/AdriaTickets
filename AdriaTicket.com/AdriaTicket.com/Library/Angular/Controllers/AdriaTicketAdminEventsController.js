@@ -4,7 +4,10 @@
     $http.get('/admin/getEvents').success(function (data) {
         $scope.events = data;
         angular.forEach($scope.events, function (event) {
+            event.EVE_Datum = moment(event.EVE_Datum).format('DD.MM.YYYY');
             event.EVE_Opis = $("<div/>").html(event.EVE_Opis).text();
+            var k = 65 / 1920;
+            event.EVE_Opis = event.EVE_Opis.substring(0, $( window ).width() * k);
         });
     }).error(function () { alert('error') });
 

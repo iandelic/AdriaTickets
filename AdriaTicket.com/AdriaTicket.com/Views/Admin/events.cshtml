@@ -1,23 +1,56 @@
 ﻿@{
-    ViewBag.Title = "events";
+    ViewBag.Title = "CMS Adria Ticket - Događaji";
+    ViewBag.Header = "CMS Adria Ticket - Događaji";
 }
-
-<h2>events</h2>
 <div ng-controller="AdminEventController">
-     <input type="search" ng-model="query" placeholder="pretrazi..."/>
- <table  class="table table-hover">
-    <tr>
-    <th>Ime</th>
-    <th>Opis</th>
-    <th>Akcije</th>
- </tr>
+<div class="container">
+    <div class="row admin-row">
+        <div class ="col-sm-3 col-xs-12">
+          <a href ="/admin">
+              <button class="btn btn-default btn-md" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+              Povratak
+              </button>
+          </a>
+          <a href ="/admin/events/event/add">
+          <button class="btn btn-primary btn-md" type="button">
+                <i class="glyphicon glyphicon-plus"></i>
+                Dodaj novi
+          </button>
+          </a>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text"  ng-model="query" class="form-control input-md" placeholder = "Pojam za pretragu" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-md" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+
+    <div class="row">
+    <table class="event-table table table-striped">
+    <tr class ="table-header">
+        <th class ="col-xs-2 col-sm-2">Datum</th>
+        <th class ="col-xs-3 col-sm-3">Naziv</th>
+        <th class ="col-xs-5 col-sm-5">Opis</th>
+        <th class ="col-xs-2 col-sm-2 text-center">Akcija</th>
+    </tr>
      <tr ng-repeat="event in events | filter: query as results">
-        <td>{{event.EVE_Naziv}}</td>
-        <td>{{event.EVE_Opis}}</td>
-         <td><a href ="/admin/events/event/{{event.EVE_Id}}">Uredi</a></td>
+        <td  class ="col-xs-2 col-sm-2">{{event.EVE_Datum}}</td>
+        <td  class ="col-xs-3 col-sm-3">{{event.EVE_Naziv}}</td>
+        <td  class ="col-xs-5 col-sm-5">{{event.EVE_Opis}}<span ng-if = "event.EVE_Opis">...</span></td>
+        <td class ="col-xs-2 col-sm-2 text-center"><a href ="/admin/events/event/{{event.EVE_Id}}"><div class ="table-link table-link-edit">Uredi</div></a></td>
      </tr>
      <tr ng-if="results.length == 0">
-      <td colspan="3">No results found...</td>
+        <td class = "no-result-error" colspan="4">Nema rezultata pretrage.</td>
     </tr>
- </table>
+    </table>
+</div>
+</div>
 </div>
