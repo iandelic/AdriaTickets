@@ -4,5 +4,19 @@
 
 <h2>gallery</h2>
 <div ng-controller="AdminGalleryController">
-
+    <div class="form-group">
+                <label for="imageUpload" class="control-label col-xs-12 col-lg-5">Odaberi sliku</label>
+                <div class ="col-xs-12 col-lg-7">
+                    <button type="file"
+                    ngf-select ng-model="files" 
+                    ng-model-rejected="rejFiles"  
+                    ngf-multiple="true" 
+                    accept="image/*" 
+                    ngf-accept="'image/*'" 
+                        >Dodaj sliku</button>
+                </div>
+            </div>
+    <div class="form-group">
+                <button type="submit" class="form-control btn btn-primary" ng-disabled="uploadFlag" ng-click="beginUpload()">Spremi odabrane slike</button>
+            </div>    
 </div>
