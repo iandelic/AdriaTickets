@@ -188,5 +188,33 @@ namespace AdriaTicket.com.Controllers
                };
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveImage(string image, int id)
+        {
+            string[] array = image.Split(new string[] { "$%$" },StringSplitOptions.RemoveEmptyEntries);
+            foreach(string item in array )
+            {
+                BK_Image i = new BK_Image();
+                i.ImageName = item;
+                i.ImageAlt = null;
+                i.GalleryId = id;
+                AdriaTicketData.BK_Images.InsertOnSubmit(i);
+            }
+            
+            AdriaTicketData.SubmitChanges();
+            return Json("inserted", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteImage(int id)
+        {
+            BK_Image i = AdriaTicketData.BK_Images.FirstOrDefault(x => x.Id == id);
+            AdriaTicketData.BK_Images.DeleteOnSubmit(i);
+            AdriaTicketData.SubmitChanges();
+            return Json("inserted", JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

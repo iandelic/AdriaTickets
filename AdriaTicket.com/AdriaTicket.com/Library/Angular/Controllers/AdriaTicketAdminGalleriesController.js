@@ -16,14 +16,27 @@ adriaTicketAdmin.controller('AdminGalleryController',[ '$scope', '$location', '$
     if (parseInt(id)){
         $http.get('/data/getGallery/'+id).success(function (data) {
             $scope.gallery = data;
+            $scope.id = $scope.gallery[0].GalleryId;
             
         }).error(function () { alert('error event') });
     }
-
+    $scope.images = [];
+    $scope.deleteImage = function (image) {
+        var temp = '&Id=' + image.Id;
+        $http({
+            method: 'POST',
+            url: '/admin/DeleteImage',
+            data: temp,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function (data) {
+            jQuery(location).attr('href', siteUrl + "admin/gallery/" + $scope.id);
+        }).error(function (msg) {
+            alert(msg);
+        });
+    }
     $scope.uploadFlag = true;
     $scope.$watch('files', function () {
         if ($scope.files != null) {
-            console.log($scope.files)
             $scope.uploadFlag = false;
         }
         else
@@ -35,30 +48,33 @@ adriaTicketAdmin.controller('AdminGalleryController',[ '$scope', '$location', '$
         $scope.upload($scope.files);
     }
     $scope.upload = function (files) {
+        var images = 'image=';
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                $scope.images.push(file.name);
-                Upload.upload({
-                    url: '/admin/upload',
-                    file: file
-                }).progress(function (evt) {
-                }).success(function (data, status, headers, config) {
-                    console.log($scope.images);
-                    var temp = '';
-                    $http({
-                        method: 'POST',
-                        url: '/data/SaveImage',
-                        data: temp,
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                    }).success(function (data) {
-                        jQuery(location).attr('href', siteUrl + "admin/galleries");
-                    }).error(function (msg) {
-                        alert(msg);
-                    });
-                });
+                images += file.name + '$%$';
+                
             }
+
+            Upload.upload({
+                url: '/admin/upload',
+                file: file
+            }).success(function (data, status, headers, config) {
+
+                images += '&Id=' + $scope.id;
+                $http({
+                    method: 'POST',
+                    url: '/admin/SaveImage',
+                    data: images,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).success(function (data) {
+
+                    jQuery(location).attr('href', siteUrl + "admin/gallery/" + $scope.id);
+                }).error(function (msg) {
+                });
+            });
         }
+
     };
 
 }]);

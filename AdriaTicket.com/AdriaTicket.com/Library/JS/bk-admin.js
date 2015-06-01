@@ -5,6 +5,6 @@
 });
 
 jQuery(document).ready(function () {
-    $('.btn-file :file').on('fileselect', function (eventlabel ) {
+    $('.btn-file :file').on('fileselect', function (eventlabel) {
     });
 });
