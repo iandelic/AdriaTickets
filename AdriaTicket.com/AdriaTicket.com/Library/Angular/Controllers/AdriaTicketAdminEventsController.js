@@ -24,10 +24,14 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
 
     $scope.disabledFlag = true;
     $scope.uploadFlag = false;
+    $scope.addEditEvent = "Novi događaj";
+    $scope.saveUpdate = "Dodaj";
 
     if (parseInt(id)){
             $http.get('/admin/getEvent/'+id).success(function (data) {
                 $scope.event = data[0];
+                $scope.addEditEvent = "Uredi događaj: " + $scope.event.EVE_Naziv;
+                $scope.saveUpdate = "Spremi";
                 $scope.event.EVE_Opis = decodeURIComponent($scope.event.EVE_Opis);
             $scope.event.EVE_Datum = moment($scope.event.EVE_Datum).format('DD.MM.YYYY HH:mm:ss');
             $scope.event.EVE_DatumOdProdaja = moment($scope.event.EVE_DatumOdProdaja).format('DD.MM.YYYY HH:mm:ss');

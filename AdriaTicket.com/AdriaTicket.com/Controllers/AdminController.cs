@@ -115,8 +115,9 @@ namespace AdriaTicket.com.Controllers
         [Authorize]
         public ActionResult Event()
         {
+            
             return View();
-        } 
+        }
 
         public ActionResult getEvent(int id)
         {
