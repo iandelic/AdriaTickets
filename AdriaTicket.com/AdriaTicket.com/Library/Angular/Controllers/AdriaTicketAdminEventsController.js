@@ -75,6 +75,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
 
     $scope.$watch('files', function () {
         if ($scope.files != null)
+            $scope.event.EVE_ImagePath = $scope.files[0].name;
         $scope.upload($scope.files);
     });
     $scope.$watch('description', function () {
@@ -125,7 +126,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         temp += '&Dvorana=' + event.EVE_DvoranaId;
         temp += '&Status=' + event.SEV_Id;
         temp += '&PrikazNaWebu=' + event.EVE_PrikaziNaWebu;
-        console.log(temp);
+        temp += '&VideoLink=' + event.videoLink;
         $http({
             method: 'POST',
             url: '/admin/SaveEvent',

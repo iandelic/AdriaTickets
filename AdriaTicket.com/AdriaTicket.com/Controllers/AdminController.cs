@@ -123,10 +123,11 @@ namespace AdriaTicket.com.Controllers
         {
             var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
                      join organizator in AdriaTicketData.LK_Organizators on Event.EVE_OrganizatorId equals organizator.ORG_Id
+                     join video in AdriaTicketData.BK_VideoGalleries on Event.EVE_Id equals video.eventID
                      where Event.EVE_Id == id 
                      select new { Event.EVE_Naziv, Event.EVE_Id,Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
                          Event.EVE_PostotakProvizije, Event.EVE_DvoranaId, organizator.ORG_Naziv,organizator.ORG_Id, statusEventa.SEV_Stanje, statusEventa.SEV_Id,Event.EVE_PrikaziNaWebu,
-                         Event.EVE_MjestoId   };
+                         Event.EVE_MjestoId, video.videoLink   };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
 
@@ -138,7 +139,7 @@ namespace AdriaTicket.com.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id, string image)
+        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id, string image, string videoLink)
         {
             LK_Event ev = new LK_Event();
             ev = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Id == id);
@@ -171,7 +172,28 @@ namespace AdriaTicket.com.Controllers
                 msg = "update";
             }
             AdriaTicketData.SubmitChanges();
-            
+            if (id > 0 && videoLink != null)
+            {
+                BK_VideoGallery video = new BK_VideoGallery();
+                video.eventID = id;
+                video.videoLink = videoLink;
+                AdriaTicketData.BK_VideoGalleries.InsertOnSubmit(video);
+            }
+            else if(id > 0 && videoLink == null)
+            {
+                BK_VideoGallery video = AdriaTicketData.BK_VideoGalleries.FirstOrDefault(x => x.eventID == id);
+                    AdriaTicketData.BK_VideoGalleries.DeleteOnSubmit(video);
+            }
+            else{
+            LK_Event temp = AdriaTicketData.LK_Events.FirstOrDefault(x=> x.EVE_Naziv == naziv);
+                BK_VideoGallery video = new BK_VideoGallery();
+                video.eventID = temp.EVE_Id;
+                video.videoLink = videoLink;
+                AdriaTicketData.BK_VideoGalleries.InsertOnSubmit(video);
+
+            }
+
+            AdriaTicketData.SubmitChanges();
            return Json(msg, JsonRequestBehavior.AllowGet);
         }
                 
