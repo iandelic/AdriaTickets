@@ -269,40 +269,17 @@ body {
       clear:both;
 }
 
-#footer {
-    width: 100%;
-    height: 100px;
+.one-event {
+    padding:10px;
+    min-height:300px;
 }
 
-
-#main-content .event {
-
-    position:relative;
-    display:block;
-    width:20%;
-    float:left;
-    margin-left:4%;
-    margin-bottom:50px;
-    height:300px;
-
-    background-color: #484848;
-}
-
-#main-content .event-content {
-    position:absolute;
-    top:40%;
-    left:0;
-    padding:5px;
-}
-
-#main-content img {
+.one-event img {
     width:100%;
-    height:40%;
-    background-color:#000;
+    max-height:150px;
 }
 
-
-#main-content h3 {
+.one-event h3 {
     text-transform: uppercase;
     color:#fff503;
     font-size:1.3em;
@@ -311,15 +288,12 @@ body {
     line-height:1.2em;
 }
 
-#main-content p {
-    color:#f7f7f7;
+.one-event p {
+    color:#494949;
     font-size:0.9em;
     line-height:1.2em;
 }
 
-.one-event {
-    height:200px;
-}
 
 .ads-container {
     min-height:200px;
@@ -331,4 +305,9 @@ body {
 .sidebar {
     border:1px solid;
     min-height:300px;
+}
+
+#footer {
+    width: 100%;
+    height: 100px;
 }
