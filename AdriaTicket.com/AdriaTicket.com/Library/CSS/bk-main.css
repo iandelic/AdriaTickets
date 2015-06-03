@@ -261,6 +261,8 @@ body {
     min-height: 600px;
     background-color:#f8f8f8;
     padding-top:40px;
+    padding-bottom:200px;
+    overflow:auto;
 }
 
 #main-content:after {
@@ -272,7 +274,26 @@ body {
 .one-event {
     padding:10px;
     min-height:300px;
+
+    background: #f7f7f7;
+
+
+      -webkit-transition: background 0.2s ease-out;
+      -moz-transition: background 0.2s ease-out;
+      -o-transition: background 0.2s ease-out;
+      transition: background 0.2s ease-out;
 }
+
+.one-event:hover {
+    background:#F93900;
+}
+
+.one-event:hover h3,
+.one-event:hover p {
+    color:#f8f8f8;
+}
+
+
 
 .one-event img {
     width:100%;
@@ -281,7 +302,7 @@ body {
 
 .one-event h3 {
     text-transform: uppercase;
-    color:#fff503;
+    color:#ff3707;
     font-size:1.3em;
     font-weight:600;
     margin-bottom:10px;
@@ -308,6 +329,10 @@ body {
 }
 
 #footer {
-    width: 100%;
-    height: 100px;
+  position: relative;
+  margin-top: -150px;
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+  background-color:#1a1a1a;
 }
