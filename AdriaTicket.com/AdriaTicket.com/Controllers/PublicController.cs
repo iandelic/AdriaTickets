@@ -37,6 +37,7 @@ namespace AdriaTicket.com.Controllers
                      join dvorana in AdriaTicketData.LK_Dvoranas on Event.EVE_DvoranaId equals dvorana.DVO_Id
                      join mjesto in AdriaTicketData.LK_Mjestos on Event.EVE_MjestoId equals mjesto.MJE_Id
                      join drzava in AdriaTicketData.LK_Drzavas on mjesto.MJE_DrzavaId equals drzava.DRZ_Id
+                     join gallery in AdriaTicketData.BK_REL_Event_ImageGalleries on Event.EVE_Id equals gallery.EventId
                      where Event.EVE_Id == id
                      select new
                      {
@@ -55,7 +56,8 @@ namespace AdriaTicket.com.Controllers
                          drzava.DRZ_Naziv,
                          organizator.ORG_Naziv,
                          statusEventa.SEV_Stanje,
-                         video.videoLink                         
+                         video.videoLink,
+                         gallery.ImageGalleriesId
                      };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }

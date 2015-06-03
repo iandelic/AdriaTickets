@@ -16,6 +16,11 @@ adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement'
             $scope.event.EVE_Datum = moment($scope.event.EVE_Datum).format('DD.MM.YYYY');
             $scope.event.EVE_DatumOdProdaja = moment($scope.event.EVE_DatumOdProdaja).format('DD.MM.YYYY');
             $scope.event.EVE_DatumOdPretprodaja = moment($scope.event.EVE_DatumOdPretprodaja).format('DD.MM.YYYY');
+            
+            $http.get('/data/getImages/' + $scope.event.ImageGalleriesId).success(function (data) {
+                $scope.images = data
+
+            }).error(function () { alert('error event') });
 
         }).error(function () { alert('error event') });
     }

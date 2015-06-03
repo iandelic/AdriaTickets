@@ -41,6 +41,10 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
             }).error(function () { alert('error event') });
     }
 
+    $http.get('/data/getgalleries').success(function (data) {
+        $scope.galleries = data;
+    }).error(function () { alert('error status') });
+
     $http.get('/data/geteventstatuses').success(function (data) {
         $scope.eventStatus = data;
     }).error(function () { alert('error status') });
@@ -127,6 +131,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         temp += '&Status=' + event.SEV_Id;
         temp += '&PrikazNaWebu=' + event.EVE_PrikaziNaWebu;
         temp += '&VideoLink=' + event.videoLink;
+        temp += '&galleryId=' + event.galleryId;
         $http({
             method: 'POST',
             url: '/admin/SaveEvent',

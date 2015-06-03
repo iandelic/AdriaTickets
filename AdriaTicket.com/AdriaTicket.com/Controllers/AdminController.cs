@@ -124,10 +124,11 @@ namespace AdriaTicket.com.Controllers
             var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
                      join organizator in AdriaTicketData.LK_Organizators on Event.EVE_OrganizatorId equals organizator.ORG_Id
                      join video in AdriaTicketData.BK_VideoGalleries on Event.EVE_Id equals video.eventID
+                     join gallery in AdriaTicketData.BK_REL_Event_ImageGalleries on Event.EVE_Id equals gallery.EventId
                      where Event.EVE_Id == id 
                      select new { Event.EVE_Naziv, Event.EVE_Id,Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
                          Event.EVE_PostotakProvizije, Event.EVE_DvoranaId, organizator.ORG_Naziv,organizator.ORG_Id, statusEventa.SEV_Stanje, statusEventa.SEV_Id,Event.EVE_PrikaziNaWebu,
-                         Event.EVE_MjestoId, video.videoLink   };
+                         Event.EVE_MjestoId, video.videoLink ,gallery.ImageGalleriesId };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
 
@@ -139,7 +140,7 @@ namespace AdriaTicket.com.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id, string image, string videoLink)
+        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id, string image, string videoLink, int galleryId)
         {
             LK_Event ev = new LK_Event();
             ev = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Id == id);
@@ -162,7 +163,7 @@ namespace AdriaTicket.com.Controllers
             ev.EVE_PrikaziNaWebu = prikaznaWebu;
             ev.EVE_StatusEventaId = status;
             string msg = "";
-            if (id == null)
+            if (id == 0)
             {
                 msg = "insert";
                 AdriaTicketData.LK_Events.InsertOnSubmit(ev);
@@ -192,7 +193,29 @@ namespace AdriaTicket.com.Controllers
                 AdriaTicketData.BK_VideoGalleries.InsertOnSubmit(video);
 
             }
-
+            if (id > 0)
+            {
+                var galery = AdriaTicketData.BK_REL_Event_ImageGalleries.FirstOrDefault(x => x.EventId == id);
+                if(galery != null)
+                {
+                    galery.EventId = id;
+                    galery.ImageGalleriesId = galleryId;
+                }else
+                {
+                    galery = new BK_REL_Event_ImageGallery();
+                    galery.EventId = id;
+                    galery.ImageGalleriesId = galleryId;
+                    AdriaTicketData.BK_REL_Event_ImageGalleries.InsertOnSubmit(galery);
+                }
+            }
+            else
+            {
+                LK_Event temp = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Naziv == naziv);
+                BK_REL_Event_ImageGallery galery = new BK_REL_Event_ImageGallery();
+                galery.EventId = temp.EVE_Id;
+                galery.ImageGalleriesId = galleryId;
+                AdriaTicketData.BK_REL_Event_ImageGalleries.InsertOnSubmit(galery);
+            }
             AdriaTicketData.SubmitChanges();
            return Json(msg, JsonRequestBehavior.AllowGet);
         }

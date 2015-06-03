@@ -1,10 +1,17 @@
 ﻿<div ng-controller="EventController">
-    <div  ng-bind-html="renderHtml(event.EVE_Opis)"></div> @*samo se opis mora ispisat priko ovoga bind html zato sta je html, ostalo mozes sa ovim zagradama*@
-    {{event.EVE_Naziv}}
-    {{event.EVE_ImagePath}}
-    {{event.EVE_Datum}}
-    {{event.EVE_DatumOdProdaja}}
-    {{event.EVE_DatumOdPretprodaja}}
-    {{event.ORG_Naziv}}
+    opis: <div  ng-bind-html="renderHtml(event.EVE_Opis)"></div> @*samo se opis mora ispisat priko ovoga bind html zato sta je html, ostalo mozes sa ovim zagradama*@
+    naziv: {{event.EVE_Naziv}}<br />
+    image: {{event.EVE_ImagePath}}<br />
+    datum: {{event.EVE_Datum}}<br />
+    Prodaja karata: {{event.EVE_DatumOdProdaja}}<br />
+    Pretprodaja karata od: {{event.EVE_DatumOdPretprodaja}}<br />
+    Naziv organizatora: {{event.ORG_Naziv}}<br />
+    Dvorana: {{event.DVO_Naziv}}<br />
+    Grad:{{event.MJE_Naziv}}<br />
+    ZIP: {{event.MJE_ZIP}}<br />
+    Drzava: {{event.DRZ_Naziv}}<br />
+    Video: {{event.videoLink}}<br />
+
+    Slike u galeriji: <div class ="image-container" ng-repeat="image in images"><img src={{"/uploads/"+image.ImageName}} /></div>
 
 </div>
