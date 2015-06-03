@@ -320,11 +320,9 @@ body {
     min-height:200px;
     display:block;
     margin-bottom:50px;
-    border:1px solid;
 }
 
 .sidebar {
-    border:1px solid;
     min-height:300px;
 }
 
