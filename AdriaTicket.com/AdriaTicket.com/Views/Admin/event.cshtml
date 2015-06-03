@@ -101,6 +101,33 @@
             </div>
             <div class="form-group">
                 <div class ="row addeditevent-row">
+                <div class ="col-xs-12 col-sm-12">
+                    <img  class="col-sm-12" src={{"/uploads/"+event.EVE_ImagePath}} />
+                </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class ="row addeditevent-row">
+                <label for="videoLink" class="control-label col-xs-12 col-sm-12 addeditlabel">Video</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="videoLink" placeholder="youtube link" ng-model="event.videoLink">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class ="row addeditevent-row">
+                <label for="galerija" class="control-label col-xs-12 col-sm-12 addeditlabel">Galerija slika</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <select  class="form-control" id="galerija" placeholder="galerija slika" ng-model="event.ImageGalleriesId">
+                            <option ng-repeat="g in galleries" value="{{g.Id}}" ng-selected ="{{g.Id==event.ImageGalleriesId}}">{{g.NazivGalerije}}</option>
+                        </select>
+                    </div>
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <div class ="row addeditevent-row">
                 <label for="organizatorEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Organizator</label>
                     <div class="col-xs-12 col-sm-12">
                         <select  class="form-control" id="organizatorEventa" placeholder="naziv događanja" ng-model="event.ORG_Id">
@@ -117,6 +144,7 @@
                     </div>
                         </div>
                 </div>
+            
             <div class="form-group">
                 <div class ="row addeditevent-row">
                 <label for="mjestoEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Grad</label>

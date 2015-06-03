@@ -130,6 +130,7 @@
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminEventsController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminGalleriesController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketController.js" />
+    <Content Include="Library\Angular\Controllers\AdriaTicketEventController.js" />
     <Content Include="Library\Angular\fileUpload\ng-file-upload-shim.min.js" />
     <Content Include="Library\Angular\fileUpload\ng-file-upload.min.js" />
     <Content Include="Library\Angular\textEditor\plugins\advlist\plugin.min.js" />
@@ -332,6 +333,7 @@
     <Content Include="Views\Admin\event.cshtml" />
     <Content Include="Views\Admin\galleries.cshtml" />
     <Content Include="Views\Admin\gallery.cshtml" />
+    <Content Include="Views\Public\Home\event.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

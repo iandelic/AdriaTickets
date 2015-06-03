@@ -66,6 +66,9 @@ namespace AdriaTicket.com.Models
     partial void InsertBK_REL_Event_ImageGallery(BK_REL_Event_ImageGallery instance);
     partial void UpdateBK_REL_Event_ImageGallery(BK_REL_Event_ImageGallery instance);
     partial void DeleteBK_REL_Event_ImageGallery(BK_REL_Event_ImageGallery instance);
+    partial void InsertBK_VideoGallery(BK_VideoGallery instance);
+    partial void UpdateBK_VideoGallery(BK_VideoGallery instance);
+    partial void DeleteBK_VideoGallery(BK_VideoGallery instance);
     #endregion
 		
 		public AdriaTicketDataClassesDataContext() : 
@@ -191,6 +194,14 @@ namespace AdriaTicket.com.Models
 			get
 			{
 				return this.GetTable<BK_REL_Event_ImageGallery>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BK_VideoGallery> BK_VideoGalleries
+		{
+			get
+			{
+				return this.GetTable<BK_VideoGallery>();
 			}
 		}
 	}
@@ -411,6 +422,8 @@ namespace AdriaTicket.com.Models
 		
 		private System.Nullable<decimal> _EVE_PDVIznos;
 		
+		private EntitySet<BK_VideoGallery> _BK_VideoGalleries;
+		
 		private EntityRef<LK_StatusEventa> _LK_StatusEventa;
 		
 		private EntityRef<LK_Organizator> _LK_Organizator;
@@ -481,6 +494,7 @@ namespace AdriaTicket.com.Models
 		
 		public LK_Event()
 		{
+			this._BK_VideoGalleries = new EntitySet<BK_VideoGallery>(new Action<BK_VideoGallery>(this.attach_BK_VideoGalleries), new Action<BK_VideoGallery>(this.detach_BK_VideoGalleries));
 			this._LK_StatusEventa = default(EntityRef<LK_StatusEventa>);
 			this._LK_Organizator = default(EntityRef<LK_Organizator>);
 			this._LK_LayoutDvorana = default(EntityRef<LK_LayoutDvorana>);
@@ -1029,6 +1043,19 @@ namespace AdriaTicket.com.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Event_BK_VideoGallery", Storage="_BK_VideoGalleries", ThisKey="EVE_Id", OtherKey="eventID")]
+		public EntitySet<BK_VideoGallery> BK_VideoGalleries
+		{
+			get
+			{
+				return this._BK_VideoGalleries;
+			}
+			set
+			{
+				this._BK_VideoGalleries.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_StatusEventa_LK_Event", Storage="_LK_StatusEventa", ThisKey="EVE_StatusEventaId", OtherKey="SEV_Id", IsForeignKey=true)]
 		public LK_StatusEventa LK_StatusEventa
 		{
@@ -1217,6 +1244,18 @@ namespace AdriaTicket.com.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_BK_VideoGalleries(BK_VideoGallery entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Event = this;
+		}
+		
+		private void detach_BK_VideoGalleries(BK_VideoGallery entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Event = null;
 		}
 	}
 	
@@ -3408,6 +3447,157 @@ namespace AdriaTicket.com.Models
 					this._ImageGalleriesId = value;
 					this.SendPropertyChanged("ImageGalleriesId");
 					this.OnImageGalleriesIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="prstacpr_prodaja.BK_VideoGallery")]
+	public partial class BK_VideoGallery : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _videoLink;
+		
+		private int _eventID;
+		
+		private EntityRef<LK_Event> _LK_Event;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnvideoLinkChanging(string value);
+    partial void OnvideoLinkChanged();
+    partial void OneventIDChanging(int value);
+    partial void OneventIDChanged();
+    #endregion
+		
+		public BK_VideoGallery()
+		{
+			this._LK_Event = default(EntityRef<LK_Event>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_videoLink", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string videoLink
+		{
+			get
+			{
+				return this._videoLink;
+			}
+			set
+			{
+				if ((this._videoLink != value))
+				{
+					this.OnvideoLinkChanging(value);
+					this.SendPropertyChanging();
+					this._videoLink = value;
+					this.SendPropertyChanged("videoLink");
+					this.OnvideoLinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventID", DbType="Int NOT NULL")]
+		public int eventID
+		{
+			get
+			{
+				return this._eventID;
+			}
+			set
+			{
+				if ((this._eventID != value))
+				{
+					if (this._LK_Event.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OneventIDChanging(value);
+					this.SendPropertyChanging();
+					this._eventID = value;
+					this.SendPropertyChanged("eventID");
+					this.OneventIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Event_BK_VideoGallery", Storage="_LK_Event", ThisKey="eventID", OtherKey="EVE_Id", IsForeignKey=true)]
+		public LK_Event LK_Event
+		{
+			get
+			{
+				return this._LK_Event.Entity;
+			}
+			set
+			{
+				LK_Event previousValue = this._LK_Event.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Event.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Event.Entity = null;
+						previousValue.BK_VideoGalleries.Remove(this);
+					}
+					this._LK_Event.Entity = value;
+					if ((value != null))
+					{
+						value.BK_VideoGalleries.Add(this);
+						this._eventID = value.EVE_Id;
+					}
+					else
+					{
+						this._eventID = default(int);
+					}
+					this.SendPropertyChanged("LK_Event");
 				}
 			}
 		}
