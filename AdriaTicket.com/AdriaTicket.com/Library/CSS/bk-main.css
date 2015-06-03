@@ -1,6 +1,5 @@
 ﻿/* CSS RESET */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+html, body, div, span, applet, object, iframe, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -263,6 +262,7 @@ body {
     padding-top:40px;
     padding-bottom:200px;
     overflow:auto;
+    margin-bottom:30px;
 }
 
 #main-content:after {
@@ -330,9 +330,25 @@ body {
 
 #footer {
   position: relative;
-  margin-top: -150px;
-  height: 150px;
+  margin-top: -200px;
+  height: 200px;
   clear:both;
   padding-top:20px;
   background-color:#1a1a1a;
+  color:#D5D5D5;
+}
+
+.footer-logo {
+    opacity:0.4;
+    margin: 20px 0px;
+    padding-left: 50px;
+}
+
+#footer li {
+    line-height:1.4;
+}
+
+#footer li,
+#footer li a {
+    font-size:0.9em;
 }
