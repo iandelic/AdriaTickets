@@ -53,3 +53,42 @@ adriaTicketAdmin.controller('AdminLocationsController', ['$scope', '$http', func
         $scope.locations = data;
         }).error(function () { alert('error') });
 }]);
+
+
+adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$location', function ($scope, $http, $location) {
+
+    var siteUrl = "http://localhost:32718/";
+    var id = $location.absUrl().split('/').pop();
+    $scope.location = {}
+
+    if (parseInt(id)) {
+        $http.get('/admin/getLocation/' + id).success(function (data) {
+            $scope.location = data[0];
+            
+        }).error(function () { alert('error event') });
+    }
+
+    $scope.save = function (Location)
+    {
+        var temp = 'Mjesto=' + Location.PMW_Grad;
+        temp += '&Naziv=' + Location.PMW_Naziv;
+        temp += '&Adresa=' + Location.PMW_Adresa;
+        temp += '&Telefon=' + Location.PMW_Telefon;
+        if (Location.PMW_Id != null)
+            temp += '&Id=' + Location.PMW_Id;
+        else
+            temp += '&Id=0';
+        console.log(temp)
+        $http({
+            method: 'POST',
+            url: '/admin/saveLocation',
+            data: temp,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function () {
+                jQuery(location).attr('href', siteUrl + "admin/locations");
+           
+        }).error(function () {
+           
+        });
+    }
+}]);

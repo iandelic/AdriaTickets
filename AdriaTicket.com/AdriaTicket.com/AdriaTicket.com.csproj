@@ -338,6 +338,7 @@
     <Content Include="Views\Admin\newgallery.cshtml" />
     <Content Include="Views\Admin\editprices.cshtml" />
     <Content Include="Views\Admin\locations.cshtml" />
+    <Content Include="Views\Admin\location.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

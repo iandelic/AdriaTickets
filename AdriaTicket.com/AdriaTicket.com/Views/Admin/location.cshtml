@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Lokacija";
+}
+
+<div ng-controller="AdminLocationController">
+
+     <form name="eventForm">
+        <fieldset>
+        <div class ="container addEditEvent-container">
+            <div class ="row admin-row header-row">
+                <div class ="col-sm-12">
+                    neki naslov
+                </div>
+            </div>
+            <div class ="row admin-row">
+             <div class ="col-xs-12 col-sm-12">
+                    <a href ="/admin/locations">
+                      <button class="form-control btn btn-warning" type="button">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        Odustani
+                      </button>
+                  </a>
+                </div>
+             </div>
+            <div class ="row admin-row">
+            <div class ="col-xs-12 col-sm-4">
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="nazivPM" class="control-label col-xs-12 col-sm-12 addeditlabel">Naziv</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="nazivPM" placeholder="Naziv prodajnog mjesta" ng-model="location.PMW_Naziv">
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="gradPM" class="control-label col-xs-12 col-sm-12 addeditlabel">Grad</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="gradPM" placeholder="Grad" ng-model="location.PMW_Grad">
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="adresaPm" class="control-label col-xs-12 col-sm-12 addeditlabel">Adresa</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="adresaPm" placeholder="Adresa" ng-model="location.PMW_Adresa">
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="Telefon" class="control-label col-xs-12 col-sm-12 addeditlabel">telefon</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="TelefonPm" placeholder="Telefon" ng-model="location.PMW_Telefon">
+                    </div>
+                    </div>
+                </div>
+                
+
+        </div>
+              
+         </div>
+
+            <div class ="row">
+                <div class ="form-group col-xs-12 col-sm12">
+                    <button type="submit" class="form-control btn btn-success" ng-disabled="disabledFlag" ng-click="save(location)">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        Spremi                         
+                    </button>
+                </div>
+            </div>
+        </div>    
+        </fieldset>
+    </form>
+</div>

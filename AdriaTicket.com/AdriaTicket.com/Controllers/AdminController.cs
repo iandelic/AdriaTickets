@@ -129,6 +129,58 @@ namespace AdriaTicket.com.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult Location()
+        {
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult getLocation(int id)
+        {
+            var location = from s in AdriaTicketData.LK_ProdajnoMjestoWebs
+                          where s.PMW_Id == id
+                          select new
+                          {
+                              s.PMW_Id,
+                              s.PMW_Grad,
+                              s.PMW_Adresa,
+                              s.PMW_Naziv,
+                              s.PMW_Telefon
+                          };
+
+            return Json(location, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult saveLocation(int Id,string Adresa, string Mjesto, string Telefon, string Naziv)
+        {
+            if (Id > 0)
+            {
+                LK_ProdajnoMjestoWeb pm = AdriaTicketData.LK_ProdajnoMjestoWebs.FirstOrDefault(x => x.PMW_Id == Id);
+                pm.PMW_Adresa = Adresa;
+                pm.PMW_Naziv = Naziv;
+                pm.PMW_Grad = Mjesto;
+                pm.PMW_Telefon = Telefon;
+            }
+            else
+            {
+                LK_ProdajnoMjestoWeb pm = new LK_ProdajnoMjestoWeb();
+                pm.PMW_Adresa = Adresa;
+                pm.PMW_Naziv = Naziv;
+                pm.PMW_Grad = Mjesto;
+                pm.PMW_Telefon = Telefon;
+                AdriaTicketData.LK_ProdajnoMjestoWebs.InsertOnSubmit(pm);
+            }
+
+
+            AdriaTicketData.SubmitChanges();
+            
+            return Json("completed", JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult getEvent(int id)
         {
             var ev = from EVE in AdriaTicketData.LK_Events
