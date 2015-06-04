@@ -10,25 +10,64 @@
                 Galerija: {{gallery[0].NazivGalerije}}
             </div>
         </div>
-        <h3>Postojece slike</h3>
-        <div class ="image-container" ng-repeat="image in gallery"><img src={{"/uploads/"+image.ImageName}} /> <input type="button" value="obrisi" ng-click="deleteImage(image)"/></div>
-        
-        <div class ="image-container" ng-repeat="image in tempImages"><img src={{"/uploads/"+image}} /></div>
 
-        <label>Dodaj nove slike</label>
-        <div class="form-group">
-            <div class ="col-xs-12 col-lg-7">
-                <button type="file"
-                ngf-select ng-model="files" 
-                ng-model-rejected="rejFiles"  
-                ngf-multiple="true" 
-                accept="image/*" 
-                ngf-accept="'image/*'" 
-                    class="form-control btn btn-primary">Odaberi slike</button>
+        <div class ="row admin-row">
+             <div class ="col-xs-12 col-sm-12">
+                    <a href ="/admin/galleries">
+                      <button class="form-control btn btn-warning" type="button">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        Odustani
+                      </button>
+                  </a>
             </div>
         </div>
-        <div class="form-group">
-            <button type="submit" class="form-control btn btn-primary" ng-disabled="uploadFlag" ng-click="beginUpload()">Spremi odabrane slike</button>
-        </div>    
+        <div class="form-group row admin-row">
+            <div class ="col-xs-12 col-sm-12">
+                <button type="file"
+                    ngf-select ng-model="files" 
+                    ng-model-rejected="rejFiles"  
+                    ngf-multiple="true" 
+                    accept="image/*" 
+                    ngf-accept="'image/*'" 
+                    class="form-control btn btn-info">
+                    <i class="glyphicon glyphicon-picture"></i>   
+                    Odaberi slike
+
+                </button>
+            </div>
+        </div>
+
+        
+        
+        <div class="row admin-row">
+        <div ng-if="tempImages.length > 0" class ="col-xs-12 col-sm12">
+        <h3>Odabrane slike</h3>
+        <div class ="image-container" ng-repeat="image in tempImages">
+            <img src={{"/uploads/"+image}} />
+        </div>
+        </div>
+        </div>
+
+        <div ng-if="tempImages.length > 0" class="form-group">
+            <div class ="row">
+                <div class ="form-group col-xs-12 col-sm12">
+                    <button type="submit" class="form-control btn btn-success" ng-disabled="uploadFlag" ng-click="beginUpload()">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        Spremi slike                      
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+                
+        <div class="row admin-row">
+        <div  ng-if="gallery[0].Id != 0" class ="col-xs-12 col-sm12">
+        <h3>Slike u galeriji</h3>
+        <div class ="image-container" ng-repeat="image in gallery">
+            <img src={{"/uploads/"+image.ImageName}} /> 
+            <input type="button" value="obrisi" ng-click="deleteImage(image)"/>
+        </div>
+        </div>
+        </div>
     </div>
 </div>
