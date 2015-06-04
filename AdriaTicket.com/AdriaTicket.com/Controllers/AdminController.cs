@@ -165,6 +165,27 @@ namespace AdriaTicket.com.Controllers
             return Json(events, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult getEventSectors(int id)
+        {
+            var sectors = from s in AdriaTicketData.LK_Sektors
+                          from d in AdriaTicketData.LK_Dvoranas.Where(x=> x.DVO_Id == id)
+                          where s.SEK_DvoranaId == id
+                          select new
+                          {
+                              s.SEK_Id,
+                              s.SEK_Kapacitet,
+                              s.SEK_Naziv,
+                              d.DVO_Naziv
+                          };
+
+            return Json(sectors, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult editPrices(int id)
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id, string image, string videoLink, int galleryId)
         {

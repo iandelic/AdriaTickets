@@ -148,3 +148,22 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         });
     }
 }]);
+
+
+
+adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$location', function ($scope, $http,$location) {
+
+    var siteUrl = "http://localhost:32718/";
+    var id = $location.absUrl().split('/').pop();
+    if (parseInt(id)) {
+        $http.get('/admin/getEvent/' + id).success(function (data) {
+            $scope.event = data[0];
+            $http.get('/admin/getEventSectors/' + $scope.event.EVE_DvoranaId).success(function (temp) {
+                $scope.sectors = temp;
+
+            }).error(function () { alert('error inner sectors') });
+        }).error(function () { alert('error event') });
+    }
+
+
+}]);

@@ -24,22 +24,28 @@ namespace AdriaTicket.com
                 url: "{controller}/{action}",
                 defaults: new { controller = "Admin", action = "Index"}
             );
-
+            routes.MapRoute(
+             name: "Admin-Eventinsert",
+             url: "{controller}/{action}",
+             defaults: new { controller = "Admin", action = "SaveEvent"}
+         );
             routes.MapRoute(
                name: "Admin-Home",
                url: "{controller}/{action}",
                defaults: new { controller = "Admin", action = "Home" }
            );
             routes.MapRoute(
-               name: "Admin-Eventinsert",
-               url: "{controller}/{action}",
-               defaults: new { controller = "Admin", action = "SaveEvent" }
-           );
+              name: "Admin-Events-edit prices",
+              url: "{controller}/{action}/{id}",
+              defaults: new { controller = "Admin", action = "getEventSectors", id = 1 }
+          );
             routes.MapRoute(
                name: "Admin-Events-get",
                url: "{controller}/{action}/{id}",
                defaults: new { controller = "Admin", action = "GetEvents"}
            );
+
+
             routes.MapRoute(
                name: "Admin-Event-edit",
                url: "{controller}/events/{action}/{id}",
