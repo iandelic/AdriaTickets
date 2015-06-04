@@ -128,14 +128,33 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult getEvent(int id)
         {
-            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
-                     join organizator in AdriaTicketData.LK_Organizators on Event.EVE_OrganizatorId equals organizator.ORG_Id
-                     join video in AdriaTicketData.BK_VideoGalleries on Event.EVE_Id equals video.eventID
-                     join gallery in AdriaTicketData.BK_REL_Event_ImageGalleries on Event.EVE_Id equals gallery.EventId
-                     where Event.EVE_Id == id 
-                     select new { Event.EVE_Naziv, Event.EVE_Id,Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
-                         Event.EVE_PostotakProvizije, Event.EVE_DvoranaId, organizator.ORG_Naziv,organizator.ORG_Id, statusEventa.SEV_Stanje, statusEventa.SEV_Id,Event.EVE_PrikaziNaWebu,
-                         Event.EVE_MjestoId, video.videoLink ,gallery.ImageGalleriesId };
+            var ev = from EVE in AdriaTicketData.LK_Events
+                     from statusEventa in AdriaTicketData.LK_StatusEventas.Where(x => x.SEV_Id == EVE.EVE_Id).DefaultIfEmpty()
+                     from organizator in AdriaTicketData.LK_Organizators.Where(o => o.ORG_Id == EVE.EVE_OrganizatorId).DefaultIfEmpty()
+                     from video in AdriaTicketData.BK_VideoGalleries.Where(v=> v.eventID == EVE.EVE_Id).DefaultIfEmpty() 
+                     from gallery in AdriaTicketData.BK_REL_Event_ImageGalleries.Where(g=> g.EventId == EVE.EVE_Id).DefaultIfEmpty()
+                     where EVE.EVE_Id == id
+                     select new
+                     {
+                         EVE.EVE_Naziv,
+                         EVE.EVE_Id,
+                         EVE.EVE_Opis,
+                         EVE.EVE_ImagePath,
+                         EVE.EVE_ImageSmallPath,
+                         EVE.EVE_Datum,
+                         EVE.EVE_DatumOdProdaja,
+                         EVE.EVE_DatumOdPretprodaja,
+                         EVE.EVE_PostotakProvizije,
+                         EVE.EVE_DvoranaId,
+                         organizator.ORG_Naziv,
+                         organizator.ORG_Id,
+                         SEV_Stanje = statusEventa.SEV_Stanje== null ? '0' : statusEventa.SEV_Stanje,
+                         SEV_Id = statusEventa.SEV_Id == null ? 0 : statusEventa.SEV_Id,
+                         EVE.EVE_PrikaziNaWebu,
+                         MjestoId = EVE.EVE_MjestoId == null ? 0 : EVE.EVE_MjestoId,
+                         videoLink = video.videoLink == null ? "" : video.videoLink,
+                         ImageGalleriesID = gallery.ImageGalleriesId == null ? 0 : gallery.ImageGalleriesId
+                     };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
 
@@ -144,6 +163,27 @@ namespace AdriaTicket.com.Controllers
             var events = from e in AdriaTicketData.LK_Events where e.EVE_Datum > DateTime.Now.AddMonths(-2) orderby e.EVE_Datum descending select new { e.EVE_Id, e.EVE_Datum, e.EVE_Opis, e.EVE_Naziv };
 
             return Json(events, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult getEventSectors(int id)
+        {
+            var sectors = from s in AdriaTicketData.LK_Sektors
+                          from d in AdriaTicketData.LK_Dvoranas.Where(x=> x.DVO_Id == id)
+                          where s.SEK_DvoranaId == id
+                          select new
+                          {
+                              s.SEK_Id,
+                              s.SEK_Kapacitet,
+                              s.SEK_Naziv,
+                              d.DVO_Naziv
+                          };
+
+            return Json(sectors, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult editPrices(int id)
+        {
+            return View();
         }
 
         [HttpPost]
