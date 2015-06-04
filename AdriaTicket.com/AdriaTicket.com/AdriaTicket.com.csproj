@@ -207,8 +207,6 @@
     <Content Include="Library\Angular\textEditor\tinymce.min.js" />
     <Content Include="Library\CSS\bk-admin.css" />
     <Content Include="Library\CSS\bk-main.css" />
-    <Content Include="Library\CSS\blueimp-gallery-indicator.css" />
-    <Content Include="Library\CSS\blueimp-gallery.css" />
     <Content Include="Library\CSS\blueimp-gallery.min.css" />
     <Content Include="Library\CSS\bootstrap-image-gallery.min.css" />
     <Content Include="Library\CSS\bootstrap\bootstrap-theme.css" />
@@ -222,15 +220,10 @@
     <Content Include="Library\img\social-tw.jpg" />
     <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
-    <Content Include="Library\JS\blueimp-gallery-fullscreen.js" />
-    <Content Include="Library\JS\blueimp-gallery.js" />
     <Content Include="Library\JS\blueimp-gallery.min.js" />
-    <Content Include="Library\JS\blueimp-helper.js" />
-    <Content Include="Library\JS\bootstrap-image-gallery.min.js" />
     <Content Include="Library\JS\bootstrap\bootstrap.min.js" />
     <Content Include="Library\JS\datetimepicker.js" />
     <Content Include="Library\JS\jquery-2.1.4.min.js" />
-    <Content Include="Library\JS\jquery.blueimp-gallery.js" />
     <Content Include="Library\JS\moment.js" />
     <Content Include="Library\sliderengine\amazingslider-1.css" />
     <Content Include="Library\sliderengine\amazingslider.js" />

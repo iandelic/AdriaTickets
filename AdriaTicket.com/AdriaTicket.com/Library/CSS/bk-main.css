@@ -291,6 +291,7 @@ a:hover {
     min-height: 200px;
     display: block;
     margin-bottom: 50px;
+    margin-top:50px;
 }
 .sidebar {
     min-height: 300px;
