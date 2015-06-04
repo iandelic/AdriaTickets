@@ -111,7 +111,10 @@ namespace AdriaTicket.com.Controllers
         {
             return View();
         }
-
+        public ActionResult Locations()
+        {
+            return View();
+        }
         [Authorize]
         public ActionResult Event()
         {

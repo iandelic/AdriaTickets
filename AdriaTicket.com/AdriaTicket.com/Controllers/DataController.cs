@@ -64,6 +64,20 @@ namespace AdriaTicket.com.Controllers
             var gal = from galleries in AdriaTicketData.BK_ImageGalleries select new { galleries.Id, galleries.NazivGalerije };
             return Json(gal, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetWebLocations()
+        {
+            var pm = from p in AdriaTicketData.LK_ProdajnoMjestoWebs select new { 
+            
+            p.PMW_Adresa,
+            p.PMW_Grad,
+            p.PMW_Id,
+            p.PMW_Naziv,
+            p.PMW_Telefon
+            
+            };
+            return Json(pm, JsonRequestBehavior.AllowGet);
+        }
        
     }
 }

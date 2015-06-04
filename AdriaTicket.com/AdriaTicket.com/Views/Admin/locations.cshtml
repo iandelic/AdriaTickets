@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "CMS Adria Ticket - Lokacije";
+    ViewBag.Header = "CMS Adria Ticket - Lokacije";
+}
+
+
+<h2>locations</h2>
+<div ng-controller="AdminLocationsController">
+    <div class="container">
+    <div class="row admin-row">
+        <div class ="col-sm-3 col-xs-12">
+          <a href ="/admin">
+              <button class="btn btn-default btn-md" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+              Povratak
+              </button>
+          </a>
+          <a href ="/admin/newgallery">
+          <button class="btn btn-success btn-md" type="button">
+                <i class="glyphicon glyphicon-plus"></i>
+                Dodaj novu
+          </button>
+          </a>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text"  ng-model="query" class="form-control input-md" placeholder = "Pojam za pretragu" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-md" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+
+    <div class="row">
+    <table class="event-table table table-striped">
+        <tr class ="table-header">
+            <th class ="col-xs-2 col-sm-2 text-center">Šifra</th>
+            <th class ="col-xs-4 col-sm-4">Naziv</th>
+            <th class ="col-xs-2 col-sm-2">Mjesto</th>
+            <th class ="col-xs-3 col-sm-3">Adresa</th>
+            <th class ="col-xs-2 col-sm-2 text-center">Akcije</th>
+        </tr>
+        <tr ng-repeat="location in locations | filter: query as results">
+           <td class ="col-xs-2 col-sm-2 text-center">{{location.PMW_Id}}</td>
+           <td class ="col-xs-4 col-sm-4">{{location.PMW_Naziv}}</td>
+           <td class ="col-xs-2 col-sm-2">{{location.PMW_Grad}}</td>
+           <td class ="col-xs-3 col-sm-3">{{location.PMW_Adresa}}</td>
+           <td class ="col-xs-2 col-sm-2 text-center">
+               <a href ="/admin/location/{{location.PMW_Id}}"><div class ="table-link table-link-edit">Uredi</div></a>
+           </td>
+        </tr>
+        <tr ng-if="results.length == 0">
+            <td class="no-result-error" colspan="3">Nema rezultata pretrage.</td>
+        </tr>
+    </table>
+    </div>
+</div>
+
+</div>
+
+

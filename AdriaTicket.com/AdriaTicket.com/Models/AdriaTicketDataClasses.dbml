@@ -192,4 +192,13 @@
       <Association Name="LK_Sektor_LK_Cijena" Member="LK_Cijenas" ThisKey="SEK_Id" OtherKey="CIJ_SektorId" Type="LK_Cijena" />
     </Type>
   </Table>
+  <Table Name="dbo.LK_ProdajnoMjestoWeb" Member="LK_ProdajnoMjestoWebs">
+    <Type Name="LK_ProdajnoMjestoWeb">
+      <Column Name="PMW_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PMW_Grad" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PMW_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PMW_Adresa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PMW_Telefon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

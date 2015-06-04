@@ -45,3 +45,11 @@ adriaTicketAdmin.controller('AdminHomeController', ['$scope', '$http', function 
     var siteUrl = "http://localhost:32718/";
 
 }]);
+
+adriaTicketAdmin.controller('AdminLocationsController', ['$scope', '$http', function ($scope, $http) {
+
+    var siteUrl = "http://localhost:32718/";
+    $http.get('/data/GetWebLocations').success(function (data) {
+        $scope.locations = data;
+        }).error(function () { alert('error') });
+}]);
