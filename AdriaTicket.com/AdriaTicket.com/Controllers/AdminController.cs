@@ -121,14 +121,33 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult getEvent(int id)
         {
-            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
-                     join organizator in AdriaTicketData.LK_Organizators on Event.EVE_OrganizatorId equals organizator.ORG_Id
-                     join video in AdriaTicketData.BK_VideoGalleries on Event.EVE_Id equals video.eventID
-                     join gallery in AdriaTicketData.BK_REL_Event_ImageGalleries on Event.EVE_Id equals gallery.EventId
-                     where Event.EVE_Id == id 
-                     select new { Event.EVE_Naziv, Event.EVE_Id,Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
-                         Event.EVE_PostotakProvizije, Event.EVE_DvoranaId, organizator.ORG_Naziv,organizator.ORG_Id, statusEventa.SEV_Stanje, statusEventa.SEV_Id,Event.EVE_PrikaziNaWebu,
-                         Event.EVE_MjestoId, video.videoLink ,gallery.ImageGalleriesId };
+            var ev = from EVE in AdriaTicketData.LK_Events
+                     from statusEventa in AdriaTicketData.LK_StatusEventas.Where(x => x.SEV_Id == EVE.EVE_Id).DefaultIfEmpty()
+                     from organizator in AdriaTicketData.LK_Organizators.Where(o => o.ORG_Id == EVE.EVE_OrganizatorId).DefaultIfEmpty()
+                     from video in AdriaTicketData.BK_VideoGalleries.Where(v=> v.eventID == EVE.EVE_Id).DefaultIfEmpty() 
+                     from gallery in AdriaTicketData.BK_REL_Event_ImageGalleries.Where(g=> g.EventId == EVE.EVE_Id).DefaultIfEmpty()
+                     where EVE.EVE_Id == id
+                     select new
+                     {
+                         EVE.EVE_Naziv,
+                         EVE.EVE_Id,
+                         EVE.EVE_Opis,
+                         EVE.EVE_ImagePath,
+                         EVE.EVE_ImageSmallPath,
+                         EVE.EVE_Datum,
+                         EVE.EVE_DatumOdProdaja,
+                         EVE.EVE_DatumOdPretprodaja,
+                         EVE.EVE_PostotakProvizije,
+                         EVE.EVE_DvoranaId,
+                         organizator.ORG_Naziv,
+                         organizator.ORG_Id,
+                         SEV_Stanje = statusEventa.SEV_Stanje== null ? '0' : statusEventa.SEV_Stanje,
+                         SEV_Id = statusEventa.SEV_Id == null ? 0 : statusEventa.SEV_Id,
+                         EVE.EVE_PrikaziNaWebu,
+                         MjestoId = EVE.EVE_MjestoId == null ? 0 : EVE.EVE_MjestoId,
+                         videoLink = video.videoLink == null ? "" : video.videoLink,
+                         ImageGalleriesID = gallery.ImageGalleriesId == null ? 0 : gallery.ImageGalleriesId
+                     };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
 
