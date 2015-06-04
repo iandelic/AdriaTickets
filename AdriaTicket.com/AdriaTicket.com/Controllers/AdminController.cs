@@ -119,6 +119,13 @@ namespace AdriaTicket.com.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult NewGallery()
+        {
+
+            return View();
+        }
+
         public ActionResult getEvent(int id)
         {
             var ev = from EVE in AdriaTicketData.LK_Events
