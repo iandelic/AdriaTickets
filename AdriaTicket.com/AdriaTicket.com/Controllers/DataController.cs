@@ -41,7 +41,13 @@ namespace AdriaTicket.com.Controllers
         [Authorize]
         public ActionResult GetGallery(int id)
         {
-            var gal = from gallery in AdriaTicketData.BK_ImageGalleries join images in AdriaTicketData.BK_Images on gallery.Id equals images.GalleryId where gallery.Id == id select new { gallery.NazivGalerije, images.Id, images.GalleryId, images.ImageAlt, images.ImageName };
+            var gal = from gallery in AdriaTicketData.BK_ImageGalleries 
+                      from images in AdriaTicketData.BK_Images.Where(g=> g.GalleryId == id).DefaultIfEmpty()
+                      where gallery.Id == id select new { gallery.NazivGalerije,
+                          Id = images.Id == null ? 0 : images.Id,
+                          galleryID = gallery.Id, 
+                          images.ImageAlt,
+                          images.ImageName };
             return Json(gal, JsonRequestBehavior.AllowGet);
         }
 

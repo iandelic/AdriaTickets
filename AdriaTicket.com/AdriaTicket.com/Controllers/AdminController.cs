@@ -301,6 +301,17 @@ namespace AdriaTicket.com.Controllers
 
         [Authorize]
         [HttpPost]
+        public ActionResult SaveGallery(string gallery)
+        {
+            BK_ImageGallery g = new BK_ImageGallery();
+            g.NazivGalerije = gallery;
+            AdriaTicketData.BK_ImageGalleries.InsertOnSubmit(g);
+            AdriaTicketData.SubmitChanges();
+            return Json("inserted", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
         public ActionResult DeleteImage(int id)
         {
             BK_Image i = AdriaTicketData.BK_Images.FirstOrDefault(x => x.Id == id);

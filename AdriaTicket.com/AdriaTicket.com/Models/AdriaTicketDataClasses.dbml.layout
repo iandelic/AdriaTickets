@@ -52,7 +52,7 @@
         <elementListCompartment Id="ae44dcab-37fd-4dfd-9147-4efa376f4498" absoluteBounds="6.3900000000000006, 3.5850000000000009, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.375 : 3.35); (5.875 : 3.35)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.375 : 3.35); (5.875 : 3.35)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_LayoutDvorana/LK_LayoutDvorana_LK_Event" />
       <nodes>
         <classShapeMoniker Id="99303948-85d0-4465-a648-72ba7596bcf5" />
@@ -65,14 +65,14 @@
         <elementListCompartment Id="77d35ccd-5329-4a75-9a04-fc0ad36a19c1" absoluteBounds="7.0150000000000006, 6.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7 : 6.09211344401042); (6.20833333333333 : 6.09211344401042 : JumpStart); (6.04166666666667 : 6.09211344401042 : JumpEnd); (5.875 : 6.09211344401042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7 : 6.09211344401042); (5.875 : 6.09211344401042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Dvorana/LK_Dvorana_LK_Event" />
       <nodes>
         <classShapeMoniker Id="1bacd382-292e-4243-a8c2-aa2c2aa4c302" />
         <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.6875 : 5.875); (7.6875 : 3.575)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7.4375 : 5.875); (7.4375 : 3.575)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Dvorana/LK_Dvorana_LK_LayoutDvorana" />
       <nodes>
         <classShapeMoniker Id="1bacd382-292e-4243-a8c2-aa2c2aa4c302" />
@@ -85,14 +85,14 @@
         <elementListCompartment Id="b3ccb1ae-1095-453e-897a-340e3f6e6f64" absoluteBounds="0.51500000000000012, 3.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 3.725); (3.375 : 3.725)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 3.725); (3.375 : 3.725)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Mjesto/LK_Mjesto_LK_Event" />
       <nodes>
         <classShapeMoniker Id="556f4331-cf9e-4cf0-adac-7f1621296d3a" />
         <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 3.868752); (3.125 : 3.868752); (3.125 : 6.55922688802083); (4.22916666666667 : 6.55922688802083 : JumpStart); (4.39583333333333 : 6.55922688802083 : JumpEnd); (5.47916666666667 : 6.55922688802083 : JumpStart); (5.64583333333333 : 6.55922688802083 : JumpEnd); (6.125 : 6.55922688802083); (6.125 : 3.825); (7.60416666666667 : 3.825 : JumpStart); (7.77083333333333 : 3.825 : JumpEnd); (8 : 3.825); (8 : 5.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 3.868752); (3.125 : 3.868752); (3.125 : 6.55922688802083); (4.22916666666667 : 6.55922688802083 : JumpStart); (4.39583333333333 : 6.55922688802083 : JumpEnd); (5.47916666666667 : 6.55922688802083 : JumpStart); (5.64583333333333 : 6.55922688802083 : JumpEnd); (6.125 : 6.55922688802083); (6.125 : 3.825); (7.35416666666667 : 3.825 : JumpStart); (7.52083333333333 : 3.825 : JumpEnd); (8 : 3.825); (8 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Mjesto/LK_Mjesto_LK_Dvorana" />
       <nodes>
         <classShapeMoniker Id="556f4331-cf9e-4cf0-adac-7f1621296d3a" />
@@ -150,7 +150,7 @@
         <elementListCompartment Id="3b24bd69-d375-4a67-a677-2169663dddcc" absoluteBounds="5.8900000000000006, 7.5850000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5625 : 6.30922688802083); (5.5625 : 7.34375); (5.875 : 7.34375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5625 : 6.30922688802083); (5.5625 : 7.34375); (5.875 : 7.34375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Event/LK_Event_BK_VideoGallery" />
       <nodes>
         <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
@@ -163,7 +163,7 @@
         <elementListCompartment Id="c54e4dca-b6d3-44cf-b02c-d7dd0260c678" absoluteBounds="3.265, 8.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.3125 : 6.30922688802083); (4.3125 : 7.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.3125 : 6.30922688802083); (4.3125 : 7.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Event/LK_Event_LK_Cijena" />
       <nodes>
         <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
@@ -176,7 +176,7 @@
         <elementListCompartment Id="00bc30b6-cb43-4093-b0a1-075688a767cb" absoluteBounds="3.015, 11.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.125 : 10.75); (4.125 : 9.78049967447917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.125 : 10.75); (4.125 : 9.78049967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Sektor/LK_Sektor_LK_Cijena" />
       <nodes>
         <classShapeMoniker Id="4184d265-39fc-4037-837a-964607c19d5a" />
