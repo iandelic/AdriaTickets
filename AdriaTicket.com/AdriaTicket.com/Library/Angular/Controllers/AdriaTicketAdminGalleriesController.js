@@ -83,6 +83,6 @@ adriaTicketAdmin.controller('AdminGalleryController',[ '$scope', '$location', '$
 adriaTicketAdmin.controller('addGalleryController', ['$scope', '$http', function ($scope, $http) {
 
     var siteUrl = "http://localhost:32718/";
-    $scope.gallery = {}
+    $scope.gallery = "";
 
 }]);

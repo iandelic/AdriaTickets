@@ -5,22 +5,56 @@
 
 
 <div ng-controller="AdminGalleriesController">
+<div class="container">
+    <div class="row admin-row">
+        <div class ="col-sm-3 col-xs-12">
+          <a href ="/admin">
+              <button class="btn btn-default btn-md" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+              Povratak
+              </button>
+          </a>
+          <a href ="/admin/newgallery">
+          <button class="btn btn-success btn-md" type="button">
+                <i class="glyphicon glyphicon-plus"></i>
+                Dodaj novu
+          </button>
+          </a>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text"  ng-model="query" class="form-control input-md" placeholder = "Pojam za pretragu" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-md" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
 
-    <input type="search" ng-model="query" placeholder="Pojam za pretragu"/>
-    <button ng-click="dodajNovu()">Dodaj</button>
- <table>
-    <tr>
-    <th>Ime</th>
-    <th>Akcije</th>
- </tr>
-     <tr ng-repeat="gallery in galleries | filter: query as results">
-        <td>{{gallery.NazivGalerije}}</td>
-         <td>
-            <a href ="/admin/gallery/{{gallery.Id}}">Uredi</a>
-         </td>
-     </tr>
-     <tr ng-if="results.length == 0">
-      <td colspan="3">Nema rezultata pretrage.</td>
-    </tr>
- </table>
+    <div class="row">
+    <table class="event-table table table-striped">
+        <tr class ="table-header">
+            <th class ="col-xs-2 col-sm-2 text-center">Šifra</th>
+            <th class ="col-xs-7 col-sm-7">Fotogalerija</th>
+            <th class ="col-xs-3 col-sm-3 text-center">Akcije</th>
+        </tr>
+        <tr ng-repeat="gallery in galleries | filter: query as results">
+           <td class ="col-xs-2 col-sm-2 text-center">{{gallery.Id}}</td>
+           <td class ="col-xs-7 col-sm-7">{{gallery.NazivGalerije}}</td>
+           <td class ="col-xs-3 col-sm-3 text-center">
+               <a href ="/admin/gallery/{{gallery.Id}}"><div class ="table-link table-link-edit">Uredi</div></a>
+           </td>
+        </tr>
+        <tr ng-if="results.length == 0">
+            <td class="no-result-error" colspan="3">Nema rezultata pretrage.</td>
+        </tr>
+    </table>
+    </div>
 </div>
+</div>
+
+

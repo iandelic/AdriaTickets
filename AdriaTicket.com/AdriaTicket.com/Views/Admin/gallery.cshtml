@@ -1,10 +1,15 @@
 ﻿@{
-    ViewBag.Title = "gallery";
+    ViewBag.Title = "CMS Adria Ticket - Galerije";
+    ViewBag.Header = "CMS Adria Ticket - Galerije";
 }
 
-<h2>gallery</h2>
 <div ng-controller="AdminGalleryController">
-    <div class="container">
+    <div class="container galleries-container">
+        <div class ="row admin-row header-row">
+            <div class ="col-sm-12">
+                Galerija: {{gallery.NazivGalerije}}
+            </div>
+        </div>
         <h3>Postojece slike</h3>
         <div class ="image-container" ng-repeat="image in gallery"><img src={{"/uploads/"+image.ImageName}} /> <input type="button" value="obrisi" ng-click="deleteImage(image)"/></div>
 
