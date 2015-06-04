@@ -38,25 +38,25 @@
     <div class="row description">
         <div class="col-md-8">
             <div ng-bind-html="renderHtml(event.EVE_Opis)"></div> @*samo se opis mora ispisat priko ovoga bind html zato sta je html, ostalo mozes sa ovim zagradama*@
-            <br />Video: {{event.videoLink}}
+            <br /><youtube-video video-id="event.videoLink"></youtube-video>
             <hr />
             <table class="table">
-                <tr>
+                <tr ng-if="event.EVE_DatumOdProdaja">
                     <td>Prodaja karata: </td>
                     <td>{{event.EVE_DatumOdProdaja}}</td>
                 </tr>
-                <tr>
+                <tr ng-if="event.EVE_DatumOdPretprodaja">
                     <td>Pretprodaja karata od: </td>
                     <td>{{event.EVE_DatumOdPretprodaja}}</td>
                 </tr>
-                <tr>
+                <tr ng-if="event.ORG_Naziv">
                     <td>Naziv organizatora: </td>
                     <td>{{event.ORG_Naziv}}</td>
                 </tr>
             </table>
         </div>
 
-        <div class="col-md-4 sidebar">
+        <div ng-if="images" class="col-md-4 sidebar">
             <p class="minititle">GALERIJA</p>
             <div class="image-container col-centered" ng-repeat="image in images"><img src={{"/uploads/"+image.ImageName}} /></div>
         </div>
