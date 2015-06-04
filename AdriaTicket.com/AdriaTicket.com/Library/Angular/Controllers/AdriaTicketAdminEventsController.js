@@ -163,6 +163,11 @@ adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$
                 $scope.sectors = temp;
 
             }).error(function () { alert('error inner sectors') });
+
+            $http.get('/admin/getEventPrices/' + id).success(function (temp) {
+                $scope.prices = temp;
+
+            }).error(function () { alert('error inner sectors') });
         }).error(function () { alert('error event') });
     }
 

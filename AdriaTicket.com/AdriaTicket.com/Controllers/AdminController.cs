@@ -236,6 +236,24 @@ namespace AdriaTicket.com.Controllers
             return Json(sectors, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult getEventPrices(int id)
+        {
+            var sectors = from s in AdriaTicketData.LK_Cijenas
+                          where s.CIJ_EventId == id
+                          select new
+                          {
+                              s.CIJ_EventId,
+                              s.CIJ_Id,
+                              s.CIJ_IznosNaDan,
+                              s.CIJ_IznosPopusta,
+                              s.CIJ_IznosPretprodaja,
+                              s.CIJ_IznosProdaja,
+                              s.CIJ_SektorId
+                          };
+
+            return Json(sectors, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult editPrices(int id)
         {
             return View();
