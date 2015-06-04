@@ -95,7 +95,7 @@ table {
     line-height : 20px !important;
     font-weight : 600 !important;
 }
-
+.admin-row a:hover {text-decoration:none;}
 .admin-row {
     margin-bottom : 25px;
 }
