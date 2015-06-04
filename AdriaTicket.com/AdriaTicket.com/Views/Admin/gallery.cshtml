@@ -39,18 +39,22 @@
 
         
         
-        <div class="row admin-row">
-        <div ng-if="tempImages.length > 0" class ="col-xs-12 col-sm12">
-        <h3>Odabrane slike</h3>
-        <div class ="image-container" ng-repeat="image in tempImages">
-            <img src={{"/uploads/"+image}} />
+        <div class="row admin-row text-center">
+        <div ng-if="tempImages.length > 0" class ="col-xs-12 col-sm-12">
+        <div class ="row admin-row middle-row">
+        <div class ="col-sm-12">
+        Odabrane slike
+        </div>
+        </div>
+        <div class ="image-container col-xs-12 col-sm-4 col-md-3" ng-repeat="image in tempImages">
+            <img class="tempImages" src={{"/uploads/"+image}} />
         </div>
         </div>
         </div>
 
         <div ng-if="tempImages.length > 0" class="form-group">
             <div class ="row">
-                <div class ="form-group col-xs-12 col-sm12">
+                <div class ="form-group col-xs-12 col-sm-12">
                     <button type="submit" class="form-control btn btn-success" ng-disabled="uploadFlag" ng-click="beginUpload()">
                         <i class="glyphicon glyphicon-ok"></i>
                         Spremi slike                      
@@ -60,12 +64,20 @@
         </div>
         
                 
-        <div class="row admin-row">
-        <div  ng-if="gallery[0].Id != 0" class ="col-xs-12 col-sm12">
-        <h3>Slike u galeriji</h3>
-        <div class ="image-container" ng-repeat="image in gallery">
-            <img src={{"/uploads/"+image.ImageName}} /> 
-            <input type="button" value="obrisi" ng-click="deleteImage(image)"/>
+        <div class="row admin-row text-center">
+        <div  ng-if="gallery[0].Id != 0" class ="col-xs-12 col-sm-12">
+        <div class ="row admin-row middle-row">
+        <div class ="col-sm-12">
+        Slike u galeriji
+        </div>
+        </div>
+  
+        <div class ="image-container col-xs-6 col-sm-2" ng-repeat="image in gallery">
+            <img class="databaseImages" src={{"/uploads/"+image.ImageName}} />
+            <button type="submit" class="form-control btn btn-danger" ng-click="deleteImage(image)">
+                <i class="glyphicon glyphicon-remove"></i>
+                Obriši                     
+            </button>
         </div>
         </div>
         </div>
