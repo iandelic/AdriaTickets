@@ -54,17 +54,18 @@ body {
     background-color: #f8f8f8;
     font-family: 'Open Sans', sans-serif;
 }
-
 a:hover {
     text-decoration: none;
 }
-
 .row {
     margin-left: 0;
     margin-right: 0;
 }
 #page-container {
     display: block;
+}
+#header {
+    height:135px;
 }
 .navbar {
     display: block;
@@ -166,7 +167,7 @@ a:hover {
     height: 100px;
 }
 .subheader {
-    height: 30px;
+    height: 35px;
     display: block;
     background-color: #e5e5e5;
 }
@@ -197,29 +198,29 @@ a:hover {
     margin-top: 2px;
 }
 .searchbar .form-control {
-    height: 25px;
+    height: 30px;
 }
 .searchbar .btn {
-    height: 25px;
+    height: 30px;
 }
 .searchbar .glyphicon {
     line-height: 0;
     top: -1px;
 }
 .social {
-    height: 30px;
+    height: 35px;
     padding-left: 0;
     padding-right: 0;
 }
 .social li {
-    height: 30px;
+    height: 35px;
     text-align: center;
 }
 .social li a {
     color: #848484;
     display: block;
-    height: 30px;
-    line-height: 30px;
+    height: 35px;
+    line-height: 35px;
     width: 100px;
     -webkit-transition: background 0.2s ease-out;
     -moz-transition: background 0.2s ease-out;
@@ -234,7 +235,7 @@ a:hover {
 #main-content {
     min-height: 600px;
     background-color: #f8f8f8;
-    padding-top: 60px;
+    padding-top: 30px;
     padding-bottom: 300px;
     overflow: auto;
     margin-bottom: 30px;
@@ -387,17 +388,21 @@ a:hover {
 .single-event .sidebar {
     min-height: 300px;
 }
-.single-event .sidebar img {
-    width: 340px;
-}
 .single-event .sidebar .image-container {
     padding: 0 10px;
+}
+.sidebar .single-image {
+    padding-left:0;
+    padding-right:0;
 }
 .single-event table {
     width: 50%;
 }
 .single-event .table > tbody > tr > td {
     border: 0
+}
+.single-event iframe {
+    margin:10px auto;
 }
 #footer {
     position: relative;

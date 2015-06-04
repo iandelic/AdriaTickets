@@ -1,11 +1,4 @@
-﻿<ol class="breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Library</a></li>
-    <li class="active">Data</li>
-</ol>
-
-
-<div ng-controller="EventController" class="single-event">
+﻿<div ng-controller="EventController" class="single-event">
     <div class="event-header row">
         <div class="col-md-3">
             <img src="~/Library/img/event-200.jpg" alt="" />
@@ -38,7 +31,7 @@
     <div class="row description">
         <div class="col-md-8">
             <div ng-bind-html="renderHtml(event.EVE_Opis)"></div> @*samo se opis mora ispisat priko ovoga bind html zato sta je html, ostalo mozes sa ovim zagradama*@
-            <br /><youtube-video video-id="event.videoLink"></youtube-video>
+            <div class="center-block">  <youtube-video class="center-block" video-id="event.videoLink"></youtube-video></div> 
             <hr />
             <table class="table">
                 <tr ng-if="event.EVE_DatumOdProdaja">
@@ -58,7 +51,16 @@
 
         <div ng-if="images" class="col-md-4 sidebar">
             <p class="minititle">GALERIJA</p>
-            <div class="image-container col-centered" ng-repeat="image in images"><img src={{"/uploads/"+image.ImageName}} /></div>
+
+
+                
+            <div id="links" class="row">
+                <div class="image-container" ng-repeat="image in images">
+                    <a href={{"/uploads/"+image.ImageName}} class="col-md-4 single-image">
+                        <img src={{"/uploads/"+image.ImageName}} width="110"/>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
