@@ -135,14 +135,14 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         temp += '&Status=' + event.SEV_Id;
         temp += '&PrikazNaWebu=' + event.EVE_PrikaziNaWebu;
         temp += '&VideoLink=' + event.videoLink;
-        temp += '&galleryId=' + event.galleryId;
+        temp += '&galleryId=' + event.ImageGalleriesId;
         $http({
             method: 'POST',
             url: '/admin/SaveEvent',
             data: temp,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).success(function (data) {
-                jQuery(location).attr('href', siteUrl + "admin/home");
+                jQuery(location).attr('href', siteUrl + "admin/events");
         }).error(function (msg) {
             alert(msg);
         });

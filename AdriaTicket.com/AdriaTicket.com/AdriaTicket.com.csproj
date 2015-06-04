@@ -335,6 +335,7 @@
     <Content Include="Views\Admin\galleries.cshtml" />
     <Content Include="Views\Admin\gallery.cshtml" />
     <Content Include="Views\Public\Home\event.cshtml" />
+    <Content Include="Views\Admin\newgallery.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

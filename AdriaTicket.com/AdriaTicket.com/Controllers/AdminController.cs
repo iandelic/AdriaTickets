@@ -119,6 +119,13 @@ namespace AdriaTicket.com.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult NewGallery()
+        {
+
+            return View();
+        }
+
         public ActionResult getEvent(int id)
         {
             var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
