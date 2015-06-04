@@ -115,6 +115,10 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         image_advtab: true,
         height: "200px"
     };
+
+    $scope.deleteImage = function () {
+        $scope.event.EVE_ImagePath = "";
+    }
     $scope.save = function (event) {
         var temp = 'naziv=' + event.EVE_Naziv;
         if(event.EVE_Id != null)

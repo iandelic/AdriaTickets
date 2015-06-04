@@ -102,6 +102,16 @@ table {
 .addeditevent-row {
     margin-bottom : 10px;
 }
+.admin-event-img-video {
+    text-align : center;
+}
+.admin-event-img-video iframe {
+   width : 80%;
+   height : 250px;
+}
+.admin-event-img-video img{
+    height : 150px; 
+}
 .text-center {
     text-align : center;
 }

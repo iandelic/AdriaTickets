@@ -124,6 +124,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
     <Content Include="Library\Angular\angular-route.js" />
+    <Content Include="Library\Angular\angular-youtube-embed.js" />
     <Content Include="Library\Angular\angular.min.js" />
     <Content Include="Library\Angular\app.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminController.js" />
