@@ -214,9 +214,12 @@
     <Content Include="Library\CSS\bootstrap\font-awesome.min.css" />
     <Content Include="Library\CSS\textAngular.css" />
     <Content Include="Library\img\AdriaTicket-logo-white.png" />
+    <Content Include="Library\img\dino-merlin.jpg" />
     <Content Include="Library\img\logo.svg" />
     <Content Include="Library\img\social-fb.jpg" />
     <Content Include="Library\img\social-tw.jpg" />
+    <Content Include="Library\img\sustipanska-noc.jpg" />
+    <Content Include="Library\img\talking-heads.jpg" />
     <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
     <Content Include="Library\JS\bootstrap\bootstrap.min.js" />
