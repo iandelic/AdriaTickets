@@ -78,9 +78,10 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
    
 
     $scope.$watch('files', function () {
-        if ($scope.files != null)
+        if (!angular.equals({}, $scope.files)) {
             $scope.event.EVE_ImagePath = $scope.files[0].name;
-        $scope.upload($scope.files);
+            $scope.upload($scope.files);
+        }
     });
     $scope.$watch('description', function () {
         $scope.event.EVE_Opis = $scope.description;
@@ -130,12 +131,12 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         temp += '&DatumOdProdaja=' + event.EVE_DatumOdProdaja;
         temp += '&Organizator=' + event.ORG_Id;
         temp += '&PostotakProvizije=' + event.EVE_PostotakProvizije;
-        temp += '&Mjesto=' + event.EVE_MjestoId;
+        temp += '&Mjesto=' + event.MjestoId;
         temp += '&Dvorana=' + event.EVE_DvoranaId;
-        temp += '&Status=' + event.SEV_Id;
+        temp += '&Status=' + event.EVE_StatusEventaId;
         temp += '&PrikazNaWebu=' + event.EVE_PrikaziNaWebu;
         temp += '&VideoLink=' + event.videoLink;
-        temp += '&galleryId=' + event.ImageGalleriesId;
+        temp += '&galleryId=' + event.ImageGalleriesID;
         $http({
             method: 'POST',
             url: '/admin/SaveEvent',
@@ -160,6 +161,11 @@ adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$
             $scope.event = data[0];
             $http.get('/admin/getEventSectors/' + $scope.event.EVE_DvoranaId).success(function (temp) {
                 $scope.sectors = temp;
+
+            }).error(function () { alert('error inner sectors') });
+
+            $http.get('/admin/getEventPrices/' + id).success(function (temp) {
+                $scope.prices = temp;
 
             }).error(function () { alert('error inner sectors') });
         }).error(function () { alert('error event') });

@@ -86,8 +86,8 @@
                 <div class ="row addeditevent-row">
                 <label for="galerija" class="control-label col-xs-12 col-sm-12 addeditlabel">Galerija slika</label>
                     <div class="col-xs-12 col-sm-12">
-                        <select  class="form-control" id="galerija" placeholder="galerija slika" ng-model="event.ImageGalleriesId">
-                            <option ng-repeat="g in galleries" value="{{g.Id}}" ng-selected ="{{g.Id==event.ImageGalleriesId}}">{{g.NazivGalerije}}</option>
+                        <select  class="form-control" id="galerija" placeholder="galerija slika" ng-model="event.ImageGalleriesID">
+                            <option ng-repeat="g in galleries" value="{{g.Id}}" ng-selected ="{{g.Id == event.ImageGalleriesID}}">{{g.NazivGalerije}}</option>
                         </select>
                     </div>
                     </div>
@@ -125,8 +125,8 @@
                 <div class ="row addeditevent-row">
                 <label for="mjestoEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Grad</label>
                     <div class="col-xs-12 col-sm-12">
-                        <select  class="form-control" id="mjestoEventa" ng-model="event.EVE_MjestoId">
-                            <option ng-repeat="t in eventTowns" value="{{t.MJE_Id}}" ng-selected ="{{t.MJE_Id == event.EVE_MjestoId}}">{{t.MJE_Naziv}}</option>
+                        <select  class="form-control" id="mjestoEventa" ng-model="event.MjestoId">
+                            <option ng-repeat="t in eventTowns" value="{{t.MJE_Id}}" ng-selected ="{{t.MJE_Id == event.MjestoId}}">{{t.MJE_Naziv}}</option>
                         </select>
                     </div>
                     </div>
@@ -136,7 +136,7 @@
                 <label for="lokacijaEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Lokacija</label>
                     <div class="col-xs-12 col-sm-12">
                         <select  class="form-control" id="lokacijaEventa" ng-model="event.EVE_DvoranaId">
-                            <option ng-repeat="l in eventLocations" value="{{l.DVO_Id}}" ng-selected ="{{l.DVO_Id == event.EVEDvoranaId}}">{{l.DVO_Naziv}}</option>
+                            <option ng-repeat="l in eventLocations" value="{{l.DVO_Id}}" ng-selected ="{{l.DVO_Id == event.EVE_DvoranaId}}">{{l.DVO_Naziv}}</option>
                         </select>
                     </div>
                     </div>
@@ -146,7 +146,7 @@
                 <label for="statusEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Status</label>
                     <div class="col-xs-12 col-sm-12">
                         <select  class="form-control" id="statusEventa" ng-model="event.SEV_Id">
-                            <option ng-repeat="s in eventStatus" value="{{s.SEV_Id}}" ng-selected ="s.SEV_Id==event.SEV_Id">{{s.SEV_Naziv}}</option>
+                            <option ng-repeat="s in eventStatus" value="{{s.SEV_Id}}" ng-selected ="s.SEV_Id==event.EVE_StatusEventaId">{{s.SEV_Naziv}}</option>
                         </select>
                     </div>
                     </div>

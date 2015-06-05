@@ -190,7 +190,7 @@ namespace AdriaTicket.com.Controllers
         public ActionResult getEvent(int id)
         {
             var ev = from EVE in AdriaTicketData.LK_Events
-                     from statusEventa in AdriaTicketData.LK_StatusEventas.Where(x => x.SEV_Id == EVE.EVE_Id).DefaultIfEmpty()
+                     from statusEventa in AdriaTicketData.LK_StatusEventas.Where(x => x.SEV_Id == EVE.EVE_StatusEventaId).DefaultIfEmpty()
                      from organizator in AdriaTicketData.LK_Organizators.Where(o => o.ORG_Id == EVE.EVE_OrganizatorId).DefaultIfEmpty()
                      from video in AdriaTicketData.BK_VideoGalleries.Where(v=> v.eventID == EVE.EVE_Id).DefaultIfEmpty() 
                      from gallery in AdriaTicketData.BK_REL_Event_ImageGalleries.Where(g=> g.EventId == EVE.EVE_Id).DefaultIfEmpty()
@@ -210,7 +210,7 @@ namespace AdriaTicket.com.Controllers
                          organizator.ORG_Naziv,
                          organizator.ORG_Id,
                          SEV_Stanje = statusEventa.SEV_Stanje== null ? '0' : statusEventa.SEV_Stanje,
-                         SEV_Id = statusEventa.SEV_Id == null ? 0 : statusEventa.SEV_Id,
+                         EVE_StatusEventaId = EVE.EVE_StatusEventaId == null ? 0 : EVE.EVE_StatusEventaId,
                          EVE.EVE_PrikaziNaWebu,
                          MjestoId = EVE.EVE_MjestoId == null ? 0 : EVE.EVE_MjestoId,
                          videoLink = video.videoLink == null ? "" : video.videoLink,
@@ -237,6 +237,24 @@ namespace AdriaTicket.com.Controllers
                               s.SEK_Kapacitet,
                               s.SEK_Naziv,
                               d.DVO_Naziv
+                          };
+
+            return Json(sectors, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult getEventPrices(int id)
+        {
+            var sectors = from s in AdriaTicketData.LK_Cijenas
+                          where s.CIJ_EventId == id
+                          select new
+                          {
+                              s.CIJ_EventId,
+                              s.CIJ_Id,
+                              s.CIJ_IznosNaDan,
+                              s.CIJ_IznosPopusta,
+                              s.CIJ_IznosPretprodaja,
+                              s.CIJ_IznosProdaja,
+                              s.CIJ_SektorId
                           };
 
             return Json(sectors, JsonRequestBehavior.AllowGet);
