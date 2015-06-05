@@ -4,6 +4,55 @@
 
 <h2>editprices</h2>
 <div ng-controller ="AdminEventPricesController">
+    <div class="container">
+        <div ng-if="cijeneFlag == true">
+            <form name="updateForm" class="form-horizontal" novalidate>
+            <div class ="row">
+                <table class="event-table table table-striped">
+                    <tr class ="table-header">
+                        <th class ="col-xs-2 col-sm-2">Naziv</th>
+                        <th class ="col-xs-2 col-sm-2">Kapacitet</th>
+                        <th class ="col-xs-1 col-sm-2">Cijena pretprodaja</th>
+                        <th class ="col-xs-1 col-sm-2">Cijena prodaja</th>
+                        <th class ="col-xs-1 col-sm-2">Cijena na dan</th>
+                        <th class ="col-xs-1 col-sm-2">Izns popusta</th>
+                    </tr>
+                    <tr ng-repeat="price in prices">
+                        <td class ="col-sm-2"><label>{{price.SEK_Naziv}}</label></td>
+                        <td class ="col-sm-2"><label>{{price.SEK_Kapacitet}}</label></td>
+                        <td class ="col-sm-2"><input type="text" class="form-control price-control" ng-model="price.CIJ_IznosPretprodaja" ng-pattern="/^\d*\.?\d*$/" required/></td>
+                        <td class ="col-sm-2"><input type="text" class="form-control price-control" ng-model="price.CIJ_IznosProdaja" ng-pattern="/^\d*\.?\d*$/"/></td>
+                        <td class ="col-sm-2"><input type="text" class="form-control price-control" ng-model="price.CIJ_IznosNaDan" ng-pattern="/^\d*\.?\d*$/"/></td>
+                        <td class ="col-sm-2"><input type="text" class="form-control price-control" ng-model="price.CIJ_IznosPopusta" ng-pattern="/^\d*\.?\d*$/" /></td>
+                    </tr>
+                </table>
+            </div>
+            <button class ="btn btn-block btn-primary" ng-click="update()" ng-disabled="updateForm.$invalid">Promjeni cijene</button>
+                </form>
+        </div>
 
-
+        <div ng-if="cijeneFlag == false">
+            <div class ="row">
+                <table class="event-table table table-striped">
+                    <tr class ="table-header">
+                        <th class ="col-xs-2 col-sm-2">Naziv</th>
+                        <th class ="col-xs-2 col-sm-2">Kapacitet</th>
+                        <th class ="col-xs-1 col-sm-2">Cijena pretprodaja</th>
+                        <th class ="col-xs-1 col-sm-2">Cijena prodaja</th>
+                        <th class ="col-xs-1 col-sm-2">Cijena na dan</th>
+                        <th class ="col-xs-1 col-sm-2">Izns popusta</th>
+                    </tr>
+                    <tr ng-repeat="price in sectors">
+                        <td class ="col-sm-2"><label>{{price.SEK_Naziv}}</label></td>
+                        <td class ="col-sm-2"><label>{{price.SEK_Kapacitet}}</label></td>
+                        <td class ="col-sm-2"><input type="text" class="form-control price-control" ng-model="price.CIJ_IznosPretprodaja" required ng-pattern="/^\d*\.?\d*$/" /></td>
+                        <td class ="col-sm-2"><input type="text" class="form-control price-control" ng-model="price.CIJ_IznosProdaja" ng-pattern="/^\d*\.?\d*$/" /></td>
+                        <td class ="col-sm-2"><input type="text" class="form-control price-control" ng-model="price.CIJ_IznosNaDan" ng-pattern="/^\d*\.?\d*$/" /></td>
+                        <td class ="col-sm-2"><input type="text" class="form-control price-control" ng-model="price.CIJ_IznosPopusta"  ng-pattern="/^\d*\.?\d*$/"/></td>
+                    </tr>
+                </table>
+            </div>
+            <button class ="btn btn-block btn-primary" ng-click="save()">Spremi cijene</button>
+        </div>
+    </div>
 </div>

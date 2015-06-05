@@ -156,6 +156,7 @@ adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$
 
     var siteUrl = "http://localhost:32718/";
     var id = $location.absUrl().split('/').pop();
+    $scope.cijeneFlag = false;
     if (parseInt(id)) {
         $http.get('/admin/getEvent/' + id).success(function (data) {
             $scope.event = data[0];
@@ -166,10 +167,107 @@ adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$
 
             $http.get('/admin/getEventPrices/' + id).success(function (temp) {
                 $scope.prices = temp;
-
             }).error(function () { alert('error inner sectors') });
+            
+
         }).error(function () { alert('error event') });
     }
 
+    
+    $scope.$watch("prices", function (value) {
+        if (angular.isUndefined($scope.prices) || $scope.prices.length == 0) {
+            $scope.cijeneFlag = false;
+        }
+        else {
+            $scope.cijeneFlag = true;
+        }
+    }, true)
 
+    $scope.update = function () {
+        $scope.updateCounter = 0;
+        $scope.updateFlag = true;
+        angular.forEach($scope.prices, function (value) {
+            var temp = 'action=update';
+            temp += '&eventid=' + value.CIJ_EventId;
+            temp += '&sektorid=' + value.CIJ_SektorId;
+            if (value.CIJ_IznosNaDan != null && value.CIJ_IznosNaDan != 'undefined') {
+                value.CIJ_IznosNaDan = value.CIJ_IznosNaDan.toString().replace(".", ",");
+                temp += '&iznosnadan=' + value.CIJ_IznosNaDan;
+            }
+            value.CIJ_IznosPretprodaja = value.CIJ_IznosPretprodaja.toString().replace(".", ",");
+            temp += '&iznospretprodaja=' + value.CIJ_IznosPretprodaja;
+            if (value.CIJ_IznosProdaja != null && value.CIJ_IznosProdaja != 'undefined') {
+                value.CIJ_IznosProdaja = value.CIJ_IznosProdaja.toString().replace(".", ",");
+                temp += '&iznosprodaja=' + value.CIJ_IznosProdaja;
+            }
+            if (value.CIJ_IznosPopusta != null && value.CIJ_IznosPopusta != 'undefined') {
+                value.CIJ_IznosPopusta = value.CIJ_IznosPopusta.toString().replace(".", ",");
+                temp += '&iznospopusta=' + value.CIJ_IznosPopusta;
+            }
+
+            console.log(temp);
+            $http({
+                method: 'POST',
+                url: '/admin/SavePrices',
+                data: temp,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
+                $scope.updateCounter = $scope.updateCounter + 1;
+            }).error(function (msg) {
+                $scope.updateFlag = false;
+            });
+        });
+    };
+    $scope.$watch("updateCounter", function () {
+        if ($scope.updateFlag == true && $scope.updateCounter == $scope.prices.length)
+        {
+            jQuery(location).attr('href', siteUrl + "admin/events");
+        }
+    })
+
+    $scope.save = function () {
+        $scope.saveCounter = 0;
+        $scope.saveFlag = true;
+        angular.forEach($scope.sectors, function (value) {
+
+            var temp = 'action=insert';
+            temp += '&eventid=' + $scope.event.EVE_Id;
+            temp += '&sektorid=' + value.SEK_Id;
+            if (value.CIJ_IznosNaDan != null && value.CIJ_IznosNaDan != 'undefined') {
+                value.CIJ_IznosNaDan =  value.CIJ_IznosNaDan.replace(".", ",");
+                temp += '&iznosnadan=' + value.CIJ_IznosNaDan;
+            }
+            value.CIJ_IznosPretprodaja = value.CIJ_IznosPretprodaja.toString().replace(".", ",");
+            temp += '&iznospretprodaja=' + value.CIJ_IznosPretprodaja; 
+            if (value.CIJ_IznosProdaja != null && value.CIJ_IznosProdaja != 'undefined') {
+                value.CIJ_IznosProdaja = value.CIJ_IznosProdaja.replace(".", ",");
+                    temp += '&iznosprodaja=' + value.CIJ_IznosProdaja;
+            }
+            if (value.CIJ_IznosPopusta != null && value.CIJ_IznosPopusta != 'undefined') {
+                value.CIJ_IznosPopusta = value.CIJ_IznosPopusta.replace(".", ",");
+                temp += '&iznospopusta=' + value.CIJ_IznosPopusta;
+            }
+            console.log(temp);
+            $http({
+                method: 'POST',
+                url: '/admin/SavePrices',
+                data: temp,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
+                $scope.saveCounter = $scope.saveCounter + 1;
+            }).error(function (msg) {
+                $scope.saveFlag = false;
+            });
+        });
+    };
+    $scope.$watch("saveCounter", function () {
+        if ($scope.saveFlag == true && $scope.saveCounter == $scope.sectors.length) {
+            jQuery(location).attr('href', siteUrl + "admin/events");
+        }
+    })
+
+
+    $scope.check = function (value,name) {
+        $scope.value = parseFloat(value).toFixed(2);
+    }
 }]);

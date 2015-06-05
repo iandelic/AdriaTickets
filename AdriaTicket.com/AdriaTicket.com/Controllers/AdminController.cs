@@ -245,6 +245,7 @@ namespace AdriaTicket.com.Controllers
         public ActionResult getEventPrices(int id)
         {
             var sectors = from s in AdriaTicketData.LK_Cijenas
+                          from c in AdriaTicketData.LK_Sektors.Where(x=> x.SEK_Id == s.CIJ_SektorId)
                           where s.CIJ_EventId == id
                           select new
                           {
@@ -254,7 +255,9 @@ namespace AdriaTicket.com.Controllers
                               s.CIJ_IznosPopusta,
                               s.CIJ_IznosPretprodaja,
                               s.CIJ_IznosProdaja,
-                              s.CIJ_SektorId
+                              s.CIJ_SektorId,
+                              c.SEK_Naziv,
+                              c.SEK_Kapacitet
                           };
 
             return Json(sectors, JsonRequestBehavior.AllowGet);
@@ -377,6 +380,35 @@ namespace AdriaTicket.com.Controllers
             AdriaTicketData.SubmitChanges();
             return Json("inserted", JsonRequestBehavior.AllowGet);
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SavePrices(string action, int Eventid, int sektorid, decimal? iznosnadan, decimal iznospretprodaja, decimal? iznosprodaja, decimal? iznospopusta)
+        {
+            if (action == "update")
+            {
+                LK_Cijena cijena = AdriaTicketData.LK_Cijenas.FirstOrDefault(x => x.CIJ_SektorId == sektorid && x.CIJ_EventId == Eventid);
+                cijena.CIJ_IznosNaDan = iznosnadan;
+                cijena.CIJ_IznosPopusta = iznospopusta;
+                cijena.CIJ_IznosPretprodaja = iznospretprodaja;
+                cijena.CIJ_IznosProdaja = iznosprodaja;
+            }
+            else if (action == "insert")
+            {
+                LK_Cijena cijena = new LK_Cijena();
+                cijena.CIJ_EventId = Eventid;
+                cijena.CIJ_SektorId = sektorid;
+                cijena.CIJ_IznosNaDan = iznosnadan;
+                cijena.CIJ_IznosPopusta = iznospopusta;
+                cijena.CIJ_IznosPretprodaja = iznospretprodaja;
+                cijena.CIJ_IznosProdaja = iznosprodaja;
+                AdriaTicketData.LK_Cijenas.InsertOnSubmit(cijena);
+            }
+
+            AdriaTicketData.SubmitChanges();
+            return Json("inserted", JsonRequestBehavior.AllowGet);
+        }
+
 
         [Authorize]
         [HttpPost]

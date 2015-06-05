@@ -45,7 +45,7 @@
         <td  class ="col-xs-2 col-sm-2">{{event.EVE_Datum}}</td>
         <td  class ="col-xs-3 col-sm-3">{{event.EVE_Naziv}}</td>
         <td  class ="col-xs-5 col-sm-5">{{event.EVE_Opis}}<span ng-if = "event.EVE_Opis">...</span></td>
-        <td class ="col-xs-2 col-sm-2 text-center"><a href ="/admin/events/event/{{event.EVE_Id}}"><div class ="table-link table-link-edit">Uredi</div></a></td>
+        <td class ="col-xs-2 col-sm-2 text-center"><a href ="/admin/events/event/{{event.EVE_Id}}"><div class ="table-link table-link-edit">Uredi</div></a><a href ="/admin/editprices/{{event.EVE_Id}}"><div class ="table-link table-link-edit">Uredi cijene</div></a></td>
      </tr>
      <tr ng-if="results.length == 0">
         <td class = "no-result-error" colspan="4">Nema rezultata pretrage.</td>
