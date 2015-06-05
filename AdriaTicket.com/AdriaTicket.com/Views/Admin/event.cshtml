@@ -145,7 +145,7 @@
                     <div class ="row addeditevent-row">
                 <label for="statusEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Status</label>
                     <div class="col-xs-12 col-sm-12">
-                        <select  class="form-control" id="statusEventa" ng-model="event.SEV_Id">
+                        <select  class="form-control" id="statusEventa" ng-model="event.EVE_StatusEventaId">
                             <option ng-repeat="s in eventStatus" value="{{s.SEV_Id}}" ng-selected ="s.SEV_Id==event.EVE_StatusEventaId">{{s.SEV_Naziv}}</option>
                         </select>
                     </div>
