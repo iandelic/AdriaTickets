@@ -221,6 +221,7 @@
     <Content Include="Library\JS\bk-main.js" />
     <Content Include="Library\JS\bootstrap\bootstrap.min.js" />
     <Content Include="Library\JS\datetimepicker.js" />
+    <Content Include="Library\JS\gmaps.js" />
     <Content Include="Library\JS\jquery-2.1.4.min.js" />
     <Content Include="Library\JS\moment.js" />
     <Content Include="Library\sliderengine\amazingslider-1.css" />

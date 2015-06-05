@@ -147,7 +147,9 @@ namespace AdriaTicket.com.Controllers
                               s.PMW_Grad,
                               s.PMW_Adresa,
                               s.PMW_Naziv,
-                              s.PMW_Telefon
+                              s.PMW_Telefon,
+                              s.BK_Lat,
+                              s.BK_Lng
                           };
 
             return Json(location, JsonRequestBehavior.AllowGet);
@@ -155,7 +157,7 @@ namespace AdriaTicket.com.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult saveLocation(int Id,string Adresa, string Mjesto, string Telefon, string Naziv)
+        public ActionResult saveLocation(int Id,string Adresa, string Mjesto, string Telefon, string Naziv, string Lng, string Lat)
         {
             if (Id > 0)
             {
@@ -164,6 +166,8 @@ namespace AdriaTicket.com.Controllers
                 pm.PMW_Naziv = Naziv;
                 pm.PMW_Grad = Mjesto;
                 pm.PMW_Telefon = Telefon;
+                pm.BK_Lat = Lat;
+                pm.BK_Lng = Lng;
             }
             else
             {
@@ -172,6 +176,8 @@ namespace AdriaTicket.com.Controllers
                 pm.PMW_Naziv = Naziv;
                 pm.PMW_Grad = Mjesto;
                 pm.PMW_Telefon = Telefon;
+                pm.BK_Lng = Lng;
+                pm.BK_Lat = Lat;
                 AdriaTicketData.LK_ProdajnoMjestoWebs.InsertOnSubmit(pm);
             }
 

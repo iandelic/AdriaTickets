@@ -199,6 +199,8 @@
       <Column Name="PMW_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="PMW_Adresa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="PMW_Telefon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BK_Lng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BK_Lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

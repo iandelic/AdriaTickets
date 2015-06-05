@@ -73,7 +73,9 @@ namespace AdriaTicket.com.Controllers
             p.PMW_Grad,
             p.PMW_Id,
             p.PMW_Naziv,
-            p.PMW_Telefon
+            p.PMW_Telefon,
+            p.BK_Lat,
+            p.BK_Lng
             
             };
             return Json(pm, JsonRequestBehavior.AllowGet);

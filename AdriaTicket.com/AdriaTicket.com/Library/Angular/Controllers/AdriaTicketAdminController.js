@@ -60,12 +60,42 @@ adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$loca
     var siteUrl = "http://localhost:32718/";
     var id = $location.absUrl().split('/').pop();
     $scope.location = {}
+    $scope.location.PMW_Telefon = "";
+    $scope.location.PMW_Grad = "";
+    $scope.location.PMW_Adresa = "";
+    $scope.location.PMW_Naziv = "";
+    $scope.location.BK_Lat = "43.507632";
+    $scope.location.BK_Lng = "16.438379";
+
 
     if (parseInt(id)) {
         $http.get('/admin/getLocation/' + id).success(function (data) {
             $scope.location = data[0];
-            
+            map = new GMaps({
+                div: '#map',
+                lat: $scope.location.BK_Lat,
+                lng: $scope.location.BK_Lng
+
+            });
+
+            map.addMarker({
+                lat: $scope.location.BK_Lat,
+                lng: $scope.location.BK_Lng
+            });
         }).error(function () { alert('error event') });
+    }
+    else {
+        map = new GMaps({
+            div: '#map',
+            lat: $scope.location.BK_Lat,
+            lng: $scope.location.BK_Lng
+
+        });
+
+        map.addMarker({
+            lat: $scope.location.BK_Lat,
+            lng: $scope.location.BK_Lng
+        });
     }
 
     $scope.save = function (Location)
@@ -74,6 +104,8 @@ adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$loca
         temp += '&Naziv=' + Location.PMW_Naziv;
         temp += '&Adresa=' + Location.PMW_Adresa;
         temp += '&Telefon=' + Location.PMW_Telefon;
+        temp += '&Lng=' + Location.BK_Lng;
+        temp += '&Lat=' + Location.BK_Lat;
         if (Location.PMW_Id != null)
             temp += '&Id=' + Location.PMW_Id;
         else

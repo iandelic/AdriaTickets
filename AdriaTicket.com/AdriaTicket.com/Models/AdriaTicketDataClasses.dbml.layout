@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15, 13.5" name="AdriaTicketDataClasses">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 17.125, 13.5" name="AdriaTicketDataClasses">
   <DataContextMoniker Name="/AdriaTicketDataClassesDataContext" />
   <nestedChildShapes>
     <classShape Id="0c0ec7c7-b937-49eb-b9fb-4db94831086a" absoluteBounds="9.25, 1.125, 2, 1.7708968098958331">
@@ -92,7 +92,7 @@
         <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 3.868752); (3.125 : 3.868752); (3.125 : 6.55922688802083); (4.22916666666667 : 6.55922688802083 : JumpStart); (4.39583333333333 : 6.55922688802083 : JumpEnd); (5.47916666666667 : 6.55922688802083 : JumpStart); (5.64583333333333 : 6.55922688802083 : JumpEnd); (6.125 : 6.55922688802083); (6.125 : 3.825); (7.35416666666667 : 3.825 : JumpStart); (7.52083333333333 : 3.825 : JumpEnd); (8 : 3.825); (8 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.5 : 3.868752); (3.125 : 3.868752); (3.125 : 6.55922688802083); (6.125 : 6.55922688802083); (6.125 : 3.825); (8 : 3.825); (8 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Mjesto/LK_Mjesto_LK_Dvorana" />
       <nodes>
         <classShapeMoniker Id="556f4331-cf9e-4cf0-adac-7f1621296d3a" />
@@ -183,10 +183,10 @@
         <classShapeMoniker Id="5f205083-b3d2-457f-9a56-9b77f7bfd6e0" />
       </nodes>
     </associationConnector>
-    <classShape Id="2fbbdfc9-b171-4e3b-bb5f-7452618d9478" absoluteBounds="12.75, 6.75, 2, 1.7708968098958331">
+    <classShape Id="70368831-baf2-42cc-ae9d-98f9da68c4d4" absoluteBounds="14.875, 6, 2, 2.1554996744791666">
       <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/LK_ProdajnoMjestoWeb" />
       <nestedChildShapes>
-        <elementListCompartment Id="0c98876d-4eb7-4b6f-85b9-88f4d36f12ce" absoluteBounds="12.765, 7.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8b1a9f5c-9b6b-46aa-8099-383a31fb563f" absoluteBounds="14.89, 6.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

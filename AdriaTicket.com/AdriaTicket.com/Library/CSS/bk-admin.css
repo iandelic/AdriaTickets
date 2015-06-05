@@ -74,7 +74,9 @@ table {
     background-color : #23b5d3 !important;
     color : #fff;
 }
-
+#map {
+    height : 300px; 
+}
 #mceu_17 {
     margin-right : 15px;
 }
