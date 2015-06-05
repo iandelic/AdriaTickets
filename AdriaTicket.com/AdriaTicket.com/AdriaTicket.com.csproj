@@ -124,6 +124,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
     <Content Include="Library\Angular\angular-route.js" />
+    <Content Include="Library\Angular\angular-youtube-embed.js" />
     <Content Include="Library\Angular\angular.min.js" />
     <Content Include="Library\Angular\app.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminController.js" />
@@ -223,6 +224,7 @@
     <Content Include="Library\JS\bk-main.js" />
     <Content Include="Library\JS\bootstrap\bootstrap.min.js" />
     <Content Include="Library\JS\datetimepicker.js" />
+    <Content Include="Library\JS\gmaps.js" />
     <Content Include="Library\JS\jquery-2.1.4.min.js" />
     <Content Include="Library\JS\moment.js" />
     <Content Include="Library\sliderengine\amazingslider-1.css" />
@@ -337,6 +339,10 @@
     <Content Include="Views\Admin\galleries.cshtml" />
     <Content Include="Views\Admin\gallery.cshtml" />
     <Content Include="Views\Public\Home\event.cshtml" />
+    <Content Include="Views\Admin\newgallery.cshtml" />
+    <Content Include="Views\Admin\editprices.cshtml" />
+    <Content Include="Views\Admin\locations.cshtml" />
+    <Content Include="Views\Admin\location.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

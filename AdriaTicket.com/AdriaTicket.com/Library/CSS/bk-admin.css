@@ -74,7 +74,9 @@ table {
     background-color : #23b5d3 !important;
     color : #fff;
 }
-
+#map {
+    height : 300px; 
+}
 #mceu_17 {
     margin-right : 15px;
 }
@@ -84,7 +86,13 @@ table {
     height : 40px;
     line-height : 40px;
 }
-.addEditEvent-container {
+.middle-row {
+    background-color : #8A989F !important;
+    color : #fff;
+    height : 40px;
+    line-height : 40px;
+}
+.addEditEvent-container, .galleries-container {
     border : 1px solid #23b5d3;
     border-radius : 5px;
     padding-bottom : 20px;
@@ -95,12 +103,22 @@ table {
     line-height : 20px !important;
     font-weight : 600 !important;
 }
-
+.admin-row a:hover {text-decoration:none;}
 .admin-row {
     margin-bottom : 25px;
 }
 .addeditevent-row {
     margin-bottom : 10px;
+}
+.admin-event-img-video {
+    text-align : center;
+}
+.admin-event-img-video iframe {
+   width : 80%;
+   height : 250px;
+}
+.admin-event-img-video img{
+    height : 150px; 
 }
 .text-center {
     text-align : center;
@@ -233,10 +251,14 @@ body {
 }
 
 /* END LOGIN */
-.image-container img {
-width:250px;
-height:250px;
+
+.databaseImages {
+    width:100%;
+    height:120px;
 }
-.image-container {
-float:left;
+
+.tempImages {
+    width:100%;
+    height:250px;
 }
+

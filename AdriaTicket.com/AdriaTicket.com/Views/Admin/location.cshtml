@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "CMS Adria Ticket - Lokacije";
+    ViewBag.Header = "CMS Adria Ticket - Lokacije";
+}
+
+
+<div ng-controller="AdminLocationController">
+
+     <form name="eventForm">
+        <fieldset>
+        <div class ="container addEditEvent-container">
+            <div class ="row admin-row header-row">
+                <div class ="col-sm-12">
+                    {{location.PMW_Naziv}}
+                </div>
+            </div>
+            <div class ="row admin-row">
+             <div class ="col-xs-12 col-sm-12">
+                    <a href ="/admin/locations">
+                      <button class="form-control btn btn-warning" type="button">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        Odustani
+                      </button>
+                  </a>
+                </div>
+             </div>
+            <div class ="row admin-row">
+            <div class ="col-xs-12 col-sm-4">
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="nazivPM" class="control-label col-xs-12 col-sm-12 addeditlabel">Naziv</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="nazivPM" placeholder="Naziv prodajnog mjesta" ng-model="location.PMW_Naziv">
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="gradPM" class="control-label col-xs-12 col-sm-12 addeditlabel">Grad</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="gradPM" placeholder="Grad" ng-model="location.PMW_Grad">
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="adresaPm" class="control-label col-xs-12 col-sm-12 addeditlabel">Adresa</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="adresaPm" placeholder="Adresa" ng-model="location.PMW_Adresa">
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="Telefon" class="control-label col-xs-12 col-sm-12 addeditlabel">Telefon</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="TelefonPm" placeholder="Telefon" ng-model="location.PMW_Telefon">
+                    </div>
+                    </div>
+                </div>
+        </div>
+        <div class ="container">
+        <input type="text" id="lat" style ="display : none;" ng-model="location.BK_Lat">
+        <input type="text" id="lng" style ="display : none;" ng-model="location.BK_Lng">
+        <div id="map" class ="col-xs-12 col-sm-8"></div>
+              <script type="text/javascript">
+                  $(document).ready(function () {
+                      var latlng;
+                  
+                      //pocetna mapa se stvara u angularu
+
+                      $('#gradPM').blur(function (e) {
+                          e.preventDefault();
+                          GMaps.geocode({
+                              address: $('#gradPM').val().trim() + ", " + $('#adresaPm').val().trim(),
+                              callback: function (results, status) {
+                                  if (status == 'OK') {
+                                      latlng = results[0].geometry.location;
+                                      map.setCenter(latlng.lat(), latlng.lng());
+                                      map.addMarker({
+                                          lat: latlng.lat(),
+                                          lng: latlng.lng()
+                                      });
+                                      $('#lat').val(latlng.lat());
+                                      $('#lng').val(latlng.lng());
+                                      $('input').trigger('input');
+                                  }
+                              }
+                          });
+                         
+                      });
+
+                      $('#adresaPm').blur(function (e) {
+                          e.preventDefault();
+                          GMaps.geocode({
+                              address: $('#gradPM').val().trim() + ", " + $('#adresaPm').val().trim(),
+                              callback: function (results, status) {
+                                  if (status == 'OK') {
+                                      latlng = results[0].geometry.location;
+                                      map.setCenter(latlng.lat(), latlng.lng());
+                                      map.addMarker({
+                                          lat: latlng.lat(),
+                                          lng: latlng.lng()
+                                      });
+                                      $('#lat').val(latlng.lat());
+                                      $('#lng').val(latlng.lng());
+                                      $('input').trigger('input');
+                                  }
+                              }
+                          });
+                          
+                      });
+
+                  });
+    </script> 
+        </div>
+         </div>
+
+            <div class ="row">
+                <div class ="form-group col-xs-12 col-sm-12">
+                    <button type="submit" class="form-control btn btn-success" ng-disabled="disabledFlag" ng-click="save(location)">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        Spremi                         
+                    </button>
+                </div>
+            </div>
+        </div>    
+        </fieldset>
+    </form>
+</div>

@@ -78,9 +78,10 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
    
 
     $scope.$watch('files', function () {
-        if ($scope.files != null)
+        if (!angular.equals({}, $scope.files)) {
             $scope.event.EVE_ImagePath = $scope.files[0].name;
-        $scope.upload($scope.files);
+            $scope.upload($scope.files);
+        }
     });
     $scope.$watch('description', function () {
         $scope.event.EVE_Opis = $scope.description;
@@ -115,6 +116,10 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         image_advtab: true,
         height: "200px"
     };
+
+    $scope.deleteImage = function () {
+        $scope.event.EVE_ImagePath = "";
+    }
     $scope.save = function (event) {
         var temp = 'naziv=' + event.EVE_Naziv;
         if(event.EVE_Id != null)
@@ -126,21 +131,45 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         temp += '&DatumOdProdaja=' + event.EVE_DatumOdProdaja;
         temp += '&Organizator=' + event.ORG_Id;
         temp += '&PostotakProvizije=' + event.EVE_PostotakProvizije;
-        temp += '&Mjesto=' + event.EVE_MjestoId;
+        temp += '&Mjesto=' + event.MjestoId;
         temp += '&Dvorana=' + event.EVE_DvoranaId;
-        temp += '&Status=' + event.SEV_Id;
+        temp += '&Status=' + event.EVE_StatusEventaId;
         temp += '&PrikazNaWebu=' + event.EVE_PrikaziNaWebu;
         temp += '&VideoLink=' + event.videoLink;
-        temp += '&galleryId=' + event.galleryId;
+        temp += '&galleryId=' + event.ImageGalleriesID;
         $http({
             method: 'POST',
             url: '/admin/SaveEvent',
             data: temp,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).success(function (data) {
-                jQuery(location).attr('href', siteUrl + "admin/home");
+                jQuery(location).attr('href', siteUrl + "admin/events");
         }).error(function (msg) {
             alert(msg);
         });
     }
+}]);
+
+
+
+adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$location', function ($scope, $http,$location) {
+
+    var siteUrl = "http://localhost:32718/";
+    var id = $location.absUrl().split('/').pop();
+    if (parseInt(id)) {
+        $http.get('/admin/getEvent/' + id).success(function (data) {
+            $scope.event = data[0];
+            $http.get('/admin/getEventSectors/' + $scope.event.EVE_DvoranaId).success(function (temp) {
+                $scope.sectors = temp;
+
+            }).error(function () { alert('error inner sectors') });
+
+            $http.get('/admin/getEventPrices/' + id).success(function (temp) {
+                $scope.prices = temp;
+
+            }).error(function () { alert('error inner sectors') });
+        }).error(function () { alert('error event') });
+    }
+
+
 }]);

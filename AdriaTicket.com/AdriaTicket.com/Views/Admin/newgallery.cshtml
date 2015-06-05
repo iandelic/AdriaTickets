@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "CMS Adria Ticket - Galerije";
+    ViewBag.Header = "CMS Adria Ticket - Galerije";
+}
+
+<div ng-controller="addGalleryController">
+    <div class ="container galleries-container">
+        <form name="eventForm">
+        <fieldset>
+            <div class ="row admin-row header-row">
+                <div class ="col-sm-12">
+                    Nova fotogalerija
+                </div>
+            </div>
+            <div class ="row admin-row">
+                 <div class ="col-xs-12 col-sm-12">
+                        <a href ="/admin/galleries">
+                          <button class="form-control btn btn-warning" type="button">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            Odustani
+                          </button>
+                      </a>
+                </div>
+            </div>
+            <div class ="row admin-row">
+            <div class ="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <div class ="row addeditevent-row">
+                    <label for="nazivGalerije" class="control-label col-xs-12 col-sm-12 addeditlabel">Naziv fotogalerije</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="nazivGalerije" placeholder="Naziv fotogalerije" ng-model="gallery">
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class ="row">
+                <div class ="form-group col-xs-12 col-sm12">
+                    <button type="submit" class="form-control btn btn-success" ng-disabled="disabledFlag" ng-click="save()">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        Spremi galeriju                         
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+        </form>
+    </div>
+</div>

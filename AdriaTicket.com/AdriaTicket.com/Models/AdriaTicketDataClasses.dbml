@@ -38,6 +38,7 @@
       <Column Name="EVE_MaksimalniBrojKarata" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="EVE_PDVIznos" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
       <Association Name="LK_Event_BK_VideoGallery" Member="BK_VideoGalleries" ThisKey="EVE_Id" OtherKey="eventID" Type="BK_VideoGallery" />
+      <Association Name="LK_Event_LK_Cijena" Member="LK_Cijenas" ThisKey="EVE_Id" OtherKey="CIJ_EventId" Type="LK_Cijena" />
       <Association Name="LK_StatusEventa_LK_Event" Member="LK_StatusEventa" ThisKey="EVE_StatusEventaId" OtherKey="SEV_Id" Type="LK_StatusEventa" IsForeignKey="true" />
       <Association Name="LK_Organizator_LK_Event" Member="LK_Organizator" ThisKey="EVE_OrganizatorId" OtherKey="ORG_Id" Type="LK_Organizator" IsForeignKey="true" />
       <Association Name="LK_LayoutDvorana_LK_Event" Member="LK_LayoutDvorana" ThisKey="EVE_LayoutId" OtherKey="LDV_Id" Type="LK_LayoutDvorana" IsForeignKey="true" />
@@ -162,6 +163,44 @@
       <Column Name="videoLink" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="eventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="LK_Event_BK_VideoGallery" Member="LK_Event" ThisKey="eventID" OtherKey="EVE_Id" Type="LK_Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_Cijena" Member="LK_Cijenas">
+    <Type Name="LK_Cijena">
+      <Column Name="CIJ_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CIJ_SektorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CIJ_EventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CIJ_IznosPretprodaja" Type="System.Decimal" DbType="Decimal(9,2) NOT NULL" CanBeNull="false" />
+      <Column Name="CIJ_IznosProdaja" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="CIJ_IznosNaDan" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Column Name="CIJ_IznosPopusta" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
+      <Association Name="LK_Event_LK_Cijena" Member="LK_Event" ThisKey="CIJ_EventId" OtherKey="EVE_Id" Type="LK_Event" IsForeignKey="true" />
+      <Association Name="LK_Sektor_LK_Cijena" Member="LK_Sektor" ThisKey="CIJ_SektorId" OtherKey="SEK_Id" Type="LK_Sektor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_Sektor" Member="LK_Sektors">
+    <Type Name="LK_Sektor">
+      <Column Name="SEK_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SEK_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SEK_DvoranaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SEK_FlagSjedenje" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SEK_Kapacitet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SEK_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SEK_Stanje" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="SEK_NazivTop" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEK_NazivLeft" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LK_Sektor_LK_Cijena" Member="LK_Cijenas" ThisKey="SEK_Id" OtherKey="CIJ_SektorId" Type="LK_Cijena" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LK_ProdajnoMjestoWeb" Member="LK_ProdajnoMjestoWebs">
+    <Type Name="LK_ProdajnoMjestoWeb">
+      <Column Name="PMW_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PMW_Grad" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PMW_Naziv" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PMW_Adresa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PMW_Telefon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BK_Lng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BK_Lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

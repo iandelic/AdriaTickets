@@ -111,7 +111,10 @@ namespace AdriaTicket.com.Controllers
         {
             return View();
         }
-
+        public ActionResult Locations()
+        {
+            return View();
+        }
         [Authorize]
         public ActionResult Event()
         {
@@ -119,16 +122,100 @@ namespace AdriaTicket.com.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult NewGallery()
+        {
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Location()
+        {
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult getLocation(int id)
+        {
+            var location = from s in AdriaTicketData.LK_ProdajnoMjestoWebs
+                          where s.PMW_Id == id
+                          select new
+                          {
+                              s.PMW_Id,
+                              s.PMW_Grad,
+                              s.PMW_Adresa,
+                              s.PMW_Naziv,
+                              s.PMW_Telefon,
+                              s.BK_Lat,
+                              s.BK_Lng
+                          };
+
+            return Json(location, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult saveLocation(int Id,string Adresa, string Mjesto, string Telefon, string Naziv, string Lng, string Lat)
+        {
+            if (Id > 0)
+            {
+                LK_ProdajnoMjestoWeb pm = AdriaTicketData.LK_ProdajnoMjestoWebs.FirstOrDefault(x => x.PMW_Id == Id);
+                pm.PMW_Adresa = Adresa;
+                pm.PMW_Naziv = Naziv;
+                pm.PMW_Grad = Mjesto;
+                pm.PMW_Telefon = Telefon;
+                pm.BK_Lat = Lat;
+                pm.BK_Lng = Lng;
+            }
+            else
+            {
+                LK_ProdajnoMjestoWeb pm = new LK_ProdajnoMjestoWeb();
+                pm.PMW_Adresa = Adresa;
+                pm.PMW_Naziv = Naziv;
+                pm.PMW_Grad = Mjesto;
+                pm.PMW_Telefon = Telefon;
+                pm.BK_Lng = Lng;
+                pm.BK_Lat = Lat;
+                AdriaTicketData.LK_ProdajnoMjestoWebs.InsertOnSubmit(pm);
+            }
+
+
+            AdriaTicketData.SubmitChanges();
+            
+            return Json("completed", JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult getEvent(int id)
         {
-            var ev = from Event in AdriaTicketData.LK_Events join statusEventa in AdriaTicketData.LK_StatusEventas on Event.EVE_StatusEventaId equals statusEventa.SEV_Id 
-                     join organizator in AdriaTicketData.LK_Organizators on Event.EVE_OrganizatorId equals organizator.ORG_Id
-                     join video in AdriaTicketData.BK_VideoGalleries on Event.EVE_Id equals video.eventID
-                     join gallery in AdriaTicketData.BK_REL_Event_ImageGalleries on Event.EVE_Id equals gallery.EventId
-                     where Event.EVE_Id == id 
-                     select new { Event.EVE_Naziv, Event.EVE_Id,Event.EVE_Opis, Event.EVE_ImagePath, Event.EVE_ImageSmallPath, Event.EVE_Datum, Event.EVE_DatumOdProdaja, Event.EVE_DatumOdPretprodaja,
-                         Event.EVE_PostotakProvizije, Event.EVE_DvoranaId, organizator.ORG_Naziv,organizator.ORG_Id, statusEventa.SEV_Stanje, statusEventa.SEV_Id,Event.EVE_PrikaziNaWebu,
-                         Event.EVE_MjestoId, video.videoLink ,gallery.ImageGalleriesId };
+            var ev = from EVE in AdriaTicketData.LK_Events
+                     from statusEventa in AdriaTicketData.LK_StatusEventas.Where(x => x.SEV_Id == EVE.EVE_StatusEventaId).DefaultIfEmpty()
+                     from organizator in AdriaTicketData.LK_Organizators.Where(o => o.ORG_Id == EVE.EVE_OrganizatorId).DefaultIfEmpty()
+                     from video in AdriaTicketData.BK_VideoGalleries.Where(v=> v.eventID == EVE.EVE_Id).DefaultIfEmpty() 
+                     from gallery in AdriaTicketData.BK_REL_Event_ImageGalleries.Where(g=> g.EventId == EVE.EVE_Id).DefaultIfEmpty()
+                     where EVE.EVE_Id == id
+                     select new
+                     {
+                         EVE.EVE_Naziv,
+                         EVE.EVE_Id,
+                         EVE.EVE_Opis,
+                         EVE.EVE_ImagePath,
+                         EVE.EVE_ImageSmallPath,
+                         EVE.EVE_Datum,
+                         EVE.EVE_DatumOdProdaja,
+                         EVE.EVE_DatumOdPretprodaja,
+                         EVE.EVE_PostotakProvizije,
+                         EVE.EVE_DvoranaId,
+                         organizator.ORG_Naziv,
+                         organizator.ORG_Id,
+                         SEV_Stanje = statusEventa.SEV_Stanje== null ? '0' : statusEventa.SEV_Stanje,
+                         EVE_StatusEventaId = EVE.EVE_StatusEventaId == null ? 0 : EVE.EVE_StatusEventaId,
+                         EVE.EVE_PrikaziNaWebu,
+                         MjestoId = EVE.EVE_MjestoId == null ? 0 : EVE.EVE_MjestoId,
+                         videoLink = video.videoLink == null ? "" : video.videoLink,
+                         ImageGalleriesID = gallery.ImageGalleriesId == null ? 0 : gallery.ImageGalleriesId
+                     };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
 
@@ -137,6 +224,45 @@ namespace AdriaTicket.com.Controllers
             var events = from e in AdriaTicketData.LK_Events where e.EVE_Datum > DateTime.Now.AddMonths(-2) orderby e.EVE_Datum descending select new { e.EVE_Id, e.EVE_Datum, e.EVE_Opis, e.EVE_Naziv };
 
             return Json(events, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult getEventSectors(int id)
+        {
+            var sectors = from s in AdriaTicketData.LK_Sektors
+                          from d in AdriaTicketData.LK_Dvoranas.Where(x=> x.DVO_Id == id)
+                          where s.SEK_DvoranaId == id
+                          select new
+                          {
+                              s.SEK_Id,
+                              s.SEK_Kapacitet,
+                              s.SEK_Naziv,
+                              d.DVO_Naziv
+                          };
+
+            return Json(sectors, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult getEventPrices(int id)
+        {
+            var sectors = from s in AdriaTicketData.LK_Cijenas
+                          where s.CIJ_EventId == id
+                          select new
+                          {
+                              s.CIJ_EventId,
+                              s.CIJ_Id,
+                              s.CIJ_IznosNaDan,
+                              s.CIJ_IznosPopusta,
+                              s.CIJ_IznosPretprodaja,
+                              s.CIJ_IznosProdaja,
+                              s.CIJ_SektorId
+                          };
+
+            return Json(sectors, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult editPrices(int id)
+        {
+            return View();
         }
 
         [HttpPost]
@@ -248,6 +374,17 @@ namespace AdriaTicket.com.Controllers
                 AdriaTicketData.BK_Images.InsertOnSubmit(i);
             }
             
+            AdriaTicketData.SubmitChanges();
+            return Json("inserted", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveGallery(string gallery)
+        {
+            BK_ImageGallery g = new BK_ImageGallery();
+            g.NazivGalerije = gallery;
+            AdriaTicketData.BK_ImageGalleries.InsertOnSubmit(g);
             AdriaTicketData.SubmitChanges();
             return Json("inserted", JsonRequestBehavior.AllowGet);
         }
