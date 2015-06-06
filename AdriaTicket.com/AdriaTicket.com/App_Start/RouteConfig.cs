@@ -12,38 +12,7 @@ namespace AdriaTicket.com
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Public", action = "Index"}
-            );
-
-            routes.MapRoute(
-                name: "Admin-Prijava",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Admin", action = "Index"}
-            );
-            routes.MapRoute(
-             name: "Admin-Eventinsert",
-             url: "{controller}/{action}",
-             defaults: new { controller = "Admin", action = "SaveEvent"}
-         );
-            routes.MapRoute(
-               name: "Admin-Home",
-               url: "{controller}/{action}",
-               defaults: new { controller = "Admin", action = "Home" }
-           );
-            routes.MapRoute(
-              name: "Admin-Events-edit prices",
-              url: "{controller}/{action}/{id}",
-              defaults: new { controller = "Admin", action = "getEventSectors", id = 1 }
-          );
-            routes.MapRoute(
-               name: "Admin-Events-get",
-               url: "{controller}/{action}/{id}",
-               defaults: new { controller = "Admin", action = "GetEvents"}
-           );
+            routes.LowercaseUrls = true;
 
 
             routes.MapRoute(
@@ -56,6 +25,34 @@ namespace AdriaTicket.com
                url: "{controller}/galleries/{action}/{id}",
                defaults: new { controller = "Admin", action = "Edit" }
            );
+            routes.MapRoute(
+                name: "Admin",
+                url: "Admin/{action}",
+                defaults: new { controller = "Admin", action = "Index" }
+            );
+            routes.MapRoute(
+                name: "Data",
+                url: "Data/{action}",
+                defaults: new { controller = "Data", action = "GetGalleries" }
+            );
+            routes.MapRoute(
+               name: "Event",
+               url: "Event/{id}",
+               defaults: new { controller = "Public", action = "Event" }
+            );
+            routes.MapRoute(
+                name: "Default",
+                url: "{Controller}/{action}",
+                defaults: new { controller = "Public", action = "Index" }
+            );
+
+            routes.MapRoute(
+               name: "default-with-id",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Admin", action = "Events" }
+           );
+
+
 
         }
     }
