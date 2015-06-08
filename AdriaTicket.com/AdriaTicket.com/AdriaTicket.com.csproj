@@ -343,6 +343,9 @@
     <Content Include="Views\Admin\editprices.cshtml" />
     <Content Include="Views\Admin\locations.cshtml" />
     <Content Include="Views\Admin\location.cshtml" />
+    <Content Include="Views\Public\Home\events.cshtml" />
+    <Content Include="Views\Public\Home\locations.cshtml" />
+    <Content Include="Views\Public\Home\contact.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

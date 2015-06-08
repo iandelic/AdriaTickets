@@ -36,6 +36,11 @@ namespace AdriaTicket.com
                 defaults: new { controller = "Data", action = "GetGalleries" }
             );
             routes.MapRoute(
+               name: "Public",
+               url: "{action}",
+               defaults: new { controller = "Public", action = "Index" }
+            );
+            routes.MapRoute(
                name: "Event",
                url: "Event/{id}",
                defaults: new { controller = "Public", action = "Event" }
