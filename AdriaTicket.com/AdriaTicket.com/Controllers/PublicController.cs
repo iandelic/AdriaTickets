@@ -28,6 +28,19 @@ namespace AdriaTicket.com.Controllers
             return View("Home/Event");
         }
 
+        public ActionResult Events()
+        {
+            return View("Home/Events");
+        }
+
+        public ActionResult Contact()
+        {
+            return View("Home/Contact");
+        }
+        public ActionResult Locations()
+        {
+            return View("Home/Locations");
+        }
         public ActionResult getEvent(int id)
         {
             var ev = from Event in AdriaTicketData.LK_Events

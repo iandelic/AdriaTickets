@@ -31,3 +31,23 @@ adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement'
 
 
 }]);
+
+
+
+adriaTicket.controller('allEventsPublicController', ['$scope', '$location', '$rootElement', '$http', '$sce', function ($scope, $location, $rootElement, $http, $sce) {
+
+    var siteUrl = "http://localhost:32718/";
+    $http.get('/public/getEvents').success(function (data) {
+        $scope.events = data;
+        angular.forEach($scope.events, function (event) {
+            event.vrijeme = moment(event.EVE_Datum).format('HH:mm');
+            event.EVE_Opis = $("<div/>").html(event.EVE_Opis).text();
+            event.EVE_Datum = moment(event.EVE_Datum).format('DD.MM.YYYY');
+        });
+    }).error(function () { alert('error') });
+
+    $scope.search = $scope.$parent.search;
+
+
+
+}]);
