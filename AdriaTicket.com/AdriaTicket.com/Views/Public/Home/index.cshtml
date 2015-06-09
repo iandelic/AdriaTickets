@@ -31,9 +31,13 @@
                 <a href={{"/event/"+event.EVE_Id}}>
                     <img src="/Library/img/colonia-testna-slika.jpg" class="thumbnail" />
                     <div class="event-content">
-                        <h3>{{event.EVE_Naziv}} </h3>
-                        <p> {{event.EVE_Datum}} </p>
-                        <p> {{event.vrijeme}} </p>
+                        <div class="row">
+                            <div class="col-md-3 vrijeme">
+                                <p> {{event.EVE_Datum}} </p>
+                                <p> {{event.vrijeme}} </p>
+                            </div>
+                            <h3 class="col-md-9">{{event.EVE_Naziv}} </h3>
+                        </div>
                     </div>
                 </a>
             </div>

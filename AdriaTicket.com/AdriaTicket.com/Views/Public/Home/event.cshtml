@@ -5,23 +5,21 @@
         </div>
         <div class="col-md-6 row">
             <h2 class="col-md-12">{{event.EVE_Naziv}}</h2>
-            <div class="col-md-6">
-                <div class="subitem">
-                    <p class="minititle">MJESTO</p>
+            <div class="col-md-3">
+                <div class="subitem vrijeme">
+                    <p class="minititle"> </p>
+                    <ul>
+                        <li>{{event.EVE_Datum}}</li>
+                        <li>{{event.EVE_Vrijeme}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
                     <ul>
                         <li>{{event.DVO_Naziv}}</li>
                         <li>{{event.MJE_ZIP}}, {{event.MJE_Naziv}}</li>
                         <li>{{event.DRZ_Naziv}}</li>
                     </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="subitem vrijeme">
-                    <p class="minititle">VRIJEME</p>
-                    <ul>
-                        <li>{{event.EVE_Datum}}</li>
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="col-md-3 vcenter">

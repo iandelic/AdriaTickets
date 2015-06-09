@@ -7,7 +7,7 @@ adriaTicket.controller('HomeController', ['$scope', '$http', function ($scope, $
         angular.forEach($scope.events, function (event) {
             event.vrijeme = moment(event.EVE_Datum).format('HH:mm');
             event.EVE_Opis = $("<div/>").html(event.EVE_Opis).text();
-            event.EVE_Datum = moment(event.EVE_Datum).format('DD.MM.YYYY');
+            event.EVE_Datum = moment(event.EVE_Datum).format('DD.MM');
         });
     }).error(function () { alert('error') });
 
