@@ -214,6 +214,7 @@
     <Content Include="Library\CSS\bootstrap\font-awesome.min.css" />
     <Content Include="Library\CSS\textAngular.css" />
     <Content Include="Library\img\AdriaTicket-logo-white.png" />
+    <Content Include="Library\img\carousel-bg.jpg" />
     <Content Include="Library\img\dino-merlin.jpg" />
     <Content Include="Library\img\logo.svg" />
     <Content Include="Library\img\social-fb.jpg" />

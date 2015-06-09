@@ -1,18 +1,27 @@
 ﻿@{
     ViewBag.Title = "events";
 }
-
-<div ng-controller="allEventsPublicController">
-    <div class="row">
+<div id="main-content" class="container all-events">
+    <div ng-controller="allEventsPublicController">
+        <div class="row">
             <div ng-repeat="event in events | filter:$parent.search" class="col-md-4 col-sm-6 one-event">
                 <a href={{"/event/"+event.EVE_Id}}>
                     <img src="/Library/img/colonia-testna-slika.jpg" class="thumbnail" />
                     <div class="event-content">
                         <h3>{{event.EVE_Naziv}} </h3>
-                        <p> {{event.EVE_Datum}} </p>
-                        <p> {{event.vrijeme}} </p>
+                        <div class="row">
+                            <div class="col-md-3 vrijeme">
+                                <p class="minititle"> </p>
+                                <p> {{event.EVE_Datum}} </p>
+                                <p> {{event.vrijeme}} </p>
+                            </div>
+                            <div class="col-md-9 mjesto">
+                                <p> LOKACIJA {{event.lokacija}}</p>
+                            </div>
+                        </div>
                     </div>
                 </a>
             </div>
         </div>
+    </div>
 </div>
