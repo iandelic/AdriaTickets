@@ -27,7 +27,9 @@ adriaTicket.controller('LocationsController', ['$scope', '$http', function ($sco
 }]);
 
 
-adriaTicket.controller('mainController', ['$scope', '$http', function ($scope, $http) {
-
+adriaTicket.controller('mainController', ['$scope', '$http','Page', function ($scope, $http,Page) {
     $scope.search = "";
+    $scope.Page = Page;
+    Page.setTitle('Adria Tickets');
 }]);
+

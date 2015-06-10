@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="adriaticket" ng-controller ="mainController">
 <head>
+    
+    <title>{{ Page.title() }}</title>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>
     
     <!-- fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -35,8 +36,8 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
 </head>
-<body ng-app="adriaticket">
-    <div id ="page-container" ng-controller ="mainController">
+<body>
+    <div id ="page-container">
         <div id="header">
             @Html.Partial("Public/Header")
         </div>
