@@ -6,7 +6,7 @@ adriaTicket.config(['$httpProvider', function ($httpProvider) {
 
 
 
-var adriaTicketAdmin = angular.module('adriaticketadmin', ['ui.bootstrap.datetimepicker', 'ui.tinymce', 'ngFileUpload','youtube-embed']);
+var adriaTicketAdmin = angular.module('adriaticketadmin', ['ui.bootstrap.datetimepicker', 'ui.tinymce', 'ngFileUpload', 'youtube-embed', 'datatables']);
 
 adriaTicketAdmin.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';

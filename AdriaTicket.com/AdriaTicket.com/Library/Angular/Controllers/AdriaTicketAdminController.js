@@ -124,3 +124,26 @@ adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$loca
         });
     }
 }]);
+
+
+adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'DTOptionsBuilder', 'DTColumnBuilder', '$q', function ($scope, $http, DTOptionsBuilder, DTColumnBuilder, $q) {
+
+    var siteUrl = "http://localhost:32718/";
+        $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function () {
+            var deferred = $q.defer();
+            $http.get('/data/GetAllTowns')
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
+        }).withPaginationType('full_numbers');
+
+        $scope.dtColumns = [
+            DTColumnBuilder.newColumn('MJE_Id').withTitle('ID'),
+            DTColumnBuilder.newColumn('MJE_Naziv').withTitle('naziv'),
+            DTColumnBuilder.newColumn(null).withTitle('Prikaz').renderWith(function (data) {
+                //data.MJE_Id
+                return '<select><option>DA</option><option>NE</option></select>';
+            })
+        ];
+}]);

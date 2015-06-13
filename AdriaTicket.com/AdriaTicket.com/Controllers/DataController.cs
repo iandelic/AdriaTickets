@@ -14,6 +14,12 @@ namespace AdriaTicket.com.Controllers
 
         AdriaTicketDataClassesDataContext AdriaTicketData = new AdriaTicketDataClassesDataContext();
 
+        public ActionResult GetAllTowns()
+        {
+            var towns = from t in AdriaTicketData.LK_Mjestos select new { t.MJE_Id, t.MJE_Naziv };
+            return Json(towns, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult GetEventStatuses()
         {
             var status = from stat in AdriaTicketData.LK_StatusEventas select new { stat.SEV_Id, stat.SEV_Naziv };

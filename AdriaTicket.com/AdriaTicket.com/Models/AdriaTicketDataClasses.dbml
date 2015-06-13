@@ -203,4 +203,10 @@
       <Column Name="BK_Lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="prstacpr_prodaja.BK_TownsForWeb" Member="BK_TownsForWebs">
+    <Type Name="BK_TownsForWeb">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TownId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

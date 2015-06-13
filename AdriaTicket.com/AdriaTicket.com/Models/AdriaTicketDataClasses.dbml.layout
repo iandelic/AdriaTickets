@@ -92,7 +92,7 @@
         <classShapeMoniker Id="6131b47d-0e2f-4aaf-8a83-00954e99a8f5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 3.868752); (3.125 : 3.868752); (3.125 : 6.55922688802083); (6.125 : 6.55922688802083); (6.125 : 3.825); (8 : 3.825); (8 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.5 : 3.868752); (3.125 : 3.868752); (3.125 : 6.55922688802083); (4.22916666666667 : 6.55922688802083 : JumpStart); (4.39583333333333 : 6.55922688802083 : JumpEnd); (6.125 : 6.55922688802083); (6.125 : 3.825); (8 : 3.825); (8 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AdriaTicketDataClassesDataContext/LK_Mjesto/LK_Mjesto_LK_Dvorana" />
       <nodes>
         <classShapeMoniker Id="556f4331-cf9e-4cf0-adac-7f1621296d3a" />
@@ -187,6 +187,12 @@
       <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/LK_ProdajnoMjestoWeb" />
       <nestedChildShapes>
         <elementListCompartment Id="8b1a9f5c-9b6b-46aa-8099-383a31fb563f" absoluteBounds="14.89, 6.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c16b39b3-051a-4073-af5d-0d106c8e2989" absoluteBounds="12.5, 7.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/AdriaTicketDataClassesDataContext/BK_TownsForWeb" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7da37713-5514-4881-9059-e8dacfe24df7" absoluteBounds="12.515, 8.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
