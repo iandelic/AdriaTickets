@@ -54,7 +54,7 @@ namespace AdriaTicket.com
             routes.MapRoute(
                name: "default-with-id",
                url: "{controller}/{action}/{id}",
-               defaults: new { controller = "Admin", action = "Events" }
+               defaults: new { controller = "Admin", action = "Events", id=UrlParameter.Optional }
            );
 
 

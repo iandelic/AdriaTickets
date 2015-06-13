@@ -221,13 +221,19 @@
     <Content Include="Library\img\social-tw.jpg" />
     <Content Include="Library\img\sustipanska-noc.jpg" />
     <Content Include="Library\img\talking-heads.jpg" />
+    <Content Include="Library\JS\datatables\angular-datatables.js" />
     <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
     <Content Include="Library\JS\bootstrap\bootstrap.min.js" />
+    <Content Include="Library\JS\datatables\jquery.dataTables.min.css" />
+    <Content Include="Library\JS\datatables\jquery.dataTables.min.js" />
+    <Content Include="Library\JS\datatables\jquery.dataTables_themeroller.css" />
     <Content Include="Library\JS\datetimepicker.js" />
     <Content Include="Library\JS\gmaps.js" />
     <Content Include="Library\JS\jquery-2.1.4.min.js" />
     <Content Include="Library\JS\moment.js" />
+    <Content Include="Library\select\select.min.css" />
+    <Content Include="Library\select\select.min.js" />
     <Content Include="Library\sliderengine\amazingslider-1.css" />
     <Content Include="Library\sliderengine\amazingslider.js" />
     <Content Include="Library\sliderengine\arrows-32-32-0.png" />
@@ -347,6 +353,7 @@
     <Content Include="Views\Public\Home\events.cshtml" />
     <Content Include="Views\Public\Home\locations.cshtml" />
     <Content Include="Views\Public\Home\contact.cshtml" />
+    <Content Include="Views\Admin\townsForWeb.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -6,7 +6,7 @@ adriaTicket.config(['$httpProvider', function ($httpProvider) {
 
 
 
-var adriaTicketAdmin = angular.module('adriaticketadmin', ['ui.bootstrap.datetimepicker', 'ui.tinymce', 'ngFileUpload','youtube-embed']);
+var adriaTicketAdmin = angular.module('adriaticketadmin', ['ui.bootstrap.datetimepicker', 'ui.tinymce', 'ngFileUpload', 'youtube-embed', 'datatables', 'ui.select']);
 
 adriaTicketAdmin.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -76,4 +76,8 @@ adriaTicket.factory('Page', function () {
         title: function () { return title; },
         setTitle: function (newTitle) { title = newTitle }
     };
+});
+
+adriaTicketAdmin.config(function (uiSelectConfig) {
+    uiSelectConfig.theme = 'bootstrap';
 });

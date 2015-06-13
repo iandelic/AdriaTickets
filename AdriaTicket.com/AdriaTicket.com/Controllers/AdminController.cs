@@ -428,7 +428,24 @@ namespace AdriaTicket.com.Controllers
             BK_Image i = AdriaTicketData.BK_Images.FirstOrDefault(x => x.Id == id);
             AdriaTicketData.BK_Images.DeleteOnSubmit(i);
             AdriaTicketData.SubmitChanges();
-            return Json("inserted", JsonRequestBehavior.AllowGet);
+            return Json("deleted", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public ActionResult EventTowns()
+        {
+            return View("TownsForWeb");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveTown(int id)
+        {
+            BK_TownsForWeb town = new BK_TownsForWeb();
+            town.TownId = id;
+            AdriaTicketData.BK_TownsForWebs.InsertOnSubmit(town);
+            AdriaTicketData.SubmitChanges();
+            return Json("town inserted", JsonRequestBehavior.AllowGet);
         }
 
     }
