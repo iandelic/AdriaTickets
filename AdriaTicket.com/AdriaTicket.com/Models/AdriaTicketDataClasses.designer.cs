@@ -2653,6 +2653,8 @@ namespace AdriaTicket.com.Models
 		
 		private EntitySet<LK_Dvorana> _LK_Dvoranas;
 		
+		private EntitySet<BK_TownsForWeb> _BK_TownsForWebs;
+		
 		private EntityRef<LK_Drzava> _LK_Drzava;
 		
     #region Extensibility Method Definitions
@@ -2677,6 +2679,7 @@ namespace AdriaTicket.com.Models
 		{
 			this._LK_Events = new EntitySet<LK_Event>(new Action<LK_Event>(this.attach_LK_Events), new Action<LK_Event>(this.detach_LK_Events));
 			this._LK_Dvoranas = new EntitySet<LK_Dvorana>(new Action<LK_Dvorana>(this.attach_LK_Dvoranas), new Action<LK_Dvorana>(this.detach_LK_Dvoranas));
+			this._BK_TownsForWebs = new EntitySet<BK_TownsForWeb>(new Action<BK_TownsForWeb>(this.attach_BK_TownsForWebs), new Action<BK_TownsForWeb>(this.detach_BK_TownsForWebs));
 			this._LK_Drzava = default(EntityRef<LK_Drzava>);
 			OnCreated();
 		}
@@ -2831,6 +2834,19 @@ namespace AdriaTicket.com.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_BK_TownsForWeb", Storage="_BK_TownsForWebs", ThisKey="MJE_Id", OtherKey="TownId")]
+		public EntitySet<BK_TownsForWeb> BK_TownsForWebs
+		{
+			get
+			{
+				return this._BK_TownsForWebs;
+			}
+			set
+			{
+				this._BK_TownsForWebs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Drzava_LK_Mjesto", Storage="_LK_Drzava", ThisKey="MJE_DrzavaId", OtherKey="DRZ_Id", IsForeignKey=true)]
 		public LK_Drzava LK_Drzava
 		{
@@ -2904,6 +2920,18 @@ namespace AdriaTicket.com.Models
 		}
 		
 		private void detach_LK_Dvoranas(LK_Dvorana entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = null;
+		}
+		
+		private void attach_BK_TownsForWebs(BK_TownsForWeb entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Mjesto = this;
+		}
+		
+		private void detach_BK_TownsForWebs(BK_TownsForWeb entity)
 		{
 			this.SendPropertyChanging();
 			entity.LK_Mjesto = null;
@@ -4481,6 +4509,8 @@ namespace AdriaTicket.com.Models
 		
 		private int _TownId;
 		
+		private EntityRef<LK_Mjesto> _LK_Mjesto;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4493,10 +4523,11 @@ namespace AdriaTicket.com.Models
 		
 		public BK_TownsForWeb()
 		{
+			this._LK_Mjesto = default(EntityRef<LK_Mjesto>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -4527,11 +4558,49 @@ namespace AdriaTicket.com.Models
 			{
 				if ((this._TownId != value))
 				{
+					if (this._LK_Mjesto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnTownIdChanging(value);
 					this.SendPropertyChanging();
 					this._TownId = value;
 					this.SendPropertyChanged("TownId");
 					this.OnTownIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Mjesto_BK_TownsForWeb", Storage="_LK_Mjesto", ThisKey="TownId", OtherKey="MJE_Id", IsForeignKey=true)]
+		public LK_Mjesto LK_Mjesto
+		{
+			get
+			{
+				return this._LK_Mjesto.Entity;
+			}
+			set
+			{
+				LK_Mjesto previousValue = this._LK_Mjesto.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Mjesto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Mjesto.Entity = null;
+						previousValue.BK_TownsForWebs.Remove(this);
+					}
+					this._LK_Mjesto.Entity = value;
+					if ((value != null))
+					{
+						value.BK_TownsForWebs.Add(this);
+						this._TownId = value.MJE_Id;
+					}
+					else
+					{
+						this._TownId = default(int);
+					}
+					this.SendPropertyChanged("LK_Mjesto");
 				}
 			}
 		}

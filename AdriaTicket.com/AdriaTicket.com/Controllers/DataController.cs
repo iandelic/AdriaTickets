@@ -16,7 +16,8 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult GetAllTowns()
         {
-            var towns = from t in AdriaTicketData.LK_Mjestos select new { t.MJE_Id, t.MJE_Naziv };
+            var gradovi = from g in AdriaTicketData.BK_TownsForWebs select g.TownId;
+            var towns = from t in AdriaTicketData.LK_Mjestos.Where(x => !gradovi.Contains(x.MJE_Id) ) select new { t.MJE_Id, t.MJE_Naziv, t.MJE_ZIP };
             return Json(towns, JsonRequestBehavior.AllowGet);
         }
 
@@ -40,8 +41,11 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult GetEventTowns()
         {
-            var status = (from t in AdriaTicketData.LK_Mjestos select new { t.MJE_Id, t.MJE_Naziv }).Take(100);
-            return Json(status, JsonRequestBehavior.AllowGet);
+
+            var gradovi = from g in AdriaTicketData.BK_TownsForWebs select g.TownId;
+            var rezultat = from t in AdriaTicketData.LK_Mjestos where gradovi.Contains(t.MJE_Id) select new { t.MJE_Id, t.MJE_Naziv, t.MJE_ZIP };
+
+            return Json(rezultat, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]

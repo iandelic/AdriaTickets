@@ -437,5 +437,16 @@ namespace AdriaTicket.com.Controllers
             return View("TownsForWeb");
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveTown(int id)
+        {
+            BK_TownsForWeb town = new BK_TownsForWeb();
+            town.TownId = id;
+            AdriaTicketData.BK_TownsForWebs.InsertOnSubmit(town);
+            AdriaTicketData.SubmitChanges();
+            return Json("town inserted", JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

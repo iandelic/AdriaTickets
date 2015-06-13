@@ -120,6 +120,7 @@
       <Column Name="MJE_Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="LK_Mjesto_LK_Event" Member="LK_Events" ThisKey="MJE_Id" OtherKey="EVE_MjestoId" Type="LK_Event" />
       <Association Name="LK_Mjesto_LK_Dvorana" Member="LK_Dvoranas" ThisKey="MJE_Id" OtherKey="DVO_MjestoId" Type="LK_Dvorana" />
+      <Association Name="LK_Mjesto_BK_TownsForWeb" Member="BK_TownsForWebs" ThisKey="MJE_Id" OtherKey="TownId" Type="BK_TownsForWeb" />
       <Association Name="LK_Drzava_LK_Mjesto" Member="LK_Drzava" ThisKey="MJE_DrzavaId" OtherKey="DRZ_Id" Type="LK_Drzava" IsForeignKey="true" />
     </Type>
   </Table>
@@ -205,8 +206,9 @@
   </Table>
   <Table Name="prstacpr_prodaja.BK_TownsForWeb" Member="BK_TownsForWebs">
     <Type Name="BK_TownsForWeb">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TownId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="LK_Mjesto_BK_TownsForWeb" Member="LK_Mjesto" ThisKey="TownId" OtherKey="MJE_Id" Type="LK_Mjesto" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

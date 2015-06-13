@@ -232,6 +232,8 @@
     <Content Include="Library\JS\gmaps.js" />
     <Content Include="Library\JS\jquery-2.1.4.min.js" />
     <Content Include="Library\JS\moment.js" />
+    <Content Include="Library\select\select.min.css" />
+    <Content Include="Library\select\select.min.js" />
     <Content Include="Library\sliderengine\amazingslider-1.css" />
     <Content Include="Library\sliderengine\amazingslider.js" />
     <Content Include="Library\sliderengine\arrows-32-32-0.png" />

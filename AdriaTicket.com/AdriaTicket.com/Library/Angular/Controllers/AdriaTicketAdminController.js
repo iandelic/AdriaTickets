@@ -110,7 +110,6 @@ adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$loca
             temp += '&Id=' + Location.PMW_Id;
         else
             temp += '&Id=0';
-        console.log(temp)
         $http({
             method: 'POST',
             url: '/admin/saveLocation',
@@ -126,9 +125,24 @@ adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$loca
 }]);
 
 
-adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'DTOptionsBuilder', 'DTColumnBuilder', '$q', function ($scope, $http, DTOptionsBuilder, DTColumnBuilder, $q) {
+adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'DTOptionsBuilder', 'DTColumnBuilder', '$q', '$compile', function ($scope, $http, DTOptionsBuilder, DTColumnBuilder, $q, $compile) {
 
     var siteUrl = "http://localhost:32718/";
+    $scope.dodajGrad = function (id) {
+        var temp = 'id=' + id;
+        
+        $http({
+            method: 'POST',
+            url: '/admin/SaveTown',
+            data: temp,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function () {
+            jQuery(location).attr('href', siteUrl + "admin/eventtowns");
+
+        }).error(function () {
+
+        });
+    }
         $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function () {
             var deferred = $q.defer();
             $http.get('/data/GetAllTowns')
@@ -137,13 +151,18 @@ adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'D
             }).error(deferred.reject);
             return deferred.promise;
         }).withPaginationType('full_numbers');
-
+        $scope.dtOptions.fnCreatedRow = function (nRow, aData, iDataIndex) {
+            $compile(nRow)($scope);
+        }
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('MJE_Id').withTitle('ID'),
-            DTColumnBuilder.newColumn('MJE_Naziv').withTitle('naziv'),
+            DTColumnBuilder.newColumn('MJE_Id').withTitle('Id'),
+            DTColumnBuilder.newColumn('MJE_Naziv').withTitle('Naziv'),
+            DTColumnBuilder.newColumn('MJE_ZIP').withTitle('Poštanski broj'),
             DTColumnBuilder.newColumn(null).withTitle('Prikaz').renderWith(function (data) {
                 //data.MJE_Id
-                return '<select><option>DA</option><option>NE</option></select>';
+                return '<button class="btn btn-default" ng-click="dodajGrad('+ data.MJE_Id +')">Dodaj</button>';
             })
         ];
+
+        
 }]);
