@@ -39,6 +39,7 @@
       <Column Name="EVE_PDVIznos" Type="System.Decimal" DbType="Decimal(9,2)" CanBeNull="true" />
       <Association Name="LK_Event_BK_VideoGallery" Member="BK_VideoGalleries" ThisKey="EVE_Id" OtherKey="eventID" Type="BK_VideoGallery" />
       <Association Name="LK_Event_LK_Cijena" Member="LK_Cijenas" ThisKey="EVE_Id" OtherKey="CIJ_EventId" Type="LK_Cijena" />
+      <Association Name="LK_Event_BK_MainSliderEvent" Member="BK_MainSliderEvents" ThisKey="EVE_Id" OtherKey="EventId" Type="BK_MainSliderEvent" />
       <Association Name="LK_StatusEventa_LK_Event" Member="LK_StatusEventa" ThisKey="EVE_StatusEventaId" OtherKey="SEV_Id" Type="LK_StatusEventa" IsForeignKey="true" />
       <Association Name="LK_Organizator_LK_Event" Member="LK_Organizator" ThisKey="EVE_OrganizatorId" OtherKey="ORG_Id" Type="LK_Organizator" IsForeignKey="true" />
       <Association Name="LK_LayoutDvorana_LK_Event" Member="LK_LayoutDvorana" ThisKey="EVE_LayoutId" OtherKey="LDV_Id" Type="LK_LayoutDvorana" IsForeignKey="true" />
@@ -209,6 +210,13 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TownId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="LK_Mjesto_BK_TownsForWeb" Member="LK_Mjesto" ThisKey="TownId" OtherKey="MJE_Id" Type="LK_Mjesto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="prstacpr_prodaja.BK_MainSliderEvents" Member="BK_MainSliderEvents">
+    <Type Name="BK_MainSliderEvent">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="LK_Event_BK_MainSliderEvent" Member="LK_Event" ThisKey="EventId" OtherKey="EVE_Id" Type="LK_Event" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

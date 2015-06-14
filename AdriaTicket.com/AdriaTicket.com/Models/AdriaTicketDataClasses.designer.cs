@@ -81,6 +81,9 @@ namespace AdriaTicket.com.Models
     partial void InsertBK_TownsForWeb(BK_TownsForWeb instance);
     partial void UpdateBK_TownsForWeb(BK_TownsForWeb instance);
     partial void DeleteBK_TownsForWeb(BK_TownsForWeb instance);
+    partial void InsertBK_MainSliderEvent(BK_MainSliderEvent instance);
+    partial void UpdateBK_MainSliderEvent(BK_MainSliderEvent instance);
+    partial void DeleteBK_MainSliderEvent(BK_MainSliderEvent instance);
     #endregion
 		
 		public AdriaTicketDataClassesDataContext() : 
@@ -246,6 +249,14 @@ namespace AdriaTicket.com.Models
 			get
 			{
 				return this.GetTable<BK_TownsForWeb>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BK_MainSliderEvent> BK_MainSliderEvents
+		{
+			get
+			{
+				return this.GetTable<BK_MainSliderEvent>();
 			}
 		}
 	}
@@ -470,6 +481,8 @@ namespace AdriaTicket.com.Models
 		
 		private EntitySet<LK_Cijena> _LK_Cijenas;
 		
+		private EntitySet<BK_MainSliderEvent> _BK_MainSliderEvents;
+		
 		private EntityRef<LK_StatusEventa> _LK_StatusEventa;
 		
 		private EntityRef<LK_Organizator> _LK_Organizator;
@@ -542,6 +555,7 @@ namespace AdriaTicket.com.Models
 		{
 			this._BK_VideoGalleries = new EntitySet<BK_VideoGallery>(new Action<BK_VideoGallery>(this.attach_BK_VideoGalleries), new Action<BK_VideoGallery>(this.detach_BK_VideoGalleries));
 			this._LK_Cijenas = new EntitySet<LK_Cijena>(new Action<LK_Cijena>(this.attach_LK_Cijenas), new Action<LK_Cijena>(this.detach_LK_Cijenas));
+			this._BK_MainSliderEvents = new EntitySet<BK_MainSliderEvent>(new Action<BK_MainSliderEvent>(this.attach_BK_MainSliderEvents), new Action<BK_MainSliderEvent>(this.detach_BK_MainSliderEvents));
 			this._LK_StatusEventa = default(EntityRef<LK_StatusEventa>);
 			this._LK_Organizator = default(EntityRef<LK_Organizator>);
 			this._LK_LayoutDvorana = default(EntityRef<LK_LayoutDvorana>);
@@ -1116,6 +1130,19 @@ namespace AdriaTicket.com.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Event_BK_MainSliderEvent", Storage="_BK_MainSliderEvents", ThisKey="EVE_Id", OtherKey="EventId")]
+		public EntitySet<BK_MainSliderEvent> BK_MainSliderEvents
+		{
+			get
+			{
+				return this._BK_MainSliderEvents;
+			}
+			set
+			{
+				this._BK_MainSliderEvents.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_StatusEventa_LK_Event", Storage="_LK_StatusEventa", ThisKey="EVE_StatusEventaId", OtherKey="SEV_Id", IsForeignKey=true)]
 		public LK_StatusEventa LK_StatusEventa
 		{
@@ -1325,6 +1352,18 @@ namespace AdriaTicket.com.Models
 		}
 		
 		private void detach_LK_Cijenas(LK_Cijena entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Event = null;
+		}
+		
+		private void attach_BK_MainSliderEvents(BK_MainSliderEvent entity)
+		{
+			this.SendPropertyChanging();
+			entity.LK_Event = this;
+		}
+		
+		private void detach_BK_MainSliderEvents(BK_MainSliderEvent entity)
 		{
 			this.SendPropertyChanging();
 			entity.LK_Event = null;
@@ -4601,6 +4640,133 @@ namespace AdriaTicket.com.Models
 						this._TownId = default(int);
 					}
 					this.SendPropertyChanged("LK_Mjesto");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="prstacpr_prodaja.BK_MainSliderEvents")]
+	public partial class BK_MainSliderEvent : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _EventId;
+		
+		private EntityRef<LK_Event> _LK_Event;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnEventIdChanging(int value);
+    partial void OnEventIdChanged();
+    #endregion
+		
+		public BK_MainSliderEvent()
+		{
+			this._LK_Event = default(EntityRef<LK_Event>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventId", DbType="Int NOT NULL")]
+		public int EventId
+		{
+			get
+			{
+				return this._EventId;
+			}
+			set
+			{
+				if ((this._EventId != value))
+				{
+					if (this._LK_Event.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEventIdChanging(value);
+					this.SendPropertyChanging();
+					this._EventId = value;
+					this.SendPropertyChanged("EventId");
+					this.OnEventIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LK_Event_BK_MainSliderEvent", Storage="_LK_Event", ThisKey="EventId", OtherKey="EVE_Id", IsForeignKey=true)]
+		public LK_Event LK_Event
+		{
+			get
+			{
+				return this._LK_Event.Entity;
+			}
+			set
+			{
+				LK_Event previousValue = this._LK_Event.Entity;
+				if (((previousValue != value) 
+							|| (this._LK_Event.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LK_Event.Entity = null;
+						previousValue.BK_MainSliderEvents.Remove(this);
+					}
+					this._LK_Event.Entity = value;
+					if ((value != null))
+					{
+						value.BK_MainSliderEvents.Add(this);
+						this._EventId = value.EVE_Id;
+					}
+					else
+					{
+						this._EventId = default(int);
+					}
+					this.SendPropertyChanged("LK_Event");
 				}
 			}
 		}

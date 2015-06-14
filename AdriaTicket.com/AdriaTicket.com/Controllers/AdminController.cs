@@ -137,6 +137,13 @@ namespace AdriaTicket.com.Controllers
         }
 
         [Authorize]
+        public ActionResult SliderEvents()
+        {
+
+            return View();
+        }
+
+        [Authorize]
         public ActionResult getLocation(int id)
         {
             var location = from s in AdriaTicketData.LK_ProdajnoMjestoWebs

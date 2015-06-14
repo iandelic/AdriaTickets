@@ -166,3 +166,11 @@ adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'D
 
         
 }]);
+
+adriaTicketAdmin.controller('AdriaTicketAdminSliderEvents', ['$scope', '$http', function ($scope, $http) {
+
+    var siteUrl = "http://localhost:32718/";
+    $http.get('/data/GetSliderEvents').success(function (data) {
+        $scope.events = data;
+    }).error(function () { alert('error') });
+}]);
