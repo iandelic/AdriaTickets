@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "CMS Adria Ticket - Glavni događaji";
+    ViewBag.Header = "CMS Adria Ticket - Glavni događaji";
+}
+
+<div ng-controller="AdriaTicketAdminSliderEvents">
+    <div class="container">
+        <div class="row">
+            <ui-select multiple ng-model="$parent.selectedEvents" theme="bootstrap">
+            <ui-select-match placeholder="Odaberite događaj">{{$item.EVE_Naziv}} &lt;{{$item.EVE_Datum}}&gt;</ui-select-match>
+            <ui-select-choices repeat="event in events | filter: {EVE_Naziv: $select.search}">
+              <div ng-bind-html="trustAsHtml(event.EVE_Naziv) | highlight: $select.search"></div>
+              <small>
+                Datum: <span ng-bind-html="trustAsHtml(event.EVE_Datum)"></span>
+              </small>
+            </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class ="row">
+            <div class ="form-group col-xs-12 col-sm-12">
+                <button type="submit" class="form-control btn btn-success" ng-disabled="disabledFlag" ng-click="save(selectedEvents)">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    Spremi                         
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

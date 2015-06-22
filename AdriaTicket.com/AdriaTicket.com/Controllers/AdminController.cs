@@ -137,6 +137,13 @@ namespace AdriaTicket.com.Controllers
         }
 
         [Authorize]
+        public ActionResult SliderEvents()
+        {
+
+            return View();
+        }
+
+        [Authorize]
         public ActionResult getLocation(int id)
         {
             var location = from s in AdriaTicketData.LK_ProdajnoMjestoWebs
@@ -446,6 +453,26 @@ namespace AdriaTicket.com.Controllers
             AdriaTicketData.BK_TownsForWebs.InsertOnSubmit(town);
             AdriaTicketData.SubmitChanges();
             return Json("town inserted", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveSliderEvents(string id)
+        {
+            AdriaTicketData.ExecuteCommand("DELETE FROM BK_MainSliderEvents");
+            string[] array = id.Split(new string[] { "$%$" }, StringSplitOptions.RemoveEmptyEntries);
+            int counter =1;
+            foreach (string item in array)
+            {
+                BK_MainSliderEvent i = new BK_MainSliderEvent();
+                i.EventId = Convert.ToInt16(item);
+                i.Id = counter;
+                counter++;
+                AdriaTicketData.BK_MainSliderEvents.InsertOnSubmit(i);
+            }
+
+            AdriaTicketData.SubmitChanges();
+            return Json("inserted", JsonRequestBehavior.AllowGet);
         }
 
     }
