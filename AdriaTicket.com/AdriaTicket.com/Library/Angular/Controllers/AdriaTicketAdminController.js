@@ -167,10 +167,48 @@ adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'D
         
 }]);
 
-adriaTicketAdmin.controller('AdriaTicketAdminSliderEvents', ['$scope', '$http', function ($scope, $http) {
+adriaTicketAdmin.controller('AdriaTicketAdminSliderEvents', ['$scope', '$http', '$sce', function ($scope, $http, $sce) {
 
     var siteUrl = "http://localhost:32718/";
     $http.get('/data/GetSliderEvents').success(function (data) {
-        $scope.events = data;
+        $scope.sliderEvents = data;
+        angular.forEach($scope.sliderEvents, function (event) {
+            event.EVE_Datum = moment(event.EVE_Datum).format('DD.MM.YYYY');
+        });
+        $scope.selectedEvents = data;
     }).error(function () { alert('error') });
+    $http.get('/data/getEvents').success(function (data) {
+        $scope.events = data;
+        angular.forEach($scope.events, function (event) {
+            event.EVE_Datum = moment(event.EVE_Datum).format('DD.MM.YYYY');
+        });
+
+    }).error(function () { alert('error') });
+    $scope.trustAsHtml = function (value) {
+        return $sce.trustAsHtml(value);
+    };
+    $scope.disabledFlag = false;
+    $scope.$watch("selectedEvents", function () {
+        if($scope.selectedEvents.length > 0)
+            $scope.disabledFlag = false;
+        else
+            $scope.disabledFlag = true;
+    })
+    $scope.save = function (events) {
+        var temp = 'id=';
+        angular.forEach(events, function (event) {
+            temp += event.EVE_Id + '$%$';
+        });
+        $http({
+            method: 'POST',
+            url: '/admin/SaveSliderEvents',
+            data: temp,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function () {
+            jQuery(location).attr('href', siteUrl + "admin/home");
+
+        }).error(function () {
+
+        });
+    };
 }]);

@@ -455,5 +455,25 @@ namespace AdriaTicket.com.Controllers
             return Json("town inserted", JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveSliderEvents(string id)
+        {
+            AdriaTicketData.ExecuteCommand("DELETE FROM BK_MainSliderEvents");
+            string[] array = id.Split(new string[] { "$%$" }, StringSplitOptions.RemoveEmptyEntries);
+            int counter =1;
+            foreach (string item in array)
+            {
+                BK_MainSliderEvent i = new BK_MainSliderEvent();
+                i.EventId = Convert.ToInt16(item);
+                i.Id = counter;
+                counter++;
+                AdriaTicketData.BK_MainSliderEvents.InsertOnSubmit(i);
+            }
+
+            AdriaTicketData.SubmitChanges();
+            return Json("inserted", JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
