@@ -355,6 +355,9 @@
     <Content Include="Views\Public\Home\contact.cshtml" />
     <Content Include="Views\Admin\townsForWeb.cshtml" />
     <Content Include="Views\Admin\SliderEvents.cshtml" />
+    <Content Include="Views\Public\Home\PersonalData.cshtml" />
+    <Content Include="Views\Public\Home\Places.cshtml" />
+    <Content Include="Views\Public\Home\TOU.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

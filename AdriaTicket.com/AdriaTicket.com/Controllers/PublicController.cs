@@ -41,6 +41,19 @@ namespace AdriaTicket.com.Controllers
         {
             return View("Home/Locations");
         }
+
+        public ActionResult TermsOfUse()
+        {
+            return View("Home/TOU");
+        }
+        public ActionResult PersonalData()
+        {
+            return View("Home/personalData");
+        }
+        public ActionResult AboutShop()
+        {
+            return View("Home/Places");
+        }
         public ActionResult getEvent(int id)
         {
             var ev = from Event in AdriaTicketData.LK_Events
