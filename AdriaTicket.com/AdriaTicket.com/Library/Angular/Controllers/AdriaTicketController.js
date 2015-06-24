@@ -33,3 +33,21 @@ adriaTicket.controller('mainController', ['$scope', '$http','Page', function ($s
     Page.setTitle('Adria Tickets');
 }]);
 
+
+adriaTicket.controller('TOUController', ['$scope', '$http', 'Page', function ($scope, $http, Page) {
+    $scope.Page = Page;
+    Page.setTitle('Adria Tickets');
+}]);
+
+
+adriaTicket.controller('PersonalDataUsageDController', ['$scope', '$http', 'Page', function ($scope, $http, Page) {
+    $scope.Page = Page;
+    Page.setTitle('Adria Tickets');
+}]);
+
+
+adriaTicket.controller('PlacesController', ['$scope', '$http', 'Page', function ($scope, $http, Page) {
+    $scope.Page = Page;
+    Page.setTitle('Adria Tickets');
+}]);
+
