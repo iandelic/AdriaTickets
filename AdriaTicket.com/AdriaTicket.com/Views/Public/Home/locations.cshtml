@@ -2,5 +2,10 @@
     ViewBag.Title = "locations";
 }
 <div id="main-content" class="container">
-    <div ng-controller="LocationsController"></div>
+    <div ng-controller="LocationsController">
+            <div ng-repeat="location in webLocations">
+               <p>{{location.PMW_Adresa}}</p>
+            </div>
+        
+    </div>
 </div>

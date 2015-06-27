@@ -461,6 +461,35 @@ a:hover {
 }
 /* END CONTACT*/
 
+/* TERMS OF USE, PRIVACY, PLACE INFO */
+.terms p,
+.privacy p {
+    font-size:0.9em;
+    line-height:1.3;
+}
+.place-info li {
+    font-size:1em;
+    line-height:1.5;
+}
+.privacy p strong,
+.place-info li strong {
+    font-weight:600;
+}
+.terms hr,
+.privacy hr,
+.place-info hr {
+    height:5px;
+    color: #ff3707;
+    background-color:#ff3707;
+}
+.terms h2,
+.privacy h2,
+.place-info h2 {
+    margin-top:50px
+}
+/* END TERMS OF USE, PRIVACY */
+
+
 /* FOOTER */
 #footer {
     position: relative;
