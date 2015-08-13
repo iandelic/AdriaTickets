@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Library\Angular\angular-google-maps.min.js" />
     <Content Include="Library\Angular\angular-route.js" />
     <Content Include="Library\Angular\angular-youtube-embed.js" />
     <Content Include="Library\Angular\angular.min.js" />
@@ -134,6 +135,7 @@
     <Content Include="Library\Angular\Controllers\AdriaTicketEventController.js" />
     <Content Include="Library\Angular\fileUpload\ng-file-upload-shim.min.js" />
     <Content Include="Library\Angular\fileUpload\ng-file-upload.min.js" />
+    <Content Include="Library\Angular\lodash.min.js" />
     <Content Include="Library\Angular\textEditor\plugins\advlist\plugin.min.js" />
     <Content Include="Library\Angular\textEditor\plugins\anchor\plugin.min.js" />
     <Content Include="Library\Angular\textEditor\plugins\autolink\plugin.min.js" />
@@ -216,6 +218,7 @@
     <Content Include="Library\img\AdriaTicket-logo-white.png" />
     <Content Include="Library\img\carousel-bg.jpg" />
     <Content Include="Library\img\dino-merlin.jpg" />
+    <Content Include="Library\img\location.png" />
     <Content Include="Library\img\logo.svg" />
     <Content Include="Library\img\social-fb.jpg" />
     <Content Include="Library\img\social-tw.jpg" />

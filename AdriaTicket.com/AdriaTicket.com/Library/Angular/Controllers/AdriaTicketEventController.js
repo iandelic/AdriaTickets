@@ -1,5 +1,5 @@
 ﻿
-adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement', '$http','$sce', 'Page',function ($scope, $location, $rootElement, $http,$sce,Page) {
+adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement', '$http','$sce',function ($scope, $location, $rootElement, $http,$sce) {
 
     var siteUrl = "http://localhost:32718/";
     var id = $location.absUrl().split('/').pop();
@@ -8,7 +8,6 @@ adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement'
     if (parseInt(id)) {
         $http.get('/public/getEvent/' + id).success(function (data) {
             $scope.event = data[0];
-            Page.setTitle($scope.event.EVE_Naziv);
             $scope.addEditEvent = "Uredi događaj: " + $scope.event.EVE_Naziv;
             $scope.saveUpdate = "Spremi";
 

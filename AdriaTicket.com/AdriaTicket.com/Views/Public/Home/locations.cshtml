@@ -1,11 +1,31 @@
 ﻿@{
-    ViewBag.Title = "locations";
+    ViewBag.Title = "AdriaTicket - Prodajna mjesta";
 }
-<div id="main-content" class="container">
-    <div ng-controller="LocationsController">
-            <div ng-repeat="location in webLocations">
-               <p>{{location.PMW_Adresa}}</p>
+
+<div id="main-content" class="container locations">
+    <div id ="webPlacesNG" ng-controller="LocationsController">
+            <h2>Prodajna mjesta:</h2>
+            <hr />
+            <ul>
+               <li ng-repeat="place in webPlaces" class ="webPlacesItems" ng-click="townClick(place.PMW_Grad)">
+                   {{place.PMW_Grad}}
+               </li>
+            </ul>
+
+
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' options='options'>
+                <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" icon= '{url:    "/Library/img/location.png" }'>
+
+            </ui-gmap-google-map>
+            
+
+            <div class = "webPlacesBoxes" ng-repeat="location in webLocations  | filter: townFilter">
+                <p>{{location.PMW_Naziv}}</p>
+                <p>{{location.PMW_Adresa}}</p>
+                <p>{{location.PMW_Grad}}</p>
+                <p ng-hide ="location.PMW_Telefon == ''">{{location.PMW_Telefon}}</p>
             </div>
-        
+
+            <div style ="clear:both;"></div>
     </div>
 </div>

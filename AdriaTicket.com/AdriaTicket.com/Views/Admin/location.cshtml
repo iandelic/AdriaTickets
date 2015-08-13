@@ -110,6 +110,27 @@
                           });
                           
                       });
+                        
+                      $('#locationSave').click(function (e) {
+                          e.preventDefault();
+                          GMaps.geocode({
+                              address: $('#gradPM').val().trim() + ", " + $('#adresaPm').val().trim(),
+                              callback: function (results, status) {
+                                  if (status == 'OK') {
+                                      latlng = results[0].geometry.location;
+                                      map.setCenter(latlng.lat(), latlng.lng());
+                                      map.addMarker({
+                                          lat: latlng.lat(),
+                                          lng: latlng.lng()
+                                      });
+                                      $('#lat').val(latlng.lat());
+                                      $('#lng').val(latlng.lng());
+                                      $('input').trigger('input');
+                                  }
+                              }
+                          });
+
+                      });
 
                   });
     </script> 
@@ -118,7 +139,7 @@
 
             <div class ="row">
                 <div class ="form-group col-xs-12 col-sm-12">
-                    <button type="submit" class="form-control btn btn-success" ng-disabled="disabledFlag" ng-click="save(location)">
+                    <button type="submit" id="locationSave" class="form-control btn btn-success" ng-disabled="disabledFlag" ng-click="save(location)">
                         <i class="glyphicon glyphicon-ok"></i>
                         Spremi                         
                     </button>

@@ -477,14 +477,16 @@ a:hover {
 }
 .terms hr,
 .privacy hr,
-.place-info hr {
+.place-info hr,
+.locations hr {
     height:5px;
     color: #ff3707;
     background-color:#ff3707;
 }
 .terms h2,
 .privacy h2,
-.place-info h2 {
+.place-info h2,
+.locations h2 {
     margin-top:50px
 }
 /* END TERMS OF USE, PRIVACY */
@@ -522,3 +524,30 @@ a:hover {
     padding: 75px 0 30px 0;
 }
 /* END FOOTER */
+
+/* PLACES */
+.webPlacesItems {
+    margin-left:5px;
+    margin-right: 5px;
+    float: left;
+}
+.locations ul {
+    margin-bottom: 80px;
+    cursor:pointer;
+}
+
+.webPlacesBoxes {
+    margin-top: 50px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    background : white;
+    height: 175px;
+    width: 250px;
+}
+#webPlacesNG {
+    margin-bottom: 80px;
+}
+
+.angular-google-map-container { height: 500px; }
+/* END PLACES */

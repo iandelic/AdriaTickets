@@ -1,8 +1,19 @@
-﻿var adriaTicket = angular.module('adriaticket', ['youtube-embed']);
+﻿var adriaTicket = angular.module('adriaticket', ['youtube-embed', 'uiGmapgoogle-maps']);
 
 adriaTicket.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
+
 }]);
+
+adriaTicket.config(function (uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyAvGeT85TAX9z0j7k3CXsJdp5vl1xsHWRc',
+        v: '3.17',
+        libraries: 'weather,geometry,visualization'
+    });
+})
+
 
 
 
@@ -70,13 +81,7 @@ adriaTicketAdmin.directive('integer', function () {
         }
     };
 });
-adriaTicket.factory('Page', function () {
-    var title = 'Adria Ticket';
-    return {
-        title: function () { return title; },
-        setTitle: function (newTitle) { title = newTitle }
-    };
-});
+
 
 adriaTicketAdmin.config(function (uiSelectConfig) {
     uiSelectConfig.theme = 'bootstrap';

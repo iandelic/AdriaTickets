@@ -19,6 +19,13 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+.bk-select-items {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    white-space: normal !important;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {

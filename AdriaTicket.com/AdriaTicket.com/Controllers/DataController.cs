@@ -91,7 +91,9 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult GetWebLocations()
         {
-            var pm = from p in AdriaTicketData.LK_ProdajnoMjestoWebs select new { 
+            var pm = from p in AdriaTicketData.LK_ProdajnoMjestoWebs 
+            orderby p.PMW_Grad        
+            select new { 
             
             p.PMW_Adresa,
             p.PMW_Grad,
@@ -104,6 +106,16 @@ namespace AdriaTicket.com.Controllers
             };
             return Json(pm, JsonRequestBehavior.AllowGet);
         }
-       
+
+        public ActionResult GetWebPlaces()
+        {
+            var pm = (from p in AdriaTicketData.LK_ProdajnoMjestoWebs
+                     orderby p.PMW_Grad
+                     select  new
+                     {
+                         p.PMW_Grad
+                     }).Distinct();
+            return Json(pm, JsonRequestBehavior.AllowGet);
+        }
     }
 }
