@@ -84,8 +84,25 @@ adriaTicket.controller('LocationsController', ['$scope', '$http', 'uiGmapGoogleM
     $scope.townFilter = "";
     $scope.townClick = function (town) {
         $scope.townFilter = town;
-        // po gradu ispisati sve ovo
-        $scope.map = { center: { latitude: 45.8, longitude: 16 }, zoom: 12 };
+        if ($scope.townFilter == "") {
+            $scope.map = { center: { latitude: 44.8, longitude: 16.5 }, zoom: 7 };
+        }
+        else if ($scope.townFilter == "Zagreb") {
+            $scope.map = { center: { latitude: 45.8, longitude: 16 }, zoom: 11 };
+        }
+        else
+        {
+            var keepGoing = true;
+            angular.forEach($scope.webLocations, function (value, key) {
+            if (keepGoing) {
+                if (value.PMW_Grad == $scope.townFilter) {
+                    $scope.map = { center: { latitude: value.BK_Lat, longitude: value.BK_Lng }, zoom: 12 };
+                    keepGoing = false;
+                }
+            }
+            });
+            
+        }
     }
     
     
