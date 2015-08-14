@@ -124,7 +124,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         var temp = 'naziv=' + event.EVE_Naziv;
         if(event.EVE_Id != null)
         temp += '&id=' + event.EVE_Id;
-        temp += '&opis=' + encodeURIComponent(event.EVE_Opis).replace(/%20/g, '+');;
+        temp += '&opis=' + encodeURIComponent(event.EVE_Opis).replace(/%20/g, '+');
         temp += '&Datum=' + event.EVE_Datum;
         temp += '&Image=' + event.EVE_ImagePath;
         temp += '&DatumOdPretprodaja=' + event.EVE_DatumOdPretprodaja;

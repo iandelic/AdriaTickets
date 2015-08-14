@@ -16,7 +16,12 @@ namespace AdriaTicket.com.Controllers
         {
             return View("Home/Index");
         }
-
+        public ActionResult GetSliderEvents()
+        {
+            var events = from g in AdriaTicketData.BK_MainSliderEvents select g.EventId;
+            var ev = from e in AdriaTicketData.LK_Events where events.Contains(e.EVE_Id) select new { e.EVE_Id, e.EVE_ImagePath };
+            return Json(ev, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult getEvents()
         {
             var events = from e in AdriaTicketData.LK_Events where e.EVE_PrikaziNaWebu == true orderby e.EVE_Datum descending select new { e.EVE_Id, e.EVE_Opis, e.EVE_Naziv, e.EVE_Datum };

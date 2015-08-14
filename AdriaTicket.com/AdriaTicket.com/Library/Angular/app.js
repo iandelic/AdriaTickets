@@ -10,7 +10,8 @@ adriaTicket.config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyAvGeT85TAX9z0j7k3CXsJdp5vl1xsHWRc',
         v: '3.17',
-        libraries: 'weather,geometry,visualization'
+        libraries: 'weather,geometry,visualization',
+        language: 'hr'
     });
 })
 

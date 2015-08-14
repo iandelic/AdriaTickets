@@ -91,7 +91,7 @@ namespace AdriaTicket.com.Controllers
 
         public ActionResult GetWebLocations()
         {
-            var pm = from p in AdriaTicketData.LK_ProdajnoMjestoWebs 
+            var pm = from p in AdriaTicketData.LK_ProdajnoMjestoWebs
             orderby p.PMW_Grad        
             select new { 
             
