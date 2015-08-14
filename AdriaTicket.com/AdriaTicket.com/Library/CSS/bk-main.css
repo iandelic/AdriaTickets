@@ -543,25 +543,36 @@ a:hover {
 }
 .webPlacesTitle {
     padding: 0px 5px 2px 5px;
-    border-bottom: 2px solid;
+    border-bottom: 3px solid #b12706;
     width: 95%;
     margin-left: 2.5%;
+    min-height:50px;
+}
+.webPlacesBoxes ul {
+    cursor:auto!important;
+    font-size:0.9em;
 }
 .webPlacesInfo {
-    cursor:auto!important;
-    padding:5px;
-    font-size:0.9em;
+    margin-top:10px;
+    padding-left:12%;
+    margin-left:4%;
+    min-height:50px;
+    background:url(../img/location.png) no-repeat;
 }
 .webPlacesInfo li {
     margin-bottom:10px;
+}
+.webPlacesInfoOther {
+    padding-left:12%;
+    margin-left:4%;
+    background:url(../img/phone-icon.png) no-repeat;
 }
 .webPlacesTel {
     background-image:url();
 }
 .locations ul {
-    margin-bottom: 80px;
     cursor:pointer;
-    color:#6F6F6F;
+    color:#505050;
 }
 
 .webPlacesBoxes {
@@ -570,8 +581,10 @@ a:hover {
     margin-left: 20px;
     margin-right: 20px;
     background : white;
-    height: 175px;
+    min-height: 175px;
     width: 250px;
+    border:1px solid #DEDEDE;
+    background:url(../img/AdriaTicket-small-grey-logo.png) no-repeat bottom right #fff;
 }
 
 #webPlacesNG {
@@ -580,3 +593,9 @@ a:hover {
 
 .angular-google-map-container { height: 500px; }
 /* END PLACES */
+
+@media(max-width:320px) {
+    .webPlacesBoxes {
+        width:260px;
+    }
+}
