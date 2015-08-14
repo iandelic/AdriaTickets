@@ -69,6 +69,11 @@ a:hover {
 .row.carousel .fotorama {
     float:none;
 }
+.fotorama__html div,
+.fotorama__html a {
+    display: block;
+    height: 100%;
+}
 #page-container {
     display: block;
 }
