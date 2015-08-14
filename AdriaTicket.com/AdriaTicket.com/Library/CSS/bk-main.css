@@ -536,20 +536,19 @@ a:hover {
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
-        background-color: #b12706;
+    background-color: #b12706;
     padding: 5px 10px;
     line-height: 12px;
     border-radius: 10px;
     color: white;
     float: left;
-    -webkit-transition: color 0.2s ease-out;
-    -moz-transition: color 0.2s ease-out;
-    -o-transition: color 0.2s ease-out;
-    transition: color 0.2s ease-out;
+    -webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
 }
 .webPlacesItems:hover {
-    color: #ff3707;
-    border-bottom: 2px solid #ff3707;
+    background-color: #ff3707;
 }
 .webPlacesTitle {
     font-weight:bold;
