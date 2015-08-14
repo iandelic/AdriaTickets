@@ -598,4 +598,20 @@ a:hover {
     .webPlacesBoxes {
         width:260px;
     }
+    .navbar .container {
+        padding:0;
+    }
+    .navbar-nav {
+        margin:0;
+    }
+
+    .container > .navbar-header {
+        margin:0;
+    }
+    .navbar-default .navbar-nav > li > a {
+        background-color:#1D1D1D;
+    }
+    .navbar-default .navbar-nav > li > a:hover {
+        background-color:#494949;
+    }
 }
