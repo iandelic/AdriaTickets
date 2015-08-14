@@ -552,6 +552,7 @@ a:hover {
     border-bottom: 2px solid #ff3707;
 }
 .webPlacesTitle {
+    font-weight:bold;
     padding: 0px 5px 2px 5px;
     border-bottom: 3px solid #b12706;
     width: 95%;
