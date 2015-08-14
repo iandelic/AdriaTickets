@@ -21,7 +21,20 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
     var id = $location.absUrl().split('/').pop();
     $scope.event = {}
     $scope.files = {}
+    var entityMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': '&quot;',
+        "'": '&#39;',
+        " ": "+"
+    };
 
+    function escapeHtml(string) {
+        return String(string).replace(/[&<>"'\/]/g, function (s) {
+            return entityMap[s];
+        });
+    }
     $scope.disabledFlag = true;
     $scope.uploadFlag = false;
     $scope.addEditEvent = "Novi događaj";
@@ -32,7 +45,9 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
                 $scope.event = data[0];
                 $scope.addEditEvent = "Uredi događaj: " + $scope.event.EVE_Naziv;
                 $scope.saveUpdate = "Spremi";
+                console.log($scope.event.EVE_Opis)
                 $scope.event.EVE_Opis = decodeURIComponent($scope.event.EVE_Opis);
+                console.log($scope.event.EVE_Opis)
             $scope.event.EVE_Datum = moment($scope.event.EVE_Datum).format('DD.MM.YYYY HH:mm:ss');
             $scope.event.EVE_DatumOdProdaja = moment($scope.event.EVE_DatumOdProdaja).format('DD.MM.YYYY HH:mm:ss');
             $scope.event.EVE_DatumOdPretprodaja = moment($scope.event.EVE_DatumOdPretprodaja).format('DD.MM.YYYY HH:mm:ss');
@@ -123,8 +138,14 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
     $scope.save = function (event) {
         var temp = 'naziv=' + event.EVE_Naziv;
         if(event.EVE_Id != null)
-        temp += '&id=' + event.EVE_Id;
-        temp += '&opis=' + encodeURIComponent(event.EVE_Opis).replace(/%20/g, '+');
+            temp += '&id=' + event.EVE_Id;
+        if (event.EVE_Opis.indexOf("<p>") >= 0) {
+            console.log(escapeHtml(event.EVE_Opis))
+            temp += '&opis=' +encodeURIComponent(escapeHtml(event.EVE_Opis)).replace(/%20/g, '+');
+        }
+        else {
+            temp += '&opis=' + encodeURIComponent(event.EVE_Opis).replace(/%20/g, '+');
+        }
         temp += '&Datum=' + event.EVE_Datum;
         temp += '&Image=' + event.EVE_ImagePath;
         temp += '&DatumOdPretprodaja=' + event.EVE_DatumOdPretprodaja;
