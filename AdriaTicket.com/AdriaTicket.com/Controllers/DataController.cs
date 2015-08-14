@@ -115,6 +115,7 @@ namespace AdriaTicket.com.Controllers
                      {
                          p.PMW_Grad
                      }).Distinct();
+           
             return Json(pm, JsonRequestBehavior.AllowGet);
         }
     }

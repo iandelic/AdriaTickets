@@ -20,9 +20,9 @@
             
 
             <div class = "webPlacesBoxes" ng-repeat="location in webLocations  | filter: townFilter">
-                <p>{{location.PMW_Naziv}}</p>
-                <p>{{location.PMW_Adresa}}</p>
-                <p>{{location.PMW_Grad}}</p>
+                <p ng-hide ="location.PMW_Naziv == ''">{{location.PMW_Naziv}}</p>
+                <p ng-hide ="location.PMW_Adresa == ''">{{location.PMW_Adresa}}</p>
+                <p ng-hide ="location.PMW_Grad == ''">{{location.PMW_Grad}}</p>
                 <p ng-hide ="location.PMW_Telefon == ''">{{location.PMW_Telefon}}</p>
             </div>
 
