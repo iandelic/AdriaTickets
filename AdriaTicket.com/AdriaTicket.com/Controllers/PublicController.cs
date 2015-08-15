@@ -14,6 +14,14 @@ namespace AdriaTicket.com.Controllers
         AdriaTicketDataClassesDataContext AdriaTicketData = new AdriaTicketDataClassesDataContext();
         public ActionResult Index()
         {
+            var events = from g in AdriaTicketData.BK_MainSliderEvents select g.EventId;
+            var ev = from e in AdriaTicketData.LK_Events where events.Contains(e.EVE_Id) select new { e.EVE_Id, e.EVE_ImagePath };
+            List<Tuple<int, string>> Listimage = new List<Tuple<int, string>>();
+            foreach (var t in ev)
+            {
+               Listimage.Add(new Tuple<int,string>(t.EVE_Id,t.EVE_ImagePath));
+            }
+            ViewBag.images = Listimage;
             return View("Home/Index");
         }
         public ActionResult GetSliderEvents()

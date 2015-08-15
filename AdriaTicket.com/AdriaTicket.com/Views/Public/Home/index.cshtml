@@ -11,12 +11,12 @@
          data-nav="thumbs"
          data-click="false"
          data-thumbwidth="200">
-        <div data-img="/Library/img/dino-merlin.jpg" class="img-responsive"><a href="http://google.com/"></a></div>
-        <div data-img="/Library/img/sustipanska-noc.jpg" class="img-responsive"><a href="http://google.com/"></a></div>
-        <div data-img="/Library/img/talking-heads.jpg" class="img-responsive"><a href="http://google.com/"></a></div>
+        @foreach (Tuple<int,string> item in ViewBag.images)
+        {
+            <div data-img="/Uploads/@item.Item2" class="img-responsive"><a href="/event/@item.Item1"></a></div>
+        }
     </div>
 </div>
-
 <div id="main-content" class="container">
     <div class="row">
         <div class="col-md-12 ads-container">
@@ -72,3 +72,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.fotorama__html').bind("click", function () {
+            window.location.href = $(this).find("a").attr("href")
+        })
+    });
+
+</script>
