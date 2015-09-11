@@ -276,13 +276,17 @@ namespace AdriaTicket.com.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id, string image, string videoLink, int galleryId)
+        public ActionResult SaveEvent(string naziv, string opis, string datum, string datumOdpretprodaja, string datumOdProdaja, int organizator, decimal postotakprovizije, int mjesto, int dvorana, int status, Boolean prikaznaWebu, int id, string image, string videoLink, int? galleryId)
         {
-            LK_Event ev = new LK_Event();
-            ev = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Id == id);
+            LK_Event ev = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Id == id);
+            if (ev == null)
+                ev = new LK_Event();
+            if(datum != "undefined")
             ev.EVE_Datum = DateTime.ParseExact(datum, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            ev.EVE_DatumOdPretprodaja = DateTime.ParseExact(datum, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            ev.EVE_DatumOdProdaja = DateTime.ParseExact(datum, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            if (datumOdpretprodaja != "undefined")
+            ev.EVE_DatumOdPretprodaja = DateTime.ParseExact(datumOdpretprodaja, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            if (datumOdProdaja != "undefined")
+            ev.EVE_DatumOdProdaja = DateTime.ParseExact(datumOdProdaja, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
             ev.EVE_DvoranaId = dvorana;
             ev.EVE_FlagOnlineProdaja = true;
             ev.EVE_MjestoId = mjesto;
@@ -291,7 +295,6 @@ namespace AdriaTicket.com.Controllers
             ev.EVE_ImageExist = true;
             ev.EVE_ImagePath = image;
             ev.EVE_ReklamaExist = false;
-            ev.EVE_FlagOnlineProdaja = true;
             ev.EVE_Stanje = 'A';
             ev.EVE_Timestamp = DateTime.Now;
             ev.EVE_OrganizatorId = organizator;
@@ -321,35 +324,36 @@ namespace AdriaTicket.com.Controllers
                 BK_VideoGallery video = AdriaTicketData.BK_VideoGalleries.FirstOrDefault(x => x.eventID == id);
                     AdriaTicketData.BK_VideoGalleries.DeleteOnSubmit(video);
             }
-            else{
-            LK_Event temp = AdriaTicketData.LK_Events.FirstOrDefault(x=> x.EVE_Naziv == naziv);
+            else if(id == 0 && videoLink != null)
+            {
+                LK_Event temp = AdriaTicketData.LK_Events.FirstOrDefault(x=> x.EVE_Naziv == naziv);
                 BK_VideoGallery video = new BK_VideoGallery();
                 video.eventID = temp.EVE_Id;
                 video.videoLink = videoLink;
                 AdriaTicketData.BK_VideoGalleries.InsertOnSubmit(video);
 
             }
-            if (id > 0)
+            if (id > 0 && galleryId != null)
             {
                 var galery = AdriaTicketData.BK_REL_Event_ImageGalleries.FirstOrDefault(x => x.EventId == id);
                 if(galery != null)
                 {
                     galery.EventId = id;
-                    galery.ImageGalleriesId = galleryId;
+                    galery.ImageGalleriesId = Convert.ToInt16(galleryId);
                 }else
                 {
                     galery = new BK_REL_Event_ImageGallery();
                     galery.EventId = id;
-                    galery.ImageGalleriesId = galleryId;
+                    galery.ImageGalleriesId = Convert.ToInt16(galleryId);
                     AdriaTicketData.BK_REL_Event_ImageGalleries.InsertOnSubmit(galery);
                 }
             }
-            else
+            else if (galleryId != null)
             {
                 LK_Event temp = AdriaTicketData.LK_Events.FirstOrDefault(x => x.EVE_Naziv == naziv);
                 BK_REL_Event_ImageGallery galery = new BK_REL_Event_ImageGallery();
                 galery.EventId = temp.EVE_Id;
-                galery.ImageGalleriesId = galleryId;
+                galery.ImageGalleriesId = Convert.ToInt16(galleryId);
                 AdriaTicketData.BK_REL_Event_ImageGalleries.InsertOnSubmit(galery);
             }
             AdriaTicketData.SubmitChanges();
@@ -360,7 +364,7 @@ namespace AdriaTicket.com.Controllers
         public ContentResult Upload(HttpPostedFileBase file)
         {
             var filename = Path.GetFileName(file.FileName);
-            var path = Path.Combine(Server.MapPath("~/uploads"), filename);
+            var path = Path.Combine(Server.MapPath("~/Uploads"), filename);
             file.SaveAs(path);
 
             return new ContentResult{

@@ -24,6 +24,7 @@
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).success(function (data) {
             if (data == "true") {
+                
                 jQuery(location).attr('href', siteUrl + "admin/home");
             }
             else {
