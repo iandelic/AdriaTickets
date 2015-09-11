@@ -1,6 +1,6 @@
-﻿adriaTicketAdmin.controller('LoginController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+﻿adriaTicketAdmin.controller('LoginController', ['$scope', '$http', '$timeout', 'SiteData', function ($scope, $http, $timeout, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
 
     $scope.user = {};
     $scope.user.username = "";
@@ -40,24 +40,24 @@
 }]);
 
 
-adriaTicketAdmin.controller('AdminHomeController', ['$scope', '$http', function ($scope, $http) {
+adriaTicketAdmin.controller('AdminHomeController', ['$scope', '$http', 'SiteData', function ($scope, $http, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
 
 }]);
 
-adriaTicketAdmin.controller('AdminLocationsController', ['$scope', '$http', function ($scope, $http) {
+adriaTicketAdmin.controller('AdminLocationsController', ['$scope', '$http', 'SiteData', function ($scope, $http, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     $http.get('/data/GetWebLocations').success(function (data) {
         $scope.locations = data;
         }).error(function () { alert('error') });
 }]);
 
 
-adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$location', function ($scope, $http, $location) {
+adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$location','SiteData', function ($scope, $http, $location,SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     var id = $location.absUrl().split('/').pop();
     $scope.location = {}
     $scope.location.PMW_Telefon = "";
@@ -125,9 +125,9 @@ adriaTicketAdmin.controller('AdminLocationController', ['$scope', '$http','$loca
 }]);
 
 
-adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'DTOptionsBuilder', 'DTColumnBuilder', '$q', '$compile', function ($scope, $http, DTOptionsBuilder, DTColumnBuilder, $q, $compile) {
+adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'DTOptionsBuilder', 'DTColumnBuilder', '$q', '$compile', 'SiteData', function ($scope, $http, DTOptionsBuilder, DTColumnBuilder, $q, $compile, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     $scope.dodajGrad = function (id) {
         var temp = 'id=' + id;
         
@@ -167,9 +167,9 @@ adriaTicketAdmin.controller('AdriaTicketTownsController', ['$scope', '$http', 'D
         
 }]);
 
-adriaTicketAdmin.controller('AdriaTicketAdminSliderEvents', ['$scope', '$http', '$sce', function ($scope, $http, $sce) {
+adriaTicketAdmin.controller('AdriaTicketAdminSliderEvents', ['$scope', '$http', '$sce', 'SiteData', function ($scope, $http, $sce, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     $http.get('/data/GetSliderEvents').success(function (data) {
         $scope.sliderEvents = data;
         angular.forEach($scope.sliderEvents, function (event) {

@@ -1,6 +1,6 @@
-﻿adriaTicketAdmin.controller('AdminGalleriesController', ['$scope', '$http', function ($scope, $http) {
+﻿adriaTicketAdmin.controller('AdminGalleriesController', ['$scope', '$http', 'SiteData', function ($scope, $http, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     $http.get('/data/getgalleries').success(function (data) {
         $scope.galleries = data;
     }).error(function () { alert('error') });
@@ -9,9 +9,9 @@
 }]);
 
 
-adriaTicketAdmin.controller('AdminGalleryController',[ '$scope', '$location', '$rootElement', '$http', 'Upload', function ($scope, $location, $rootElement, $http,Upload) {
+adriaTicketAdmin.controller('AdminGalleryController', ['$scope', '$location', '$rootElement', '$http', 'Upload', 'SiteData', function ($scope, $location, $rootElement, $http, Upload, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     var id = $location.absUrl().split('/').pop();
     if (parseInt(id)){
         $http.get('/data/getGallery/'+id).success(function (data) {
@@ -89,9 +89,9 @@ adriaTicketAdmin.controller('AdminGalleryController',[ '$scope', '$location', '$
 }]);
 
 
-adriaTicketAdmin.controller('addGalleryController', ['$scope', '$http', function ($scope, $http) {
+adriaTicketAdmin.controller('addGalleryController', ['$scope', '$http', 'SiteData', function ($scope, $http, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     $scope.gallery = "";
 
     $scope.save = function () {

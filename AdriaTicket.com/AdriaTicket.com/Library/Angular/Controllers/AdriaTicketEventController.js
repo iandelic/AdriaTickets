@@ -1,7 +1,7 @@
 ﻿
-adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement', '$http','$sce',function ($scope, $location, $rootElement, $http,$sce) {
+adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement', '$http', '$sce', 'SiteData', function ($scope, $location, $rootElement, $http, $sce, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     var id = $location.absUrl().split('/').pop();
     $scope.event = {}
 
@@ -36,9 +36,9 @@ adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement'
 
 
 
-adriaTicket.controller('allEventsPublicController', ['$scope', '$location', '$rootElement', '$http', '$sce', function ($scope, $location, $rootElement, $http, $sce) {
+adriaTicket.controller('allEventsPublicController', ['$scope', '$location', '$rootElement', '$http', '$sce', 'SiteData', function ($scope, $location, $rootElement, $http, $sce, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     $http.get('/public/getEvents').success(function (data) {
         $scope.events = data;
         angular.forEach($scope.events, function (event) {

@@ -1,5 +1,9 @@
 ﻿var adriaTicket = angular.module('adriaticket', ['youtube-embed', 'uiGmapgoogle-maps']);
-
+adriaTicket.factory('SiteData', function () {
+    return {
+        url: 'http://localhost:32718/' //http://adriaticket.com.win15.mojsite.com/
+    };
+});
 adriaTicket.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 

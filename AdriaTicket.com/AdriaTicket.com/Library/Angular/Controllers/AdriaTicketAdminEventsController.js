@@ -1,6 +1,6 @@
-﻿adriaTicketAdmin.controller('AdminEventController', ['$scope', '$http', function ($scope, $http) {
+﻿adriaTicketAdmin.controller('AdminEventController', ['$scope', '$http', 'SiteData', function ($scope, $http, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     $http.get('/admin/getEvents').success(function (data) {
         $scope.events = data;
         angular.forEach($scope.events, function (event) {
@@ -15,9 +15,9 @@
 }]);
 
 
-adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', '$rootElement', '$http', 'Upload', function ($scope, $location, $rootElement, $http, Upload) {
+adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', '$rootElement', '$http', 'Upload', 'SiteData', function ($scope, $location, $rootElement, $http, Upload, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     var id = $location.absUrl().split('/').pop();
     $scope.event = {}
     $scope.files = {}
@@ -173,9 +173,9 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
 
 
 
-adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$location', function ($scope, $http,$location) {
+adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$location', 'SiteData', function ($scope, $http, $location, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     var id = $location.absUrl().split('/').pop();
     $scope.cijeneFlag = false;
     if (parseInt(id)) {
