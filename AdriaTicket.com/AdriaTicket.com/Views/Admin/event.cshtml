@@ -118,7 +118,7 @@
                     <div class ="row addeditevent-row">
                     <label for="postotakProvizijeEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Postotak provizije</label>
                         <div class="col-xs-12 col-sm-12">
-                            <input type="text" class="form-control" id="postotakProvizijeEventa" placeholder="Postotak provizije" ng-model="event.EVE_PostotakProvizije">
+                            <input type="number" lang="nb" step="0.01" max="100" class="form-control" id="postotakProvizijeEventa" placeholder="Postotak provizije" ng-model="event.EVE_PostotakProvizije">
                     </div>
                         </div>
                 </div>
@@ -194,7 +194,7 @@
             <div ng-if="event.EVE_ImagePath" class="form-group">
                 <div class ="row addeditevent-row">
                 <div class ="col-xs-12 col-sm-12 admin-event-img-video">
-                    <img  class="col-sm-12" src= {{"/uploads/"+event.EVE_ImagePath}} />
+                    <img class="col-sm-12" src= {{"/uploads/"+event.EVE_ImagePath}} />
                 </div>
                 </div>
             </div>

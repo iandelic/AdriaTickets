@@ -53,7 +53,6 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
             }).error(function () { alert('error event') });
     }
     $scope.$watch("event", function () {
-        console.log('change');
         if ($scope.event.EVE_Naziv != null &&
             $scope.event.EVE_Datum != null &&
             $scope.event.EVE_DatumOdPretprodaja != null &&
@@ -105,8 +104,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
    
 
     $scope.$watch('files', function () {
-        if (!angular.equals({}, $scope.files)) {
-            $scope.event.EVE_ImagePath = $scope.files[0].name;
+        if ($scope.files != null && $scope.files.length >0 ) {
             $scope.upload($scope.files);
         }
     });
@@ -114,10 +112,9 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
         $scope.event.EVE_Opis = $scope.description;
     });
     $scope.upload = function (files) {
-        if (files && files.length) {
+        if (files != null && files.length > 0) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                $scope.event.EVE_ImagePath = file.name;
                 Upload.upload({
                     url: '/admin/upload',
                     file: file
@@ -125,6 +122,7 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
                     $scope.uploadFlag = true;
                 }).success(function (data, status, headers, config) {
                     $scope.uploadFlag = false;
+                    $scope.event.EVE_ImagePath = file.name;
                 });
             }
         }

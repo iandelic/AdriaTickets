@@ -32,7 +32,9 @@ namespace AdriaTicket.com.Controllers
         }
         public ActionResult getEvents()
         {
-            var events = from e in AdriaTicketData.LK_Events where e.EVE_PrikaziNaWebu == true orderby e.EVE_Datum descending select new { e.EVE_Id, e.EVE_Opis, e.EVE_Naziv, e.EVE_Datum };
+            var events = from e in AdriaTicketData.LK_Events where (e.EVE_PrikaziNaWebu == true && e.EVE_Datum > DateTime.Now)  
+                         from dvorana in AdriaTicketData.LK_Dvoranas.Where(d => d.DVO_Id == e.EVE_DvoranaId).DefaultIfEmpty() 
+                         orderby e.EVE_Datum descending select new { e.EVE_Id, e.EVE_Opis, e.EVE_Naziv, e.EVE_Datum, e.EVE_ImagePath, dvorana.DVO_Naziv };
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }

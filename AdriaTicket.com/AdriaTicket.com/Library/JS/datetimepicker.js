@@ -251,7 +251,7 @@
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
-                'dayNames': [],
+                'dayNames': ['PON','UTO','SRI','CET','PET','SUB','NED'],
                 'weeks': []
               };
 
