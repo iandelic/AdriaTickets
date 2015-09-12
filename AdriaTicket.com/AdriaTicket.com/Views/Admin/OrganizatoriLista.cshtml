@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "CMS Adria Ticket - Organizatori";
+    ViewBag.Header = "CMS Adria Ticket - Organizatori";
+}
+
+<div ng-controller="OrganizatoriController">
+<div class="container">
+    <div class="row admin-row">
+        <div class ="col-sm-3 col-xs-12">
+          <a href ="/admin">
+              <button class="btn btn-default btn-md" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+              Povratak
+              </button>
+          </a>
+          <a href ="/admin/organizatori/dodaj">
+          <button class="btn btn-success btn-md" type="button">
+                <i class="glyphicon glyphicon-plus"></i>
+                Dodaj novi
+          </button>
+          </a>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text"  ng-model="query" class="form-control input-md" placeholder = "Pojam za pretragu" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-md" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+
+    <div class="row">
+    <table class="event-table table table-striped">
+    <tr class ="table-header">
+        <th class ="col-xs-2 col-sm-2">Naziv</th>
+        <th class ="col-xs-3 col-sm-3">Adresa</th>
+        <th class ="col-xs-5 col-sm-5">OIB</th>
+        <th class ="col-xs-2 col-sm-2 text-center">Akcija</th>
+    </tr>
+     <tr ng-repeat="org in listaOrganizatora | filter: query as results">
+        <td  class ="col-xs-2 col-sm-2">{{org.ORG_Naziv}}</td>
+        <td  class ="col-xs-3 col-sm-3">{{org.ORG_Adresa}}</td>
+        <td  class ="col-xs-5 col-sm-5">{{org.ORG_OIB}}</td>
+        <td class ="col-xs-2 col-sm-2 text-center"><a href ="/admin/organizatori/urediOrganizatora/{{org.ORG_Id}}"><div class ="table-link table-link-edit">Uredi</div></a></td>
+     </tr>
+     <tr ng-if="results.length == 0">
+        <td class = "no-result-error" colspan="4">Nema rezultata pretrage.</td>
+    </tr>
+    </table>
+</div>
+</div>
+
