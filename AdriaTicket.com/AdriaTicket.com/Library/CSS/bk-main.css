@@ -466,6 +466,9 @@ a:hover {
     font-weight:600;
     font-size:1.1em;
 }
+.contact-info span {
+    font-weight:700;
+}
 /* END CONTACT*/
 
 /* TERMS OF USE, PRIVACY, PLACE INFO */
