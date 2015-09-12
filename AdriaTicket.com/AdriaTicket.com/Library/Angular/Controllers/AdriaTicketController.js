@@ -66,7 +66,7 @@ adriaTicket.controller('LocationsController', ['$scope', '$http', 'uiGmapGoogleM
             $scope.options = {
                 styles: styleArray
             };
-            $scope.map = { center: { latitude: 43.5138889, longitude: 16.4558333 }, zoom: 12 };
+            $scope.map = { center: { latitude: 43.5138889, longitude: 16.4558333 }, zoom: 13 };
             $scope.map.control = {};
             $scope.markers = [];
 
@@ -91,7 +91,7 @@ adriaTicket.controller('LocationsController', ['$scope', '$http', 'uiGmapGoogleM
     $scope.townClick = function (town) {
         $scope.townFilter = town;
         if ($scope.townFilter == "Zagreb") {
-            $scope.map = { center: { latitude: 45.8, longitude: 16 }, zoom: 11 };
+            $scope.map = { center: { latitude: 45.78, longitude: 15.98 }, zoom: 12 };
         }
         else
         {
@@ -99,7 +99,7 @@ adriaTicket.controller('LocationsController', ['$scope', '$http', 'uiGmapGoogleM
             angular.forEach($scope.webLocations, function (value, key) {
             if (keepGoing) {
                 if (value.PMW_Grad == $scope.townFilter) {
-                    $scope.map = { center: { latitude: value.BK_Lat, longitude: value.BK_Lng }, zoom: 12 };
+                    $scope.map = { center: { latitude: value.BK_Lat, longitude: value.BK_Lng }, zoom: 13 };
                     keepGoing = false;
                 }
             }
