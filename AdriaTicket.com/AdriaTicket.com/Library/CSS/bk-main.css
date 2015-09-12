@@ -330,6 +330,7 @@ a:hover {
 }
 .sidebar {
     min-height: 300px;
+    text-align: center;
 }
 /* SINGLE EVENT */
 
@@ -605,7 +606,7 @@ a:hover {
 .angular-google-map-container { height: 500px; }
 /* END PLACES */
 
-@media(max-width:320px) {
+@media(max-width:360px) {
     .webPlacesBoxes {
         width:260px;
     }
@@ -625,5 +626,12 @@ a:hover {
     }
     .navbar-default .navbar-nav > li > a:hover {
         background-color:#494949;
+    }
+
+    .fotorama__nav-wrap {
+        display: none;
+    }
+    .ads-container {
+        min-height: 50px;
     }
 }
