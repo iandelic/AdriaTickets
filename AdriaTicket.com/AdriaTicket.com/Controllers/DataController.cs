@@ -28,6 +28,13 @@ namespace AdriaTicket.com.Controllers
             return Json(events, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult getCountries()
+        {
+            var drz = from e in AdriaTicketData.LK_Drzavas select new { e.DRZ_Id, e.DRZ_Naziv };
+
+            return Json(drz, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult GetSliderEvents()
         {
             var events = from g in AdriaTicketData.BK_MainSliderEvents select g.EventId;

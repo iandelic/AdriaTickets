@@ -10,11 +10,15 @@
 adriaTicketAdmin.controller('AdminOrganizatorEditController', ['$scope', '$location', '$http', 'SiteData', function ($scope, $location, $http, SiteData) {
     var id = $location.absUrl().split('/').pop();
     var siteUrl = SiteData.url;
-    $scope.organizator = {ORG_FlagPDV:false}
+    $scope.organizator = { ORG_FlagPDV: false }
+    $scope.addEditText = 'Novi organizator';
+    $scope.saveUpdate = 'Dodaj';
     if (parseInt(id)) {
         $http.get('/admin/getOrganizator/' + id).success(function (data) {
             $scope.organizator = data[0];
             $scope.organizator.ORG_OIB = parseInt($scope.organizator.ORG_OIB)
+            $scope.addEditText = 'Uredi organizatora';
+            $scope.saveUpdate = 'Spremi';
         }).error(function () { alert('error') });
     }
 

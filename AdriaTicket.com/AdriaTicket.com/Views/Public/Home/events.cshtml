@@ -6,20 +6,20 @@
         <div class="row">
             <div ng-repeat="event in events | filter:$parent.search" class="col-md-4 col-sm-6 one-event">
                 <a href={{"/event/"+event.EVE_Id}}>
-                    <img src="/Library/img/colonia-testna-slika.jpg" class="thumbnail" />
-                    <div class="event-content">
-                        <h3>{{event.EVE_Naziv}} </h3>
-                        <div class="row">
-                            <div class="col-md-3 vrijeme">
-                                <p class="minititle"> </p>
-                                <p> {{event.EVE_Datum}} </p>
-                                <p> {{event.vrijeme}} </p>
-                            </div>
-                            <div class="col-md-9 mjesto">
-                                <p> LOKACIJA {{event.lokacija}}</p>
+                   <img src="/Uploads/{{event.EVE_ImagePath}}" class="thumbnail" />
+                        <div class="event-content">
+                            <h3>{{event.EVE_Naziv}} </h3>
+                            <div class="row">
+                                <div class="col-md-3 vrijeme">
+                                    <p class="minititle"> </p>
+                                    <p> {{event.EVE_Datum}} </p>
+                                    <p> {{event.vrijeme}} </p>
+                                </div>
+                                <div class="col-md-9 mjesto">
+                                    <p>{{event.DVO_Naziv}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </a>
             </div>
         </div>

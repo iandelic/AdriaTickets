@@ -132,6 +132,7 @@
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminEventsController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminGalleriesController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminOrganizatoriController.js" />
+    <Content Include="Library\Angular\Controllers\AdriaTicketAdminTownController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketEventController.js" />
     <Content Include="Library\Angular\fileUpload\ng-file-upload-shim.min.js" />
@@ -281,6 +282,7 @@
     <Content Include="Uploads\homer_simpson_2-1920x1080.jpg" />
     <Content Include="Uploads\pf.jpg" />
     <Content Include="Uploads\Rasta_Homer_by_LightBeam.jpg" />
+    <Content Include="Uploads\spaladium.jpg" />
     <Content Include="Uploads\wallpaper-104901.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -383,6 +385,7 @@
     <Content Include="Views\Public\Home\TOU.cshtml" />
     <Content Include="Views\Admin\OrganizatoriLista.cshtml" />
     <Content Include="Views\Admin\UrediOrganizatora.cshtml" />
+    <Content Include="Views\Admin\AddTown.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

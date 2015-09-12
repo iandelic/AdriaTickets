@@ -39,7 +39,7 @@ adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement'
 adriaTicket.controller('allEventsPublicController', ['$scope', '$location', '$rootElement', '$http', '$sce', 'SiteData', function ($scope, $location, $rootElement, $http, $sce, SiteData) {
 
     var siteUrl = SiteData.url;
-    $http.get('/public/getEvents').success(function (data) {
+    $http.get('/public/getAllEvents').success(function (data) {
         $scope.events = data;
         angular.forEach($scope.events, function (event) {
             event.vrijeme = moment(event.EVE_Datum).format('HH:mm');

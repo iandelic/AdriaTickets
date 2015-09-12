@@ -1,0 +1,60 @@
+﻿    @{
+        ViewBag.Title = "CMS Adria Ticket - Grad";
+        ViewBag.Header = "CMS Adria Ticket - Grad";
+    }
+<div ng-controller="AdriaTicketTownController">
+    <form name="eventForm">
+        <fieldset>
+        <div class ="container addEditEvent-container">
+            <div class ="row admin-row header-row">
+                <div class ="col-sm-12">
+                    {{addEditText}}
+                </div>
+            </div>
+            <div class ="row admin-row">
+            <div class ="col-xs-12 col-sm-12">
+                <a href ="/admin/organizatori/list">
+                    <button class="form-control btn btn-warning" type="button">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        Odustani
+                    </button>
+                </a>
+            </div>
+            </div>
+            <div class ="row admin-row">
+                <div class="form-group">
+                    <label for="nazivEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Naziv</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="nazivEventa" placeholder="Naziv" ng-model="grad.MJE_Naziv">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nazivEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Poštanski broj</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="adresaOrganizatora" placeholder="Poštanski broj" ng-model="grad.MJE_ZIP">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nazivEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Država</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <select  class="form-control" id="pdv" ng-model="grad.MJE_DrzavaId">
+                            <option ng-repeat="d in drzave" value="{{d.DRZ_Id}}" ng-selected ="{{d.DRZ_Id == grad.MJE_DrzavaId}}">{{d.DRZ_Naziv}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class ="row">
+                <div class ="form-group col-xs-12 col-sm-12">
+                    <button type="submit" class="form-control btn btn-success" ng-disabled="disabledFlag" ng-click="save(grad)">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        {{saveUpdate}}                         
+                    </button>
+                </div>
+            </div>    
+        </div>  
+
+        </fieldset>
+    </form>
+</div>

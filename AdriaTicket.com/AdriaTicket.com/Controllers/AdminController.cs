@@ -101,6 +101,12 @@ namespace AdriaTicket.com.Controllers
         {
             return View();
         }
+        [Authorize]
+        public ActionResult AddTown()
+        {
+
+            return View();
+        }
 
         [Authorize]
         public ActionResult Galleries()
@@ -140,6 +146,13 @@ namespace AdriaTicket.com.Controllers
         {
 
             return View("urediOrganizatora");
+        }
+
+        [Authorize]
+        public ActionResult editTown()
+        {
+
+            return View("addTown");
         }
 
 
@@ -198,6 +211,19 @@ namespace AdriaTicket.com.Controllers
                           };
 
             return Json(location, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public ActionResult getTown(int id)
+        {
+            var grad = from g in AdriaTicketData.LK_Mjestos
+                           where g.MJE_Id == id
+                           select new
+                           {
+                               g.MJE_Id,g.MJE_Naziv,g.MJE_ZIP,g.MJE_DrzavaId
+                           };
+
+            return Json(grad, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
@@ -270,6 +296,35 @@ namespace AdriaTicket.com.Controllers
                 org.ORG_Stanje = 'A';
                 org.ORG_Timestamp = DateTime.Now;
                 AdriaTicketData.LK_Organizators.InsertOnSubmit(org);
+            }
+
+
+            AdriaTicketData.SubmitChanges();
+
+            return Json("completed", JsonRequestBehavior.AllowGet);
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult InsertUpdateTown(int Id, string Naziv, string ZIP,int DrzavaId)
+        {
+            if (Id > 0)
+            {
+                LK_Mjesto grad = AdriaTicketData.LK_Mjestos.FirstOrDefault(x => x.MJE_Id == Id);
+                grad.MJE_Naziv = Naziv;
+                grad.MJE_DrzavaId = DrzavaId;
+                grad.MJE_ZIP = ZIP;
+            }
+            else
+            {
+                LK_Mjesto grad =  new LK_Mjesto();
+                grad.MJE_Naziv = Naziv;
+                grad.MJE_DrzavaId = DrzavaId;
+                grad.MJE_ZIP = ZIP;
+                grad.MJE_Timestamp = DateTime.Now;
+                grad.MJE_Stanje = 'A';
+                AdriaTicketData.LK_Mjestos.InsertOnSubmit(grad);
             }
 
 
