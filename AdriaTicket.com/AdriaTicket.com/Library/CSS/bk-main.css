@@ -62,9 +62,10 @@ a:hover {
     margin-right: 0;
 }
 .row.carousel {
-    background:url('/Library/img/carousel-bg.jpg');
+    background:url('/Library/img/carousel-bg.jpg') center no-repeat;
     padding-top:20px;
     padding-bottom:50px;
+    background-size: cover;
 }
 .row.carousel .fotorama {
     float:none;
