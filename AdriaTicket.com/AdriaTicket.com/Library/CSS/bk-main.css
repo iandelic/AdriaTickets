@@ -374,7 +374,7 @@ a:hover {
 }
 .event-header .subitem {
     background-color: #F8F8F8;
-    min-height: 140px;
+    min-height: 100px;
 }
 .event-header .vrijeme ul {
     text-align: center;
@@ -606,9 +606,10 @@ a:hover {
 .angular-google-map-container { height: 500px; }
 /* END PLACES */
 
+
 @media(max-width:360px) {
     .webPlacesBoxes {
-        width:260px;
+        width:300px;
     }
     .navbar .container {
         padding:0;
@@ -633,5 +634,15 @@ a:hover {
     }
     .ads-container {
         min-height: 50px;
+    }
+    .event-header .buy {
+        margin: 30px auto 0 auto;
+    }
+}
+
+
+@media(max-width:320px) {
+    .webPlacesBoxes {
+        width:260px;
     }
 }
