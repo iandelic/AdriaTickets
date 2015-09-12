@@ -15,11 +15,11 @@ namespace AdriaTicket.com.Controllers
         public ActionResult Index()
         {
             var events = from g in AdriaTicketData.BK_MainSliderEvents select g.EventId;
-            var ev = from e in AdriaTicketData.LK_Events where events.Contains(e.EVE_Id) select new { e.EVE_Id, e.EVE_ImagePath };
-            List<Tuple<int, string>> Listimage = new List<Tuple<int, string>>();
+            var ev = from e in AdriaTicketData.LK_Events where events.Contains(e.EVE_Id) select new { e.EVE_Id, e.EVE_ImagePath, e.EVE_Naziv };
+            List<Tuple<int, string, string>> Listimage = new List<Tuple<int, string, string>>();
             foreach (var t in ev)
             {
-               Listimage.Add(new Tuple<int,string>(t.EVE_Id,t.EVE_ImagePath));
+               Listimage.Add(new Tuple<int,string, string>(t.EVE_Id,t.EVE_ImagePath, t.EVE_Naziv));
             }
             ViewBag.images = Listimage;
             return View("Home/Index");

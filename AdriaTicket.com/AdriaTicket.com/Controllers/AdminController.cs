@@ -500,10 +500,12 @@ namespace AdriaTicket.com.Controllers
         }
                 
         [HttpPost]
-        public ContentResult Upload(HttpPostedFileBase file)
+        public ContentResult Upload(HttpPostedFileBase file, string name, string type)
         {
             var filename = Path.GetFileName(file.FileName);
-            var path = Path.Combine(Server.MapPath("~/Uploads"), filename);
+            Directory.CreateDirectory(Server.MapPath("~/Uploads/"+type));
+            Directory.CreateDirectory(Server.MapPath("~/Uploads/"+type+"/"+name+"/"));
+            var path = Path.Combine(Server.MapPath("~/Uploads/"+type+"/"+name+"/"), filename);
             file.SaveAs(path);
 
             return new ContentResult{

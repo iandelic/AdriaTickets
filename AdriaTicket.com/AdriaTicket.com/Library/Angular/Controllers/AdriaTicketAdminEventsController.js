@@ -117,7 +117,8 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
                 var file = files[i];
                 Upload.upload({
                     url: '/admin/upload',
-                    file: file
+                    file: file,
+                    fields: { 'name': $scope.event.EVE_Naziv, 'type' : "event" }
                 }).progress(function (evt) {
                     $scope.uploadFlag = true;
                 }).success(function (data, status, headers, config) {

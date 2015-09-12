@@ -194,7 +194,7 @@
             <div ng-if="event.EVE_ImagePath" class="form-group">
                 <div class ="row addeditevent-row">
                 <div class ="col-xs-12 col-sm-12 admin-event-img-video">
-                    <img class="col-sm-12" src= {{"/uploads/"+event.EVE_ImagePath}} />
+                    <img class="col-sm-12" src= "{{'/uploads/event/'+ event.EVE_Naziv +'/' + event.EVE_ImagePath}}" />
                 </div>
                 </div>
             </div>

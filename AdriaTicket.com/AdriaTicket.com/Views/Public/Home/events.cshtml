@@ -6,7 +6,7 @@
         <div class="row">
             <div ng-repeat="event in events | filter:$parent.search" class="col-md-4 col-sm-6 one-event">
                 <a href={{"/event/"+event.EVE_Id}}>
-                   <img src="/Uploads/{{event.EVE_ImagePath}}" class="thumbnail" />
+                   <img src= "{{'/uploads/event/'+ event.EVE_Naziv +'/' + event.EVE_ImagePath}}" class="thumbnail" />
                         <div class="event-content">
                             <h3>{{event.EVE_Naziv}} </h3>
                             <div class="row">

@@ -275,15 +275,6 @@
     <Content Include="Library\sliderengine\navplaypause-28-28-0.png" />
     <Content Include="Library\sliderengine\play-32-32-0.png" />
     <Content Include="Library\sliderengine\playvideo-64-64-0.png" />
-    <Content Include="Uploads\5acf8eb495b617c7c64e32dde78eae1b.jpg" />
-    <Content Include="Uploads\bio-akt-bg.jpg" />
-    <Content Include="Uploads\bio-stu-bg.jpg" />
-    <Content Include="Uploads\cover.png" />
-    <Content Include="Uploads\homer_simpson_2-1920x1080.jpg" />
-    <Content Include="Uploads\pf.jpg" />
-    <Content Include="Uploads\Rasta_Homer_by_LightBeam.jpg" />
-    <Content Include="Uploads\spaladium.jpg" />
-    <Content Include="Uploads\wallpaper-104901.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
