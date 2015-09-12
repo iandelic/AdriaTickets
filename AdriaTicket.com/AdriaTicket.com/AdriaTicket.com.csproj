@@ -225,6 +225,7 @@
     <Content Include="Library\img\dino-merlin.jpg" />
     <Content Include="Library\img\email-ico.png" />
     <Content Include="Library\img\event-200.jpg" />
+    <Content Include="Library\img\favicon.ico" />
     <Content Include="Library\img\location.png" />
     <Content Include="Library\img\logo.svg" />
     <Content Include="Library\img\oib-ico.png" />
