@@ -1,0 +1,75 @@
+﻿    @{
+        ViewBag.Title = "CMS Adria Ticket - Organizator";
+        ViewBag.Header = "CMS Adria Ticket - Organizator";
+    }
+<div ng-controller="AdminOrganizatorEditController">
+    <form name="eventForm">
+        <fieldset>
+        <div class ="container addEditEvent-container">
+            <div class ="row admin-row header-row">
+                <div class ="col-sm-12">
+                    {{addEditText}}
+                </div>
+            </div>
+            <div class ="row admin-row">
+            <div class ="col-xs-12 col-sm-12">
+                <a href ="/admin/organizatori/list">
+                    <button class="form-control btn btn-warning" type="button">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        Odustani
+                    </button>
+                </a>
+            </div>
+            </div>
+            <div class ="row admin-row">
+            <div class ="col-xs-12 col-sm-6">
+                <div class="form-group">
+                    <label for="nazivEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Naziv</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="nazivEventa" placeholder="Naziv organizatora" ng-model="organizator.ORG_Naziv">
+                    </div>
+                </div>
+            </div>
+            <div class ="col-xs-12 col-sm-6">
+                <div class="form-group">
+                    <label for="nazivEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">Adresa</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="text" class="form-control" id="adresaOrganizatora" placeholder="Adresa organizatora" ng-model="organizator.ORG_Adresa">
+                    </div>
+                </div>
+            </div>
+            </div>
+                        <div class ="row admin-row">
+            <div class ="col-xs-12 col-sm-6">
+                <div class="form-group">
+                    <label for="nazivEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">OIB</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <input type="number" step="1" class="form-control" id="OIB" placeholder="OIB organizatora" ng-model="organizator.ORG_OIB">
+                    </div>
+                </div>
+            </div>
+            <div class ="col-xs-12 col-sm-6">
+                <div class="form-group">
+                    <label for="nazivEventa" class="control-label col-xs-12 col-sm-12 addeditlabel">PDV</label>
+                    <div class="col-xs-12 col-sm-12">
+                        <select  class="form-control" id="pdv" ng-model="organizator.ORG_FlagPDV">
+                            <option value="true" ng-selected ="organizator.ORG_FlagPDV == true">DA</option>
+                            <option value="false" ng-selected ="organizator.ORG_FlagPDV == false">NE</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class ="row">
+                <div class ="form-group col-xs-12 col-sm-12">
+                    <button type="submit" class="form-control btn btn-success" ng-disabled="disabledFlag" ng-click="save(organizator)">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        {{saveUpdate}}                         
+                    </button>
+                </div>
+            </div>    
+        </div>  
+
+        </fieldset>
+    </form>
+</div>

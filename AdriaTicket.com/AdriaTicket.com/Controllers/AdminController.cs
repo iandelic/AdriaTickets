@@ -123,6 +123,44 @@ namespace AdriaTicket.com.Controllers
         }
 
         [Authorize]
+        public ActionResult List()
+        {
+
+            return View("OrganizatoriLista");
+        }
+        [Authorize]
+        public ActionResult urediOrganizatora()
+        {
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult dodaj()
+        {
+
+            return View("urediOrganizatora");
+        }
+
+
+        [Authorize]
+        public ActionResult getOrganizator(int id)
+        {
+
+            var org = from o in AdriaTicketData.LK_Organizators where o.ORG_Id == id
+                           select new
+                           {
+                               o.ORG_Id,
+                               o.ORG_Naziv,
+                               o.ORG_OIB,
+                               o.ORG_Adresa,
+                               o.ORG_FlagPDV
+                           };
+
+            return Json(org, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
         public ActionResult NewGallery()
         {
 
@@ -163,6 +201,22 @@ namespace AdriaTicket.com.Controllers
         }
 
         [Authorize]
+        public ActionResult getOrganiatori()
+        {
+            var org = from o in AdriaTicketData.LK_Organizators
+                           select new
+                           {
+                               o.ORG_Id,
+                               o.ORG_Naziv,
+                               o.ORG_OIB,
+                               o.ORG_Adresa,
+                               o.ORG_FlagPDV
+                           };
+
+            return Json(org, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
         [HttpPost]
         public ActionResult saveLocation(int Id,string Adresa, string Mjesto, string Telefon, string Naziv, string Lng, string Lat)
         {
@@ -191,6 +245,36 @@ namespace AdriaTicket.com.Controllers
 
             AdriaTicketData.SubmitChanges();
             
+            return Json("completed", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SpremiOrganizatora(int Id, string Adresa, string Naziv, string OIB, bool pdv)
+        {
+            if (Id > 0)
+            {
+                LK_Organizator org = AdriaTicketData.LK_Organizators.FirstOrDefault(x => x.ORG_Id == Id);
+                org.ORG_Naziv = Naziv;
+                org.ORG_FlagPDV = pdv;
+                org.ORG_Adresa = Adresa;
+                org.ORG_OIB = OIB;
+            }
+            else
+            {
+                LK_Organizator org = new LK_Organizator();
+                org.ORG_Naziv = Naziv;
+                org.ORG_FlagPDV = pdv;
+                org.ORG_Adresa = Adresa;
+                org.ORG_OIB = OIB;
+                org.ORG_Stanje = 'A';
+                org.ORG_Timestamp = DateTime.Now;
+                AdriaTicketData.LK_Organizators.InsertOnSubmit(org);
+            }
+
+
+            AdriaTicketData.SubmitChanges();
+
             return Json("completed", JsonRequestBehavior.AllowGet);
         }
 

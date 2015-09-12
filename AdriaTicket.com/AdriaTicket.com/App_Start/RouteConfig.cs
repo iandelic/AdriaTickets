@@ -14,7 +14,11 @@ namespace AdriaTicket.com
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.LowercaseUrls = true;
 
-
+            routes.MapRoute(
+               name: "Admin-Organizatori",
+               url: "{controller}/organizatori/{action}/{id}",
+               defaults: new { controller = "Admin", action = "List", id = UrlParameter.Optional }
+           );
             routes.MapRoute(
                name: "Admin-Event-edit",
                url: "{controller}/events/{action}/{id}",

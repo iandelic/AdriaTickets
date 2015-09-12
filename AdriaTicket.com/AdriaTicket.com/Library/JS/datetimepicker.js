@@ -256,10 +256,6 @@
               };
 
 
-              for (var dayNumber = 0; dayNumber < 7; dayNumber += 1) {
-                result.dayNames.push(moment.utc().weekday(dayNumber).format('DD'));
-              }
-
               for (var i = 0; i < 6; i += 1) {
                 var week = {dates: []};
                 for (var j = 0; j < 7; j += 1) {
