@@ -6,26 +6,30 @@
     <div id ="webPlacesNG" ng-controller="LocationsController">
             <h2>Prodajna mjesta:</h2>
             <hr />
+        <div class="row">
             <ul>
-               <li ng-repeat="place in webPlaces" class ="webPlacesItems" ng-click="townClick(place.PMW_Grad)">
-                   {{place.PMW_Grad}}
-               </li>
+                <li ng-repeat="place in webPlaces" class="webPlacesItems" ng-click="townClick(place.PMW_Grad)">
+                    {{place.PMW_Grad}}
+                </li>
             </ul>
-
-
+        </div>
+        <div class="row">
             <ui-gmap-google-map center='map.center' zoom='map.zoom' options='options'>
-                <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" icon= '{url:    "/Library/img/location.png" }'>
-
+                <ui-gmap-marker ng-repeat="marker in markers | filter: townFilter" coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" icon='{url:    "/Library/img/location.png" }'>
             </ui-gmap-google-map>
-            
-
-            <div class = "webPlacesBoxes" ng-repeat="location in webLocations  | filter: townFilter">
-                <p>{{location.PMW_Naziv}}</p>
-                <p>{{location.PMW_Adresa}}</p>
-                <p>{{location.PMW_Grad}}</p>
-                <p ng-hide ="location.PMW_Telefon == ''">{{location.PMW_Telefon}}</p>
+        </div>
+        <div class="row">
+            <div class="webPlacesBoxes" ng-repeat="location in webLocations  | filter: townFilter">
+                <h4 class="webPlacesTitle" ng-hide="location.PMW_Naziv == ''">{{location.PMW_Naziv}}</h4>
+                <ul class="webPlacesInfo">
+                    <li class="webPlacesAddress" ng-hide="location.PMW_Adresa == ''">{{location.PMW_Adresa}}</li>
+                    <li class="webPlacesCity" ng-hide="location.pmw_grad== '' ">{{location.PMW_Grad}}</li>
+                </ul>
+                <ul class="webPlacesInfoOther">
+                    <li class="webPlacesTel" ng-hide="location.pmw_telefon== '' ">{{location.PMW_Telefon}}</li>
+                </ul>
             </div>
-
+        </div>
             <div style ="clear:both;"></div>
     </div>
 </div>

@@ -2,6 +2,10 @@
 
 adriaTicket.controller('HomeController', ['$scope', '$http', function ($scope, $http) {
 
+    $http.get('/public/getSliderEvents').success(function (data) {
+        $scope.sliderEvents = data;
+    }).error(function () { alert('error') });
+
     $http.get('/public/getEvents').success(function (data) {
         $scope.events = data;
         angular.forEach($scope.events, function (event) {
@@ -26,6 +30,7 @@ adriaTicket.controller('ContactController', ['$scope', '$http', function ($scope
 
 adriaTicket.controller('LocationsController', ['$scope', '$http', 'uiGmapGoogleMapApi', function ($scope, $http, uiGmapGoogleMapApi) {
 
+    $scope.townFilter = "Split";
     $http.get('/data/GetWebLocations').success(function (data) {
         $scope.webLocations=data;
     }).error(function () { alert('error') });
@@ -61,7 +66,7 @@ adriaTicket.controller('LocationsController', ['$scope', '$http', 'uiGmapGoogleM
             $scope.options = {
                 styles: styleArray
             };
-            $scope.map = { center: { latitude: 44.8, longitude: 16.5 }, zoom: 7 };
+            $scope.map = { center: { latitude: 43.5138889, longitude: 16.4558333 }, zoom: 12 };
             $scope.map.control = {};
             $scope.markers = [];
 
@@ -72,7 +77,8 @@ adriaTicket.controller('LocationsController', ['$scope', '$http', 'uiGmapGoogleM
                     coords: {
                         latitude: value.BK_Lat,
                         longitude: value.BK_Lng
-                    }
+                    },
+                    town: value.PMW_Grad
                 };
                 $scope.markers.push($scope.marker);
             });
@@ -81,11 +87,25 @@ adriaTicket.controller('LocationsController', ['$scope', '$http', 'uiGmapGoogleM
         });
     });
 
-    $scope.townFilter = "";
+    
     $scope.townClick = function (town) {
         $scope.townFilter = town;
-        // po gradu ispisati sve ovo
-        $scope.map = { center: { latitude: 45.8, longitude: 16 }, zoom: 12 };
+        if ($scope.townFilter == "Zagreb") {
+            $scope.map = { center: { latitude: 45.8, longitude: 16 }, zoom: 11 };
+        }
+        else
+        {
+            var keepGoing = true;
+            angular.forEach($scope.webLocations, function (value, key) {
+            if (keepGoing) {
+                if (value.PMW_Grad == $scope.townFilter) {
+                    $scope.map = { center: { latitude: value.BK_Lat, longitude: value.BK_Lng }, zoom: 12 };
+                    keepGoing = false;
+                }
+            }
+            });
+            
+        }
     }
     
     

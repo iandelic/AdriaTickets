@@ -1,6 +1,6 @@
-﻿adriaTicketAdmin.controller('AdminEventController', ['$scope', '$http', function ($scope, $http) {
+﻿adriaTicketAdmin.controller('AdminEventController', ['$scope', '$http', 'SiteData', function ($scope, $http, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     $http.get('/admin/getEvents').success(function (data) {
         $scope.events = data;
         angular.forEach($scope.events, function (event) {
@@ -15,18 +15,30 @@
 }]);
 
 
-adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', '$rootElement', '$http', 'Upload', function ($scope, $location, $rootElement, $http, Upload) {
+adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', '$rootElement', '$http', 'Upload', 'SiteData', function ($scope, $location, $rootElement, $http, Upload, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     var id = $location.absUrl().split('/').pop();
     $scope.event = {}
     $scope.files = {}
+    var entityMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': '&quot;',
+        "'": '&#39;',
+        " ": "+"
+    };
 
+    function escapeHtml(string) {
+        return String(string).replace(/[&<>"'\/]/g, function (s) {
+            return entityMap[s];
+        });
+    }
     $scope.disabledFlag = true;
     $scope.uploadFlag = false;
     $scope.addEditEvent = "Novi događaj";
     $scope.saveUpdate = "Dodaj";
-
     if (parseInt(id)){
             $http.get('/admin/getEvent/'+id).success(function (data) {
                 $scope.event = data[0];
@@ -40,7 +52,22 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
             $scope.description = $scope.event.EVE_Opis;
             }).error(function () { alert('error event') });
     }
-
+    $scope.$watch("event", function () {
+        console.log('change');
+        if ($scope.event.EVE_Naziv != null &&
+            $scope.event.EVE_Datum != null &&
+            $scope.event.EVE_DatumOdPretprodaja != null &&
+            $scope.event.EVE_DatumOdProdaja != null &&
+            $scope.event.EVE_ImagePath != null &&
+            $scope.event.EVE_StatusEventaId != null &&
+            $scope.event.EVE_PostotakProvizije != null &&
+            $scope.event.ORG_Id != null &&
+            $scope.event.MjestoId != null &&
+            $scope.event.EVE_DvoranaId != null)
+            $scope.disabledFlag = false;
+        else
+            $scope.disabledFlag = true;
+    },true)
     $http.get('/data/getgalleries').success(function (data) {
         $scope.galleries = data;
     }).error(function () { alert('error status') });
@@ -123,19 +150,37 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
     $scope.save = function (event) {
         var temp = 'naziv=' + event.EVE_Naziv;
         if(event.EVE_Id != null)
-        temp += '&id=' + event.EVE_Id;
-        temp += '&opis=' + encodeURIComponent(event.EVE_Opis).replace(/%20/g, '+');;
+            temp += '&id=' + event.EVE_Id;
+        else
+            temp += '&id=0';
+        if (event.EVE_Opis.indexOf("<p>") >= 0) {
+            console.log(escapeHtml(event.EVE_Opis))
+            temp += '&opis=' +encodeURIComponent(escapeHtml(event.EVE_Opis)).replace(/%20/g, '+');
+        }
+        else {
+            temp += '&opis=' + encodeURIComponent(event.EVE_Opis).replace(/%20/g, '+');
+        }
         temp += '&Datum=' + event.EVE_Datum;
+        if (event.EVE_ImagePath != null && event.EVE_ImagePath != "undefined")
         temp += '&Image=' + event.EVE_ImagePath;
         temp += '&DatumOdPretprodaja=' + event.EVE_DatumOdPretprodaja;
         temp += '&DatumOdProdaja=' + event.EVE_DatumOdProdaja;
         temp += '&Organizator=' + event.ORG_Id;
         temp += '&PostotakProvizije=' + event.EVE_PostotakProvizije;
         temp += '&Mjesto=' + event.MjestoId;
+
         temp += '&Dvorana=' + event.EVE_DvoranaId;
+
         temp += '&Status=' + event.EVE_StatusEventaId;
-        temp += '&PrikazNaWebu=' + event.EVE_PrikaziNaWebu;
-        temp += '&VideoLink=' + event.videoLink;
+
+        if (event.EVE_PrikaziNaWebu != null)
+            temp += '&PrikazNaWebu=' + event.EVE_PrikaziNaWebu;
+        else
+            temp += '&PrikazNaWebu=false';
+
+        if (event.videoLink != null && event.videoLink != "undefined")
+            temp += '&VideoLink=' + event.videoLink;
+        if (event.ImageGalleriesID != null && event.ImageGalleriesID != "undefined")
         temp += '&galleryId=' + event.ImageGalleriesID;
         $http({
             method: 'POST',
@@ -152,9 +197,9 @@ adriaTicketAdmin.controller('AdminEventEditController', ['$scope', '$location', 
 
 
 
-adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$location', function ($scope, $http,$location) {
+adriaTicketAdmin.controller('AdminEventPricesController', ['$scope', '$http', '$location', 'SiteData', function ($scope, $http, $location, SiteData) {
 
-    var siteUrl = "http://localhost:32718/";
+    var siteUrl = SiteData.url;
     var id = $location.absUrl().split('/').pop();
     $scope.cijeneFlag = false;
     if (parseInt(id)) {

@@ -1,4 +1,13 @@
 ﻿var adriaTicket = angular.module('adriaticket', ['youtube-embed', 'uiGmapgoogle-maps']);
+adriaTicket.factory('SiteData', function () {
+    return {
+        url: 'http://localhost:32718/'
+    };
+});
+
+//url: 'http://localhost:32718/' 
+//url: 'http://adriaticket.com.win15.mojsite.com/' 
+
 
 adriaTicket.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -10,7 +19,8 @@ adriaTicket.config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyAvGeT85TAX9z0j7k3CXsJdp5vl1xsHWRc',
         v: '3.17',
-        libraries: 'weather,geometry,visualization'
+        libraries: 'weather,geometry,visualization',
+        language: 'hr'
     });
 })
 
@@ -18,7 +28,11 @@ adriaTicket.config(function (uiGmapGoogleMapApiProvider) {
 
 
 var adriaTicketAdmin = angular.module('adriaticketadmin', ['ui.bootstrap.datetimepicker', 'ui.tinymce', 'ngFileUpload', 'youtube-embed', 'datatables', 'ui.select']);
-
+adriaTicketAdmin.factory('SiteData', function () {
+    return {
+        url: 'http://localhost:32718/'
+    };
+});
 adriaTicketAdmin.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 }]);

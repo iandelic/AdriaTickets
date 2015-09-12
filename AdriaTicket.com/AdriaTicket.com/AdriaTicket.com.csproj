@@ -215,15 +215,26 @@
     <Content Include="Library\CSS\datetimepicker.css" />
     <Content Include="Library\CSS\bootstrap\font-awesome.min.css" />
     <Content Include="Library\CSS\textAngular.css" />
+    <Content Include="Library\img\AdriaTicket-Logo-large.png" />
     <Content Include="Library\img\AdriaTicket-logo-white.png" />
+    <Content Include="Library\img\AdriaTicket-small-grey-logo.png" />
     <Content Include="Library\img\carousel-bg.jpg" />
+    <Content Include="Library\img\colonia-testna-slika.jpg" />
     <Content Include="Library\img\dino-merlin.jpg" />
+    <Content Include="Library\img\email-ico.png" />
+    <Content Include="Library\img\event-200.jpg" />
     <Content Include="Library\img\location.png" />
     <Content Include="Library\img\logo.svg" />
+    <Content Include="Library\img\oib-ico.png" />
     <Content Include="Library\img\social-fb.jpg" />
+    <Content Include="Library\img\social-fb.png" />
     <Content Include="Library\img\social-tw.jpg" />
+    <Content Include="Library\img\social-tw.png" />
     <Content Include="Library\img\sustipanska-noc.jpg" />
     <Content Include="Library\img\talking-heads.jpg" />
+    <Content Include="Library\img\phone-icon.png" />
+    <Content Include="Library\img\unirent.png" />
+    <Content Include="Library\img\white-phone-icon-png.png" />
     <Content Include="Library\JS\datatables\angular-datatables.js" />
     <Content Include="Library\JS\bk-admin.js" />
     <Content Include="Library\JS\bk-main.js" />
@@ -262,6 +273,14 @@
     <Content Include="Library\sliderengine\navplaypause-28-28-0.png" />
     <Content Include="Library\sliderengine\play-32-32-0.png" />
     <Content Include="Library\sliderengine\playvideo-64-64-0.png" />
+    <Content Include="Uploads\5acf8eb495b617c7c64e32dde78eae1b.jpg" />
+    <Content Include="Uploads\bio-akt-bg.jpg" />
+    <Content Include="Uploads\bio-stu-bg.jpg" />
+    <Content Include="Uploads\cover.png" />
+    <Content Include="Uploads\homer_simpson_2-1920x1080.jpg" />
+    <Content Include="Uploads\pf.jpg" />
+    <Content Include="Uploads\Rasta_Homer_by_LightBeam.jpg" />
+    <Content Include="Uploads\wallpaper-104901.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

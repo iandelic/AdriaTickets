@@ -9,63 +9,74 @@
          data-autoplay="3000"
          data-loop="true"
          data-nav="thumbs"
+         data-click="false"
          data-thumbwidth="200">
-        <img src="~/Library/img/dino-merlin.jpg" class="img-responsive" />
-        <img src="~/Library/img/sustipanska-noc.jpg" class="img-responsive" />
-        <img src="~/Library/img/talking-heads.jpg" class="img-responsive" />
+        @foreach (Tuple<int,string> item in ViewBag.images)
+        {
+            <div data-img="/Uploads/@item.Item2" class="img-responsive"><a href="/event/@item.Item1"></a></div>
+        }
     </div>
 </div>
-
 <div id="main-content" class="container">
-<div class="row">
-    <div class="col-md-12 ads-container">
-        <a href="http://www.uni-rent.net">
-            <img src="/Library/img/unirent.png" alt="uni-rent" class="center-block img-responsive">
-        </a>
+    <div class="row">
+        <div class="col-md-12 ads-container">
+            <a href="http://www.uni-rent.net">
+                <img src="/Library/img/unirent.png" alt="uni-rent" class="center-block img-responsive">
+            </a>
+        </div>
     </div>
-</div>
 
-<div class="row">
-    <div ng-controller="HomeController" class="col-md-9">   
-        <div class="row">
-            <div ng-repeat="event in events" class="col-md-4 col-sm-6 one-event">
-                <a href={{"/event/"+event.EVE_Id}}>
-                    <img src="/Library/img/colonia-testna-slika.jpg" class="thumbnail" />
-                    <div class="event-content">
-                        <h3>{{event.EVE_Naziv}} </h3>
-                        <div class="row">
-                            <div class="col-md-3 vrijeme">
-                                <p class="minititle"> </p>
-                                <p> {{event.EVE_Datum}} </p>
-                                <p> {{event.vrijeme}} </p>
-                            </div>
-                            <div class="col-md-9 mjesto">
-                                <p> LOKACIJA {{event.lokacija}}</p>
+    <div class="row">
+        <div ng-controller="HomeController" class="col-md-9">
+            <div class="row">
+                <div ng-repeat="event in events" class="col-md-4 col-sm-6 one-event">
+                    <a href={{"/event/"+event.EVE_Id}}>
+                        <img src="/Library/img/colonia-testna-slika.jpg" class="thumbnail" />
+                        <div class="event-content">
+                            <h3>{{event.EVE_Naziv}} </h3>
+                            <div class="row">
+                                <div class="col-md-3 vrijeme">
+                                    <p class="minititle"> </p>
+                                    <p> {{event.EVE_Datum}} </p>
+                                    <p> {{event.vrijeme}} </p>
+                                </div>
+                                <div class="col-md-9 mjesto">
+                                    <p> LOKACIJA {{event.lokacija}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
-        </div>
-    <!-- Facebook plugin -->
-    <div id="fb-root"></div>
-    <script>
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-    <!-- / Facebook plugin -->
+        <!-- Facebook plugin -->
+        <div id="fb-root"></div>
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+        <!-- / Facebook plugin -->
         <div class="sidebar col-md-3">
-            <div class="fb-page" data-href="https://www.facebook.com/adriaticket" 
+            <div class="fb-page" data-href="https://www.facebook.com/adriaticket"
                  data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
-                <div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/adriaticket">
-                    <a href="https://www.facebook.com/adriaticket">Adriaticket</a></blockquote>
+                <div class="fb-xfbml-parse-ignore">
+                    <blockquote cite="https://www.facebook.com/adriaticket">
+                        <a href="https://www.facebook.com/adriaticket">Adriaticket</a>
+                    </blockquote>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.fotorama__html').bind("click", function () {
+            window.location.href = $(this).find("a").attr("href")
+        })
+    });
+
+</script>

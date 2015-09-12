@@ -69,6 +69,11 @@ a:hover {
 .row.carousel .fotorama {
     float:none;
 }
+.fotorama__html div,
+.fotorama__html a {
+    display: block;
+    height: 100%;
+}
 #page-container {
     display: block;
 }
@@ -527,13 +532,57 @@ a:hover {
 
 /* PLACES */
 .webPlacesItems {
-    margin-left:5px;
+    height: 22px;
+    margin-left: 5px;
     margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: #b12706;
+    padding: 5px 10px;
+    line-height: 12px;
+    border-radius: 10px;
+    color: white;
     float: left;
+    -webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
+}
+.webPlacesItems:hover {
+    background-color: #ff3707;
+}
+.webPlacesTitle {
+    font-weight:bold;
+    padding: 0px 5px 2px 5px;
+    border-bottom: 3px solid #b12706;
+    width: 95%;
+    margin-left: 2.5%;
+    min-height:50px;
+}
+.webPlacesBoxes ul {
+    cursor:auto!important;
+    font-size:0.9em;
+}
+.webPlacesInfo {
+    margin-top:10px;
+    padding-left:12%;
+    margin-left:4%;
+    min-height:50px;
+    background:url(../img/location.png) no-repeat;
+}
+.webPlacesInfo li {
+    margin-bottom:10px;
+}
+.webPlacesInfoOther {
+    padding-left:12%;
+    margin-left:4%;
+    background:url(../img/phone-icon.png) no-repeat;
+}
+.webPlacesTel {
+    background-image:url();
 }
 .locations ul {
-    margin-bottom: 80px;
     cursor:pointer;
+    color:#505050;
 }
 
 .webPlacesBoxes {
@@ -542,12 +591,38 @@ a:hover {
     margin-left: 20px;
     margin-right: 20px;
     background : white;
-    height: 175px;
+    min-height: 175px;
     width: 250px;
+    border:1px solid #DEDEDE;
+    background:url(../img/AdriaTicket-small-grey-logo.png) no-repeat bottom right #fff;
 }
+
 #webPlacesNG {
     margin-bottom: 80px;
 }
 
 .angular-google-map-container { height: 500px; }
 /* END PLACES */
+
+@media(max-width:320px) {
+    .webPlacesBoxes {
+        width:260px;
+    }
+    .navbar .container {
+        padding:0;
+        color:#b12706
+    }
+    .navbar-nav {
+        margin:0;
+    }
+
+    .container > .navbar-header {
+        margin:0;
+    }
+    .navbar-default .navbar-nav > li > a {
+        background-color:#1D1D1D;
+    }
+    .navbar-default .navbar-nav > li > a:hover {
+        background-color:#494949;
+    }
+}
