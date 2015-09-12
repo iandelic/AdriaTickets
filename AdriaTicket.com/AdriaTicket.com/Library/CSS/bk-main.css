@@ -62,9 +62,10 @@ a:hover {
     margin-right: 0;
 }
 .row.carousel {
-    background:url('/Library/img/carousel-bg.jpg');
+    background:url('/Library/img/carousel-bg.jpg') center no-repeat;
     padding-top:20px;
     padding-bottom:50px;
+    background-size: cover;
 }
 .row.carousel .fotorama {
     float:none;
@@ -73,6 +74,15 @@ a:hover {
 .fotorama__html a {
     display: block;
     height: 100%;
+}
+.fotorama__caption {
+    color: #f8f8f8;
+    font-size:2.5em;
+    width:100%;
+}
+.fotorama__caption__wrap {
+    background-color: rgba(0,0,0,.3);
+    width:100%;
 }
 #page-container {
     display: block;
@@ -329,6 +339,7 @@ a:hover {
 }
 .sidebar {
     min-height: 300px;
+    text-align: center;
 }
 /* SINGLE EVENT */
 
@@ -372,7 +383,7 @@ a:hover {
 }
 .event-header .subitem {
     background-color: #F8F8F8;
-    min-height: 140px;
+    min-height: 100px;
 }
 .event-header .vrijeme ul {
     text-align: center;
@@ -463,6 +474,9 @@ a:hover {
 .contact-info li:first-child {
     font-weight:600;
     font-size:1.1em;
+}
+.contact-info span {
+    font-weight:700;
 }
 /* END CONTACT*/
 
@@ -604,9 +618,18 @@ a:hover {
 .angular-google-map-container { height: 500px; }
 /* END PLACES */
 
-@media(max-width:320px) {
+.subheader-collapsed {
+    margin-right: 0;
+    background-color: #1D1D1D;
+    padding-right: 15px!important;
+    z-index: 999;
+    margin-top: -5px;
+    height: 35px;
+}
+
+@media(max-width:360px) {
     .webPlacesBoxes {
-        width:260px;
+        width:300px;
     }
     .navbar .container {
         padding:0;
@@ -624,5 +647,21 @@ a:hover {
     }
     .navbar-default .navbar-nav > li > a:hover {
         background-color:#494949;
+    }
+
+    .fotorama__nav-wrap {
+        display: none;
+    }
+    .ads-container {
+        min-height: 50px;
+    }
+    .event-header .buy {
+        margin: 30px auto 0 auto;
+    }
+}
+
+@media(max-width:320px) {
+    .webPlacesBoxes {
+        width:260px;
     }
 }
