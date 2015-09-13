@@ -9,7 +9,8 @@
 }]);
 
 
-adriaTicketAdmin.controller('AdminGalleryController', ['$scope', '$location', '$rootElement', '$http', 'Upload', 'SiteData', function ($scope, $location, $rootElement, $http, Upload, SiteData) {
+adriaTicketAdmin.controller('AdminGalleryController', ['$scope', '$location', '$rootElement', '$http', 'Upload', 'SiteData', '$q',
+    function ($scope, $location, $rootElement, $http, Upload, SiteData,$q) {
 
     var siteUrl = SiteData.url;
     var id = $location.absUrl().split('/').pop();
@@ -39,18 +40,32 @@ adriaTicketAdmin.controller('AdminGalleryController', ['$scope', '$location', '$
         
         $scope.tempImages = [];
         if ($scope.files != null) {
-            if ($scope.files && $scope.files.length) {
-                for (var i = 0; i < $scope.files.length; i++) {
-                    var file = $scope.files[i];
-                    $scope.tempImages.push(file.name);
-
-                }
-            }
             $scope.uploadFlag = false;
         }
         else
         {
             $scope.uploadFlag = true;
+        }
+
+        var defer = $q.defer();
+
+        $scope.tempImages = [];
+        var promises = [];
+        if ($scope.files && $scope.files.length) {
+            for (var i = 0; i < $scope.files.length; i++) {
+                var file = $scope.files[i];
+                promises.push(
+                Upload.upload({
+                    url: '/admin/upload',
+                    file: file,
+                    fields: { 'name': $scope.gallery[0].NazivGalerije, 'type': "galleries" }
+                }).then(function (data) {
+                    $scope.tempImages.push(data.data)
+                })
+            );
+            }
+            $q.all(promises)
+
         }
     });
     $scope.beginUpload = function () {
@@ -62,13 +77,9 @@ adriaTicketAdmin.controller('AdminGalleryController', ['$scope', '$location', '$
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 images += file.name + '$%$';
-                Upload.upload({
-                    url: '/admin/upload',
-                    file: file,
-                    fields: { 'name': $scope.gallery[0].NazivGalerije, 'type': "galleries" }
-                })
             }
             images += '&Id=' + $scope.id;
+
             $http({
                 method: 'POST',
                 url: '/admin/SaveImage',
@@ -79,8 +90,28 @@ adriaTicketAdmin.controller('AdminGalleryController', ['$scope', '$location', '$
                 jQuery(location).attr('href', siteUrl + "admin/gallery/" + $scope.id);
             }).error(function (msg) {
             });
-        }
 
+        }
+    }
+
+    $scope.cancelAndDelete = function () {
+        var images = 'image=';
+        for (var i = 0; i < $scope.tempImages.length; i++) {
+            var file = $scope.tempImages[i];
+            images += file+ '$%$';
+        }
+        if($scope.tempImages.length > 0){
+
+            $http({
+            method: 'POST',
+            url: '/admin/DeleteImage',
+            data: images,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function (data) {
+
+            jQuery(location).attr('href', siteUrl + "admin/gallery/" + $scope.id);
+        })
+        }
     }
 
 }]);
