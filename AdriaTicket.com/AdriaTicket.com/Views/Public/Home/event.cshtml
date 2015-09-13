@@ -60,8 +60,8 @@
 
                 <div id="links" class="row">
                     <div class="image-container" ng-repeat="image in event.Images">
-                        <a href="{{'/uploads/event/'+ event.EVE_Naziv +'/' + event.EVE_ImagePath}}" class="col-md-4 single-image">
-                            <img src="{{'/uploads/event/'+ event.EVE_Naziv +'/' + event.EVE_ImagePath}}" width="110" />
+                        <a href="{{'/uploads/galleries/'+ image.NazivGalerije +'/' + image.ImageName}}" class="col-md-4 single-image">
+                            <img src="{{'/uploads/galleries/'+ image.NazivGalerije +'/' + image.ImageName}}" width="110" />
                         </a>
                     </div>
                 </div>
