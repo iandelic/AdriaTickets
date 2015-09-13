@@ -47,7 +47,7 @@
         </div>
         </div>
         <div class ="image-container col-xs-12 col-sm-4 col-md-3" ng-repeat="image in tempImages">
-            <img class="tempImages" src={{"/uploads/"+image}} />
+            <img class="tempImages" src="{{'/uploads/galleries/'+gallery[0].NazivGalerije + '/' +image}}" />
         </div>
         </div>
         </div>
@@ -73,7 +73,7 @@
         </div>
   
         <div class ="image-container col-xs-6 col-sm-2" ng-repeat="image in gallery">
-            <img class="databaseImages" src={{"/uploads/"+image.ImageName}} />
+            <img class="databaseImages" src="{{'/uploads/galleries/'+gallery[0].NazivGalerije + '/' +image.ImageName}}" />
             <button type="submit" class="form-control btn btn-danger" ng-click="deleteImage(image)">
                 <i class="glyphicon glyphicon-remove"></i>
                 Obriši                     

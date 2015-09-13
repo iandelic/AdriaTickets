@@ -62,25 +62,22 @@ adriaTicketAdmin.controller('AdminGalleryController', ['$scope', '$location', '$
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 images += file.name + '$%$';
-                
+                Upload.upload({
+                    url: '/admin/upload',
+                    file: file,
+                    fields: { 'name': $scope.gallery[0].NazivGalerije, 'type': "galleries" }
+                })
             }
+            images += '&Id=' + $scope.id;
+            $http({
+                method: 'POST',
+                url: '/admin/SaveImage',
+                data: images,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
 
-            Upload.upload({
-                url: '/admin/upload',
-                file: file
-            }).success(function (data, status, headers, config) {
-
-                images += '&Id=' + $scope.id;
-                $http({
-                    method: 'POST',
-                    url: '/admin/SaveImage',
-                    data: images,
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                }).success(function (data) {
-
-                    jQuery(location).attr('href', siteUrl + "admin/gallery/" + $scope.id);
-                }).error(function (msg) {
-                });
+                jQuery(location).attr('href', siteUrl + "admin/gallery/" + $scope.id);
+            }).error(function (msg) {
             });
         }
 
