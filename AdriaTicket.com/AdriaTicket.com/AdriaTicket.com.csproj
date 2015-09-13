@@ -378,6 +378,7 @@
     <Content Include="Views\Admin\OrganizatoriLista.cshtml" />
     <Content Include="Views\Admin\UrediOrganizatora.cshtml" />
     <Content Include="Views\Admin\AddTown.cshtml" />
+    <None Include="Properties\PublishProfiles\AdriaTicket.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
