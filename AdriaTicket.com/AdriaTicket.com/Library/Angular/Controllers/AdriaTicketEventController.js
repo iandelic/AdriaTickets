@@ -19,16 +19,9 @@ adriaTicket.controller('EventController', ['$scope', '$location', '$rootElement'
             $scope.event.EVE_Vrijeme = moment(temp).format('HH:mm');
             $scope.event.EVE_DatumOdProdaja = moment($scope.event.EVE_DatumOdProdaja).format('DD.MM.YYYY');
             $scope.event.EVE_DatumOdPretprodaja = moment($scope.event.EVE_DatumOdPretprodaja).format('DD.MM.YYYY');
-            $scope.images = {}
-            if ($scope.event.ImageGalleriesId>0)
-            $http.get('/data/getImages/' + $scope.event.ImageGalleriesId).success(function (data) {
-                $scope.images = data
-
-            }).error(function () { alert('error event inner') });
 
         }).error(function () { alert('error event') });
     }
-
 
 
 

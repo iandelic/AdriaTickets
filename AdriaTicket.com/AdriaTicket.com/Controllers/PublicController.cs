@@ -83,11 +83,11 @@ namespace AdriaTicket.com.Controllers
         public ActionResult getEvent(int id)
         {
             var ev = from Event in AdriaTicketData.LK_Events
-                     from statusEventa in AdriaTicketData.LK_StatusEventas.Where(s=> Event.EVE_StatusEventaId == s.SEV_Id).DefaultIfEmpty()
-                     from organizator in AdriaTicketData.LK_Organizators.Where(o => o.ORG_Id == Event.EVE_OrganizatorId).DefaultIfEmpty() 
-                     from video in AdriaTicketData.BK_VideoGalleries.Where(v=> v.eventID == Event.EVE_Id).DefaultIfEmpty()
-                     from dvorana in AdriaTicketData.LK_Dvoranas.Where(d => d.DVO_Id== Event.EVE_DvoranaId).DefaultIfEmpty()
-                     from mjesto in AdriaTicketData.LK_Mjestos.Where(m=>m.MJE_Id==Event.EVE_MjestoId).DefaultIfEmpty()
+                     from statusEventa in AdriaTicketData.LK_StatusEventas.Where(s => Event.EVE_StatusEventaId == s.SEV_Id).DefaultIfEmpty()
+                     from organizator in AdriaTicketData.LK_Organizators.Where(o => o.ORG_Id == Event.EVE_OrganizatorId).DefaultIfEmpty()
+                     from video in AdriaTicketData.BK_VideoGalleries.Where(v => v.eventID == Event.EVE_Id).DefaultIfEmpty()
+                     from dvorana in AdriaTicketData.LK_Dvoranas.Where(d => d.DVO_Id == Event.EVE_DvoranaId).DefaultIfEmpty()
+                     from mjesto in AdriaTicketData.LK_Mjestos.Where(m => m.MJE_Id == Event.EVE_MjestoId).DefaultIfEmpty()
                      from drzava in AdriaTicketData.LK_Drzavas.Where(dr => dr.DRZ_Id == mjesto.MJE_DrzavaId).DefaultIfEmpty()
                      from gallery in AdriaTicketData.BK_REL_Event_ImageGalleries.Where(g => g.EventId == Event.EVE_Id).DefaultIfEmpty()
                      where Event.EVE_Id == id
@@ -110,8 +110,11 @@ namespace AdriaTicket.com.Controllers
                          SEV_Stanje = statusEventa.SEV_Stanje == null ? '0' : statusEventa.SEV_Stanje,
                          SEV_Id = statusEventa.SEV_Id == null ? 0 : statusEventa.SEV_Id,
                          videoLink = video.videoLink == null ? "" : video.videoLink,
-                         ImageGalleriesID = gallery.ImageGalleriesId == null ? 0 : gallery.ImageGalleriesId
+                         Images = from images in AdriaTicketData.BK_Images.Where(i => i.GalleryId == gallery.ImageGalleriesId).DefaultIfEmpty() 
+                                  from gallerry in AdriaTicketData.BK_ImageGalleries.Where(g => g.Id == gallery.ImageGalleriesId)
+                                  select new {images.ImageAlt, images.ImageName, images.Id, images.GalleryId, gallerry.NazivGalerije }
                      };
+
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
     }

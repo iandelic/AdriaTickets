@@ -13,7 +13,7 @@
          data-thumbwidth="200">
                 @foreach (Tuple<int, string, string> item in ViewBag.images)
                 {
-                    <div data-img="/Uploads/event/@item.Item3/@item.Item2" class="img-responsive" data-caption="Željko Joksimović"><a href=" />event/@item.Item1"></a></div>
+                    <div data-img="/Uploads/event/@item.Item3/@item.Item2" class="img-responsive" data-caption="@item.Item3"><a href="/event/@item.Item1"></a></div>
         }
     </div>
 </div>
