@@ -6,6 +6,10 @@ adriaTicket.controller('HomeController', ['$scope', '$http', function ($scope, $
         $scope.sliderEvents = data;
     }).error(function () { alert('error') });
 
+    $http.get('/public/getAllAnnounecements').success(function (data) {
+        $scope.announecements = data;
+    }).error(function () { alert('error') });
+
     $http.get('/public/getEvents').success(function (data) {
         $scope.events = data;
         angular.forEach($scope.events, function (event) {

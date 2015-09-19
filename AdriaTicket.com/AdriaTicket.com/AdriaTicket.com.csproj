@@ -128,6 +128,7 @@
     <Content Include="Library\Angular\angular-youtube-embed.js" />
     <Content Include="Library\Angular\angular.min.js" />
     <Content Include="Library\Angular\app.js" />
+    <Content Include="Library\Angular\Controllers\AdriaTicketAdminAnnouncementsController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminEventsController.js" />
     <Content Include="Library\Angular\Controllers\AdriaTicketAdminGalleriesController.js" />
@@ -379,6 +380,7 @@
     <Content Include="Views\Admin\UrediOrganizatora.cshtml" />
     <Content Include="Views\Admin\AddTown.cshtml" />
     <None Include="Properties\PublishProfiles\AdriaTicket.pubxml" />
+    <Content Include="Views\Admin\Objave.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

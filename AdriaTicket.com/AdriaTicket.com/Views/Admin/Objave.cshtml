@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "CMS Adria Ticket - Objave";
+    ViewBag.Header = "CMS Adria Ticket - Objave";
+}
+
+<div ng-controller="AnnouncementsController">
+    <div class="container">
+    <div class="row admin-row">
+        <div class ="col-sm-6 col-xs-12">
+          <a href ="/admin">
+              <button class="btn btn-default btn-md" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+              Povratak
+              </button>
+          </a>
+          <button class="btn btn-default btn-md" type="button" ng-click="add()">
+            <i class="glyphicon glyphicons-database-plus"></i>
+            Dodaj
+            </button>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text"  ng-model="query" class="form-control input-md" placeholder = "Pojam za pretragu" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-md" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+        <div class="row" ng-show="showFlag">
+            Dodaj novu obavijest
+            <div class="input-group col-md-12">
+                <label>Unesite tekst</label>
+                <textarea id="textarea" class="textarea" ng-model="announecement.text" placeholder="unessite tekst objave"></textarea>
+            </div>
+        <div class="input-group col-md-12">
+         Prikaži na stranici<input type="checkbox" ng-model="announecement.showOnPage"/>
+        </div>
+        <div class="input-group col-md-12">
+        <button class="btn btn-default btn-md" type="button" ng-disabled="disabledFlag" ng-click="save(announecement)">
+                <i class="glyphicon glyphicon-save"></i>
+              {{buttonText}}
+              </button>
+                      <button class="btn btn-default btn-md" type="button" ng-click="cancel()">
+            <i class="glyphicon glyphicons-database-plus"></i>
+            Odustani
+            </button>
+        </div>
+    </div>
+    <div class="row">
+    <table class="event-table table table-striped">
+    <tr class ="table-header">
+        <th class ="col-xs-2 col-sm-2">Redni broj</th>
+        <th class ="col-xs-3 col-sm-3">Objava</th>
+        <th class ="col-xs-3 col-sm-3">Prikaži na stranici</th>
+        <th class ="col-xs-2 col-sm-2 text-center">Akcija</th>
+    </tr>
+     <tr ng-repeat="ann in announcements | filter: query as results">
+        <td  class ="col-xs-2 col-sm-2">{{ann.Id}}</td>
+        <td  class ="col-xs-3 col-sm-3">{{ann.Announcement}}</td>
+        <td  class ="col-xs-5 col-sm-5">{{ann.ShowOnPage}}</td>
+        <td class ="col-xs-2 col-sm-2 text-center"><div ng-click="edit(ann)" class ="table-link table-link-edit">Uredi</div><div ng-click="delete(ann)" class ="table-link table-link-edit">Obriši</div></td>
+     </tr>
+     <tr ng-if="results.length == 0">
+        <td class = "no-result-error" colspan="4">Nema rezultata pretrage.</td>
+    </tr>
+    </table>
+</div>
+
+</div>
+</div>
+

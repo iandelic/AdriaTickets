@@ -49,6 +49,16 @@ namespace AdriaTicket.com.Controllers
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult getAllAnnounecements()
+        {
+            var ann = from t in AdriaTicketData.BK_Announcements
+                         where (t.ShowOnPage == true)
+                         select new { t.Id, t.Announcement };
+
+            return Json(ann, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Event()
         {
             return View("Home/Event");

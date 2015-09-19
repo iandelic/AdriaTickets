@@ -134,6 +134,14 @@ namespace AdriaTicket.com.Controllers
 
             return View("OrganizatoriLista");
         }
+
+        [Authorize]
+        public ActionResult Objave()
+        {
+
+            return View();
+        }
+
         [Authorize]
         public ActionResult urediOrganizatora()
         {
@@ -173,6 +181,55 @@ namespace AdriaTicket.com.Controllers
             return Json(org, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
+        public ActionResult getAnnouncements()
+        {
+
+            var ann = from a in AdriaTicketData.BK_Announcements
+                      select new
+                      {
+                          a.Id,
+                          a.Announcement,
+                          a.ShowOnPage
+                      };
+
+            return Json(ann, JsonRequestBehavior.AllowGet);
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveAnnounecement(int Id, string text, bool showOnPage)
+        {
+            if (Id > 0)
+            {
+                BK_Announcement a = AdriaTicketData.BK_Announcements.FirstOrDefault(x => x.Id == Id);
+                a.Announcement = text;
+                a.ShowOnPage = showOnPage;
+            }
+            else
+            {
+                BK_Announcement a = new BK_Announcement();
+                a.Announcement = text;
+                a.ShowOnPage = showOnPage;
+                AdriaTicketData.BK_Announcements.InsertOnSubmit(a);
+            }
+
+
+            AdriaTicketData.SubmitChanges();
+
+            return Json("completed", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteAnnounecement(int Id)
+        {
+
+            BK_Announcement a = AdriaTicketData.BK_Announcements.FirstOrDefault(x => x.Id == Id);
+            AdriaTicketData.BK_Announcements.DeleteOnSubmit(a);
+            AdriaTicketData.SubmitChanges();
+
+            return Json("completed", JsonRequestBehavior.AllowGet);
+        }
         [Authorize]
         public ActionResult NewGallery()
         {

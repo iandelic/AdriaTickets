@@ -219,4 +219,11 @@
       <Association Name="LK_Event_BK_MainSliderEvent" Member="LK_Event" ThisKey="EventId" OtherKey="EVE_Id" Type="LK_Event" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="prstacpr_prodaja.BK_Announcement" Member="BK_Announcements">
+    <Type Name="BK_Announcement">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Announcement" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ShowOnPage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

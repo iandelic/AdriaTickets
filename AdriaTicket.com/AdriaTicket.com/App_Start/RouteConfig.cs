@@ -32,10 +32,10 @@ namespace AdriaTicket.com
             );
 
             routes.MapRoute(
-   name: "Admin-Organizatori",
-   url: "{controller}/organizatori/{action}/{id}",
-   defaults: new { controller = "Admin", action = "List", id = UrlParameter.Optional }
-);
+               name: "Admin-Organizatori",
+               url: "{controller}/organizatori/{action}/{id}",
+               defaults: new { controller = "Admin", action = "List", id = UrlParameter.Optional }
+            );
             routes.MapRoute(
                 name: "Data",
                 url: "Data/{action}",
