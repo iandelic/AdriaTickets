@@ -3,44 +3,70 @@
 }
 
 <div class="row carousel">
-    <div class="fotorama col-sm-10 center-block"
+    <div class="fotorama col-sm-8"
          data-width="100%"
-         data-ratio="16/6"
+         data-arrows="false"
+         data-ratio="16/9"
          data-autoplay="3000"
          data-loop="true"
          data-nav="thumbs"
          data-click="false"
-         data-thumbwidth="200">
-                @foreach (Tuple<int, string, string> item in ViewBag.images)
-                {
-                    <div data-img="/Uploads/event/@item.Item3/@item.Item2" class="img-responsive" data-caption="@item.Item3"><a href="/event/@item.Item1"></a></div>
+         data-thumbwidth="82"
+         data-thumbheight="46">
+        @foreach (Tuple<int, string, string> item in ViewBag.images)
+        {
+            <div data-img="/Uploads/event/@item.Item3/@item.Item2" class="img-responsive"><a href="/event/@item.Item1"></a></div>
         }
+        <img src="~/Library/img/dummy.png">
+        <img src="~/Library/img/dummy.png">
+        <img src="~/Library/img/dummy.png">
+        <img src="~/Library/img/dummy.png">
+        <img src="~/Library/img/dummy.png">
+    </div>
+
+    <div class="static-img col-sm-4">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="~/Library/img/dummy-static.png">
+            </div>
+            <div class="col-sm-12">
+                <img src="~/Library/img/dummy-static.png">
+            </div>
+        </div>
     </div>
 </div>
 <div id="main-content" class="container">
-    <div class="row">
+    <!--<div class="row">
         <div class="col-md-12 ads-container">
             <a href="http://www.uni-rent.net">
                 <img src="/Library/img/unirent.png" alt="uni-rent" class="center-block img-responsive">
             </a>
         </div>
-    </div>
+    </div>-->
 
     <div class="row">
         <div ng-controller="HomeController" class="col-md-9">
-            <div class="row">
-                <div ng-repeat="event in events" class="col-md-4 col-sm-6 one-event">
+            <div class="title col-md-12">
+                AdriaTicket PREPORUKE
+                <hr />
+            </div>
+            <div class="row event-list">
+                <div ng-repeat="event in events" class="col-md-3 col-sm-6 one-event">
                     <a href={{"/event/"+event.EVE_Id}}>
-                        <img src= "{{'/uploads/event/'+ event.EVE_Naziv +'/' + event.EVE_ImagePath}}" class="thumbnail" />
+                        <img src="~/Library/img/hp.png" />
+                        <!--<img src= "{{'/uploads/event/'+ event.EVE_Naziv +'/' + event.EVE_ImagePath}}" class="thumbnail" />-->
                         <div class="event-content">
-                            <h3>{{event.EVE_Naziv}} </h3>
+                            <h4>{{event.EVE_Naziv}} </h4>
                             <div class="row">
-                                <div class="col-md-3 vrijeme">
-                                    <p class="minititle"> </p>
-                                    <p> {{event.EVE_Datum}} </p>
-                                    <p> {{event.vrijeme}} </p>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-10 vrijeme">
+                                            <p> {{event.EVE_Datum}}. </p>
+                                            <p> {{event.vrijeme}} </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-9 mjesto">
+                                <div class="col-md-8 mjesto">
                                     <p>{{event.DVO_Naziv}}</p>
                                 </div>
                             </div>

@@ -1,9 +1,12 @@
-Repository for adriaticket.com website.
+[WIP] Dokumentacija
+===
 
+Dimenzije slika za carousel:
+16:9 ratio 
+640x370 px
 
+Pored carousel slike:
+330x210 px
 
-<a href = "http://bikretiv.com">BiKretiv</a>
-==============
-<a href = "https://hr.linkedin.com/pub/ivan-anđelić/5b/20/110">Anđelić Ivan</a><br />
-<a href = "https://hr.linkedin.com/in/stefandunic">Dunić Stefan</a><br />
-<a href = "https://ba.linkedin.com/in/vedrankaracic">Karačić Vedran</a>
+All events:
+160x160 px

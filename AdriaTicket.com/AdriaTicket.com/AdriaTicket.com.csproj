@@ -220,9 +220,12 @@
     <Content Include="Library\img\AdriaTicket-Logo-large.png" />
     <Content Include="Library\img\AdriaTicket-logo-white.png" />
     <Content Include="Library\img\AdriaTicket-small-grey-logo.png" />
+    <Content Include="Library\img\apoca-dummy.png" />
     <Content Include="Library\img\carousel-bg.jpg" />
     <Content Include="Library\img\colonia-testna-slika.jpg" />
     <Content Include="Library\img\dino-merlin.jpg" />
+    <Content Include="Library\img\dummy-static.png" />
+    <Content Include="Library\img\dummy.png" />
     <Content Include="Library\img\email-ico.png" />
     <Content Include="Library\img\event-200.jpg" />
     <Content Include="Library\img\favicon.ico" />
